@@ -35,7 +35,7 @@ app.post('/webhook/', function (req, res) {
 		if (event.message && event.message.text) {
 			let text = event.message.text
 			
-			if (text === 'ramdom') {
+			if (text === 'Generic') {
 				sendGenericMessage(sender)
 				continue
 			}
@@ -47,7 +47,7 @@ app.post('/webhook/', function (req, res) {
 			}
 			
 			//sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
-			sendTextMessage(sender, "Hey I am an Itinerary recommender, If want to see ramdom itineries type ramdom " + text.substring(0, 200))
+			sendTextMessage(sender, "Hey I am an Itinerary recommender, If want to see ramdom itineries type Generic " + text.substring(0, 200))
 			//sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
 		}
 		if (event.postback) {
