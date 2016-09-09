@@ -88,21 +88,8 @@ function sendTextMessage(sender, text) {
 function conformation(sender) {
 	
 let messageData = {
-	 "payload": {
-        "template_type": "conformation",
-        "intro_message": "please confirm itinerary generation.",
-    "quick_replies":[
-      {
-        "content_type":"text",
-        "title":"Yes",
-        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_YES"
-      },
-      {
-        "content_type":"text",
-        "title":"No",
-        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_NO"
-      }
-    ]
+	 "message":{
+  	"text":"Check function call !"
   }
 }
 
