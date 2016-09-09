@@ -87,8 +87,8 @@ function sendTextMessage(sender, text) {
 // get user confirmation to continue
 function conformation(sender) {
 	
-let messageData = 	{
-
+let messageData = {
+	 "attachment": {
   "message":{
     "text":" hey , Do you want to crate your itinerary:",
     "quick_replies":[
@@ -104,6 +104,8 @@ let messageData = 	{
       }
     ]
   }
+}
+
 }
 
 request({
@@ -125,7 +127,8 @@ request({
 
 
 function sendGenericMessage(sender) {
-	let messageData = {
+	
+let messageData = {
     "attachment": {
       "type": "template",
       "payload": {
