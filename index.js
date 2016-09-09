@@ -88,9 +88,9 @@ function sendTextMessage(sender, text) {
 function conformation(sender) {
 	
 let messageData = {
-	 "attachment": {
-  "message":{
-    "text":" hey , Do you want to crate your itinerary:",
+	 "payload": {
+        "template_type": "conformation",
+        "intro_message": "please confirm itinerary generation.",
     "quick_replies":[
       {
         "content_type":"text",
