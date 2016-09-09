@@ -38,7 +38,16 @@ app.post('/webhook/', function (req, res) {
 				sendGenericMessage(sender)
 				continue
 			}
-			sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+			
+			if (text === 'Yes') {
+			
+				conformation(sender)
+				continue
+			}
+			
+			//sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+			sendTextMessage(sender, "Hey I am an Itinerary recommender, If want to continue type Yes " + text.substring(0, 200))
+			//sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
 		}
 		if (event.postback) {
 			let text = JSON.stringify(event.postback)
@@ -73,6 +82,49 @@ function sendTextMessage(sender, text) {
 		}
 	})
 }
+
+
+// get user confirmation to continue
+function conformation(sender) {
+	
+let messageData = 	{
+  "recipient":{
+    "id":"USER_ID"
+  },
+  "message":{
+    "text":" hey , Do you want to crate your itinerary:",
+    "quick_replies":[
+      {
+        "content_type":"text",
+        "title":"Yes",
+        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_YES"
+      },
+      {
+        "content_type":"text",
+        "title":"No",
+        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_NO"
+      }
+    ]
+  }
+}
+
+request({
+		url: 'https://graph.facebook.com/v2.6/me/messages',
+		qs: {access_token:token},
+		method: 'POST',
+		json: {
+			recipient: {id:sender},
+			message: messageData,
+		}
+	}, function(error, response, body) {
+		if (error) {
+			console.log('Error sending messages: ', error)
+		} else if (response.body.error) {
+			console.log('Error: ', response.body.error)
+		}
+	})
+}
+
 
 function sendGenericMessage(sender) {
 	let messageData = {
