@@ -39,7 +39,7 @@ app.post('/webhook/', function (req, res) {
 				continue
 			}
 		//	sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
-			sendTextMessage(sender, "Hi , "+ USER_ID + "Text received, echo: "+text.substring(0, 200))
+			sendTextMessage(sender, "Hi , "+ FB_USER_ID + "Text received, echo: " +text.substring(0, 200))
 		}
 		if (event.postback) {
 			let text = JSON.stringify(event.postback)
