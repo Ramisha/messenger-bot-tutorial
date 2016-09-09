@@ -88,9 +88,7 @@ function sendTextMessage(sender, text) {
 function conformation(sender) {
 	
 let messageData = 	{
-  "recipient":{
-    "id":"USER_ID"
-  },
+
   "message":{
     "text":" hey , Do you want to crate your itinerary:",
     "quick_replies":[
