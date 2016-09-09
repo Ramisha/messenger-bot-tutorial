@@ -34,7 +34,12 @@ app.post('/webhook/', function (req, res) {
 		let sender = event.sender.id
 		if (event.message && event.message.text) {
 			let text = event.message.text
-		
+			
+			if (text === 'ramdom') {
+				sendGenericMessage(sender)
+				continue
+			}
+			
 			if (text === 'Yes') {
 			
 				conformation(sender)
@@ -42,7 +47,7 @@ app.post('/webhook/', function (req, res) {
 			}
 			
 			//sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
-			sendTextMessage(sender, "Hey I am an Itinerary recommender, If want to continue type Yes " + text.substring(0, 200))
+			sendTextMessage(sender, "Hey I am an Itinerary recommender, If want to see ramdom itineries type ramdom " + text.substring(0, 200))
 			//sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
 		}
 		if (event.postback) {
@@ -78,7 +83,6 @@ function sendTextMessage(sender, text) {
 		}
 	})
 }
-
 
 // get user confirmation to continue
 function conformation(sender) {
