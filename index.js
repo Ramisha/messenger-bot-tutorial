@@ -69,6 +69,7 @@ app.post('/webhook/', function (req, res) {
 			
 			sendTextMessage(sender, "when are you planning to leave ?")
 			
+			continue
 			}
 			
 		}
