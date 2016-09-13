@@ -87,11 +87,25 @@ function sendTextMessage(sender, text) {
 // get user confirmation to continue
 function conformation(sender) {
 	
-let messageData = {
-{
-"message": {
-"text": "hello, world!"
-}
+	{
+  "recipient":{
+    "id":"USER_ID"
+  },
+  "message":{
+    "text":" hey , Do you want to crate your itinerary:",
+    "quick_replies":[
+      {
+        "content_type":"text",
+        "title":"Yes",
+        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_YES"
+      },
+      {
+        "content_type":"text",
+        "title":"No",
+        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_NO"
+      }
+    ]
+  }
 }
 
 request({
@@ -110,6 +124,7 @@ request({
 		}
 	})
 }
+
 
 
 function sendGenericMessage(sender) {
