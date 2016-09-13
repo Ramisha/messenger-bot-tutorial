@@ -40,33 +40,7 @@ app.post('/webhook/', function (req, res) {
 			continue
 			}
 			
-			let start = event.message.text
-			if (start === 'yes' || start === 'Yes' || start === 'yeah') {
-			sendTextMessage(sender, "Give your Destination or type Generic to view a ramdom itinerary")
-			continue
-			}
 			
-			let text = event.message.text
-			if (text === 'Generic' || text === 'generic') {
-			sendGenericMessage(sender)
-			continue
-			}
-			
-			else {
-				
-			sendTextMessage(sender, "your destination is : ")
-			}
-			
-			if (destination !== null) {
-			sendTextMessage(sender, "your destination" + destination.substring(0, 200), token)
-			continue
-			}
-			
-		
-			
-			//sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
-		
-			//sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
 		}
 		if (event.postback) {
 			let text = JSON.stringify(event.postback)
