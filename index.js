@@ -41,12 +41,12 @@ app.post('/webhook/', function (req, res) {
 			}
 			
 			if (text === 'Yes') {
-				conformation(sender)
+				sendTextMessage(sender, "Lets start creating your itinerary, If want to see ramdom itineries type Generic " + USER_ID)
 				continue
 			}
 			
 			//sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
-			sendTextMessage(sender, "Hey I am an Itinerary recommender, If want to see ramdom itineries type Generic " + text.substring(0, 200))
+			sendTextMessage(sender, "Hey I am an Itinerary recommender, If want to see ramdom itineries type Yes " + text.substring(0, 200))
 			//sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
 		}
 		if (event.postback) {
@@ -84,33 +84,7 @@ function sendTextMessage(sender, text) {
 }
 
 // get user confirmation to continue
-function conformation(sender) {
-	
-	"recipient":{
-				  	"id":"USER_ID"
-				  },
-				  "message":{
-				  	"text":"hello, world!"
-				  }
 
-
-
-request({
-		url: 'https://graph.facebook.com/v2.6/me/messages',
-		qs: {access_token:token},
-		method: 'POST',
-		json: {
-			recipient: {id:sender},
-			message: messageData,
-		}
-	}, function(error, response, body) {
-		if (error) {
-			console.log('Error sending messages: ', error)
-		} else if (response.body.error) {
-			console.log('Error: ', response.body.error)
-		}
-	})
-}
 
 
 function sendGenericMessage(sender) {
