@@ -33,17 +33,17 @@ app.post('/webhook/', function (req, res) {
 		let event = req.body.entry[0].messaging[i]
 		let sender = event.sender.id
 		if (event.message && event.message.text) {
-			let text = event.message.text
+			let initiate = event.message.text
 			
+			if (initiate === 'hi' || initiate === 'hey' || initiate === 'Hi' && initiate === 'Hey') {
+			sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ")
+			continue
+			}
 			
 			if (text === 'yes' || text === 'Yes' || text === 'yeah') {
-				sendTextMessage(sender, "Give your Destination or type Generic to view a ramdom itinerary")
-				let destination = event.message.text
-				continue
-					
-				
-				sendTextMessage(sender, "your destination" + destination.substring(0, 200), token)
-				continue
+			sendTextMessage(sender, "Give your Destination or type Generic to view a ramdom itinerary")
+			let destination = event.message.text
+			continue
 				
 				sendTextMessage(sender, "what is your departure location")
 				let departure = event.message.text
@@ -53,13 +53,18 @@ app.post('/webhook/', function (req, res) {
 				continue
 			}
 			
-				if (text === 'Generic') {
-				sendGenericMessage(sender)
-				continue
+			if (destination !== null) {
+			sendTextMessage(sender, "your destination" + destination.substring(0, 200), token)
+			continue
+			}
+			
+			if (text === 'Generic') {
+			sendGenericMessage(sender)
+			continue
 			}
 			
 			//sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
-			sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ")
+		
 			//sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
 		}
 		if (event.postback) {
