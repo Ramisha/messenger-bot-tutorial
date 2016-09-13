@@ -34,15 +34,21 @@ app.post('/webhook/', function (req, res) {
 		let sender = event.sender.id
 		if (event.message && event.message.text) {
 			let text = event.message.text
+			
 			if (text === 'Generic') {
 				sendGenericMessage(sender)
 				continue
 			}
 			
+			if (text === 'Yes') {
 			
-			sendTextMessage(sender, "Enter Generic to continue " + text.substring(0, 200))
+				conformation(sender)
+				continue
+			}
 			
-		
+			//sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+			sendTextMessage(sender, "Hey I am an Itinerary recommender, If want to see ramdom itineries type Generic " + text.substring(0, 200))
+			//sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
 		}
 		if (event.postback) {
 			let text = JSON.stringify(event.postback)
@@ -56,7 +62,55 @@ app.post('/webhook/', function (req, res) {
 
 // recommended to inject access tokens as environmental variables, e.g.
 // const token = process.env.PAGE_ACCESS_TOKEN
-const token = "EAAN1nQ8Jz3MBAKZBF8xI2yK5G6ybYeDHDXLc3Xcq3VAZA9rNhXGOJkzDWurMlymv2PC8yZA3HCBFN43UUb0EWLlwryujZCn8TEd5qZAa7ZAHvJyZAnh4lWpk2LZC0bSnnxTKKZC4pYPYR1cLc2Hci6y1wINOYH9wM6ZB8dmI6gVurU3gZDZD"
+const token = "EAAN1nQ8Jz3MBABpQib4sZB1UnMCIobDAQ7ArZA8w9U67AD1gimvvDCkLptz7k3keOTjZBY3DKZCyPIFZApIg3zn6I5ByFbNpQkwRfD99ZAejGmElK075ygLKJvHw4XWcb1ZCyY9V5gOkxgywVVhjZCWRCPPvBXdM5G1WykZCgcxSoPQZDZD"
+
+function sendTextMessage(sender, text) {
+	let messageData = { text:text }
+	
+	request({
+		url: 'https://graph.facebook.com/v2.6/me/messages',
+		qs: {access_token:token},
+		method: 'POST',
+		json: {
+			recipient: {id:sender},
+			message: messageData,
+		}
+	}, function(error, response, body) {
+		if (error) {
+			console.log('Error sending messages: ', error)
+		} else if (response.body.error) {
+			console.log('Error: ', response.body.error)
+		}
+	})
+}
+
+// get user confirmation to continue
+function conformation(sender) {
+	
+let messageData = {
+	 "message":{
+  	"text":"Check function call !"
+  }
+}
+
+
+
+request({
+		url: 'https://graph.facebook.com/v2.6/me/messages',
+		qs: {access_token:token},
+		method: 'POST',
+		json: {
+			recipient: {id:sender},
+			message: messageData,
+		}
+	}, function(error, response, body) {
+		if (error) {
+			console.log('Error sending messages: ', error)
+		} else if (response.body.error) {
+			console.log('Error: ', response.body.error)
+		}
+	})
+}
 
 
 function sendGenericMessage(sender) {
