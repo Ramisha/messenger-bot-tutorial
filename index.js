@@ -47,7 +47,7 @@ app.post('/webhook/', function (req, res) {
 			}
 			
 			//sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
-			sendTextMessage(sender, "Hey I am an Itinerary recommender, If want to see ramdom itineries type Generic " + text.substring(0, 200))
+			sendTextMessage(sender, "Hey USER_ID I am an Itinerary recommender, If want to see ramdom itineries type Generic " + text.substring(0, 200))
 			//sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
 		}
 		if (event.postback) {
@@ -91,18 +91,18 @@ function conformation(sender) {
   "recipient":{
     "id":"USER_ID"
   },
-  "message":{
+ {
     "text":" hey , Do you want to crate your itinerary:",
     "quick_replies":[
       {
         "content_type":"text",
         "title":"Yes",
-        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_YES"
+        //"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_YES"
       },
       {
         "content_type":"text",
         "title":"No",
-        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_NO"
+        //"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_NO"
       }
     ]
   }
