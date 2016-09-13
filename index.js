@@ -60,13 +60,12 @@ app.post('/webhook/', function (req, res) {
 			
 			sendTextMessage(sender, "what is your departure location  ?")
 			
-			continue
-			
+				let departure = event.message.text 
 			}
 			
 			continue
 			
-			let departure = event.message.text 
+			// let departure = event.message.text 
 			sendTextMessage(sender, "your departure location is : " + departure)
 			sendTextMessage(sender, "when are you planning to leave ?")
 			continue
