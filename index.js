@@ -70,15 +70,11 @@ app.post('/webhook/', function (req, res) {
 			sendTextMessage(sender, "when are you planning to leave ?")
 			continue
 			let start_date = event.message.text 
-		//	sendTextMessage(sender, "your departure location is : " + origin)
-			continue
+			sendTextMessage(sender, "your departure date : " + start_date)
 			sendTextMessage(sender, "return date of your trip ? ")
 			continue
 			
-			let return_date = event.message.text 
-			continue
-			sendTextMessage(sender, "depart date : " + start_date + " return date : " + )
-			continue
+			
 			
 		}
 		if (event.postback) {
