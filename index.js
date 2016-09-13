@@ -46,7 +46,7 @@ app.post('/webhook/', function (req, res) {
 			}
 			
 			//sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
-			sendTextMessage(sender, "Hey I am an Itinerary recommender, If want to see ramdom itineries type Yes " + text.substring(0, 200))
+			sendTextMessage(sender, "Hey " + sender +"I am an Itinerary recommender, If want to see ramdom itineries type Yes ")
 			//sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
 		}
 		if (event.postback) {
