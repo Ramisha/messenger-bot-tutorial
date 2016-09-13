@@ -35,11 +35,31 @@ app.post('/webhook/', function (req, res) {
 		if (event.message && event.message.text) {
 			let initiate = event.message.text
 			
-			if (initiate === 'hi' || initiate === 'hey' || initiate === 'Hi' && initiate === 'Hey') {
+		if (initiate === 'hi' || initiate === 'hey' || initiate === 'Hi' && initiate === 'Hey') {
 			sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ")
+			let start = event.message.text
+			continue
+			
+			if (start === 'yes' || start === 'Yes' || start === 'yeah') {
+			sendTextMessage(sender, "Give your Destination or type Generic to view a random itinerary")
+			let text = event.message.text
+			continue
+			
+			if (text === 'Generic' || text === 'generic') {
+			sendGenericMessage(sender)
 			continue
 			}
 			
+			else {
+				
+			sendTextMessage(sender, "your destination is : " + text)
+			
+			}
+			
+			}
+			
+			
+			}
 			
 		}
 		if (event.postback) {
