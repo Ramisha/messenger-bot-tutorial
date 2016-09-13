@@ -37,7 +37,6 @@ app.post('/webhook/', function (req, res) {
 			
 			if (text === 'Yes') {
 				sendTextMessage(sender, "Give your Destination or type Generic to view a ramdom itinerary")
-				 
 				continue
 			}
 			
@@ -47,7 +46,7 @@ app.post('/webhook/', function (req, res) {
 			}
 			
 			//sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
-			sendTextMessage(sender, "Hey " + USER_ID +"I am an Itinerary recommender, tyoe Yes if you want to start creating your itinerary ")
+			sendTextMessage(sender, "Hey I am an Itinerary recommender, tyoe Yes if you want to start creating your itinerary ")
 			//sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
 		}
 		if (event.postback) {
