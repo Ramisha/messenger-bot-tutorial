@@ -39,7 +39,7 @@ app.post('/webhook/', function (req, res) {
 				sendTextMessage(sender, "Give your Destination or type Generic to view a ramdom itinerary")
 				 	let destination = event.message.text
 				 	
-				 	sendTextMessage(sender, "your destination : " + destination)
+				 	sendTextMessage(sender, "your destination : " + destination.substring(0, 200), token)
 				
 				continue
 			}
