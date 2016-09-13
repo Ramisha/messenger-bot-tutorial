@@ -86,29 +86,9 @@ function sendTextMessage(sender, text) {
 
 // get user confirmation to continue
 function conformation(sender) {
+let messageData = { text:text }
 	
-	{
-  "recipient":{
-    "id":"USER_ID"
-  },
- {
-    "text":" hey , Do you want to crate your itinerary:",
-    "quick_replies":[
-      {
-        "content_type":"text",
-        "title":"Yes",
-        //"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_YES"
-      },
-      {
-        "content_type":"text",
-        "title":"No",
-        //"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_NO"
-      }
-    ]
-  }
-}
-
-request({
+	request({
 		url: 'https://graph.facebook.com/v2.6/me/messages',
 		qs: {access_token:token},
 		method: 'POST',
@@ -123,7 +103,6 @@ request({
 			console.log('Error: ', response.body.error)
 		}
 	})
-}
 
 
 
