@@ -35,10 +35,13 @@ app.post('/webhook/', function (req, res) {
 		if (event.message && event.message.text) {
 			let text = event.message.text
 			
-		
-			
 			if (text === 'Yes') {
 				sendTextMessage(sender, "Lets start creating your itinerary, If want to see ramdom itineries type Generic ")
+				continue
+			}
+			
+				if (text === 'Generic') {
+				sendGenericMessage(sender)
 				continue
 			}
 			
