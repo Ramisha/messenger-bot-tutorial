@@ -43,15 +43,16 @@ app.post('/webhook/', function (req, res) {
 			let start = event.message.text
 			if (start === 'yes' || start === 'Yes' || start === 'yeah') {
 			sendTextMessage(sender, "Give your Destination or type Generic to view a ramdom itinerary")
-		
 			continue
-			}	
-				sendTextMessage(sender, "what is your departure location")
-				let departure = event.message.text
-				continue
-				
-				sendTextMessage(sender, "your departure location" + destination.substring(0, 200), token)
-				continue
+			
+			let text = event.message.text
+			
+			if (text === 'Generic') {
+			sendGenericMessage(sender)
+			continue
+			}
+			
+			
 			}
 			
 			if (destination !== null) {
@@ -59,10 +60,7 @@ app.post('/webhook/', function (req, res) {
 			continue
 			}
 			
-			if (text === 'Generic') {
-			sendGenericMessage(sender)
-			continue
-			}
+		
 			
 			//sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
 		
