@@ -51,19 +51,22 @@ app.post('/webhook/', function (req, res) {
 				let text = event.message.text
 			if (text === 'Generic' || text === 'generic') {
 			sendGenericMessage(sender)
-			continue
+			
 			}
 			
 			else {
 				
 			sendTextMessage(sender, "your destination is : " + text + "\n what is your departure location  ? " )
 			
-			continue
+		//	continue
 			}
 		
 			let departure = event.message.text
 			sendTextMessage(sender, "your departure location is : " + departure  + "\n \nwhen are you planning to leave ? " )
+			continue
+			
 		}
+		
 		if (event.postback) {
 			let text = JSON.stringify(event.postback)
 			sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
