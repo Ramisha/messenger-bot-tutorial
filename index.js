@@ -37,14 +37,16 @@ app.post('/webhook/', function (req, res) {
 			
 			if (text === 'Generic') {
 				sendGenericMessage(sender)
-				
-				
 				continue
 			}
 			
 			if (text === 'Yes') {
-					 
-				console.log('hello world');
+				"recipient":{
+				  	"id":"USER_ID"
+				  },
+				  "message":{
+				  	"text":"hello, world!"
+				  }
 				continue
 			}
 			
