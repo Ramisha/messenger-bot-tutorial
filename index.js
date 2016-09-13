@@ -57,15 +57,12 @@ app.post('/webhook/', function (req, res) {
 			else {
 				
 			sendTextMessage(sender, "your destination is : " + text + "\n what is your departure location  ? " )
-				continue
-			let departure = event.message.text
-			sendTextMessage(sender, "your departure location is : " + departure  + "\n \nwhen are you planning to leave ? " )
 			
 			continue
 			}
-			
-			
-			
+		
+			let departure = event.message.text
+			sendTextMessage(sender, "your departure location is : " + departure  + "\n \nwhen are you planning to leave ? " )
 		}
 		if (event.postback) {
 			let text = JSON.stringify(event.postback)
