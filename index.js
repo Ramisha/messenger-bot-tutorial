@@ -37,12 +37,29 @@ app.post('/webhook/', function (req, res) {
 			
 			if (text === 'Generic') {
 				sendGenericMessage(sender)
+				
+				
 				continue
 			}
 			
 			if (text === 'Yes') {
-			
-				conformation(sender)
+				
+				  "message":{
+					    "text":"Pick a color:",
+					    "quick_replies":[
+					      {
+					        "content_type":"text",
+					        "title":"Red",
+					        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_RED"
+					      },
+					      {
+					        "content_type":"text",
+					        "title":"Green",
+					        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_GREEN"
+					      }
+					    ]
+					  }
+					 
 				continue
 			}
 			
