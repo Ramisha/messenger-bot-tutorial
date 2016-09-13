@@ -41,12 +41,7 @@ app.post('/webhook/', function (req, res) {
 			}
 			
 			if (text === 'Yes') {
-				"recipient":{
-				  	"id":"USER_ID"
-				  },
-				  "message":{
-				  	"text":"hello, world!"
-				  }
+				conformation(sender)
 				continue
 			}
 			
@@ -91,11 +86,12 @@ function sendTextMessage(sender, text) {
 // get user confirmation to continue
 function conformation(sender) {
 	
-let messageData = {
-	 "message":{
-  	"text":"Check function call !"
-  }
-}
+	"recipient":{
+				  	"id":"USER_ID"
+				  },
+				  "message":{
+				  	"text":"hello, world!"
+				  }
 
 
 
