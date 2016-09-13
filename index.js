@@ -38,7 +38,14 @@ app.post('/webhook/', function (req, res) {
 				sendGenericMessage(sender)
 				continue
 			}
-			sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+			
+			
+			sendTextMessage(sender, "Enter Yes to continue " + text.substring(0, 200))
+			
+			if (text === 'Yes') {
+				start(sender)
+				continue
+			}
 		}
 		if (event.postback) {
 			let text = JSON.stringify(event.postback)
@@ -54,6 +61,30 @@ app.post('/webhook/', function (req, res) {
 // const token = process.env.PAGE_ACCESS_TOKEN
 const token = "EAAN1nQ8Jz3MBABpQib4sZB1UnMCIobDAQ7ArZA8w9U67AD1gimvvDCkLptz7k3keOTjZBY3DKZCyPIFZApIg3zn6I5ByFbNpQkwRfD99ZAejGmElK075ygLKJvHw4XWcb1ZCyY9V5gOkxgywVVhjZCWRCPPvBXdM5G1WykZCgcxSoPQZDZD"
 
+
+function start(sender) {
+	
+let messageData = {
+  "attachment":{"type":"template","payload":{
+"template_type":"button","text":"Some text goes here","buttons":[{
+"type":"web_url","url":"https://www.example.com","title":"Button Title"}]}}
+  }
+	request({
+		url: 'https://graph.facebook.com/v2.6/me/messages',
+		qs: {access_token:token},
+		method: 'POST',
+		json: {
+			recipient: {id:sender},
+			message: messageData,
+		}
+	}, function(error, response, body) {
+		if (error) {
+			console.log('Error sending messages: ', error)
+		} else if (response.body.error) {
+			console.log('Error: ', response.body.error)
+		}
+	})
+}
 
 function sendGenericMessage(sender) {
 	
