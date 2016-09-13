@@ -1,0 +1,1 @@
+[{"attachment":{"type":"template","payload":{"template_type":"button","text":"Some text goes here","buttons":[{"type":"web_url","url":"https://www.example.com","title":"Button Title"}]}}}]
