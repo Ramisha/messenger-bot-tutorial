@@ -43,7 +43,7 @@ app.post('/webhook/', function (req, res) {
 			}
 			
 			if (text === 'Yes') {
-					    "text":"Pick a color:",
+					 
 					    "quick_replies":[
 					      {
 					        "content_type":"text",
