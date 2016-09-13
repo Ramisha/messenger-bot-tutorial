@@ -88,7 +88,7 @@ function sendTextMessage(sender, text) {
 function conformation(sender) {
 	
 let messageData = {
-	 "message":{
+	 {
   	"text":"Check function call !"
   }
 }
