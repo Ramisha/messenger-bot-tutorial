@@ -88,11 +88,11 @@ function sendTextMessage(sender, text) {
 function conformation(sender) {
 	
 let messageData = {
-	
-	{ "text": "hello, world!" }
+{
+"message": {
+"text": "hello, world!"
 }
-
-
+}
 
 request({
 		url: 'https://graph.facebook.com/v2.6/me/messages',
