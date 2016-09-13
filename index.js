@@ -56,21 +56,18 @@ app.post('/webhook/', function (req, res) {
 			
 			else {
 				
-			sendTextMessage(sender, "your destination is : " + text + "\n \n  What is your departure location  ? ")
-		
-			}
-			
-			continue
-			
+			sendTextMessage(sender, "your destination is : " + text + "\n \nWhat is your departure location  ? ")
 			let departure = event.message.text
 			
-			if (departure !== null) {
-			sendTextMessage(sender, "your departure location is : " + departure)
-			
-			sendTextMessage(sender, "when are you planning to leave ?")
-			
-			continue
 			}
+			
+		
+			
+		//	let departure = event.message.text
+			
+		
+			sendTextMessage(sender, "your departure location is : " + departure  + "\n \nwhen are you planning to leave ? " )
+			
 			
 		}
 		if (event.postback) {
