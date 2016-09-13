@@ -36,7 +36,11 @@ app.post('/webhook/', function (req, res) {
 			let text = event.message.text
 			
 			if (text === 'Yes') {
-				sendTextMessage(sender, "Lets start creating your itinerary, If want to see ramdom itineries type Generic or give your Destination")
+				sendTextMessage(sender, "Give your Destination or type Generic to view a ramdom itinerary")
+				 	let destination = event.message.text
+				 	
+				 	sendTextMessage(sender, "your destination : " + destination)
+				
 				continue
 			}
 			
@@ -46,7 +50,7 @@ app.post('/webhook/', function (req, res) {
 			}
 			
 			//sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
-			sendTextMessage(sender, "Hey " + USER_ID +"I am an Itinerary recommender, If want to see ramdom itineries type Yes ")
+			sendTextMessage(sender, "Hey " + USER_ID +"I am an Itinerary recommender, tyoe Yes if you want to start creating your itinerary ")
 			//sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
 		}
 		if (event.postback) {
