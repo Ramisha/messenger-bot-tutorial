@@ -43,8 +43,6 @@ app.post('/webhook/', function (req, res) {
 			}
 			
 			if (text === 'Yes') {
-				
-				  "message":{
 					    "text":"Pick a color:",
 					    "quick_replies":[
 					      {
@@ -58,7 +56,7 @@ app.post('/webhook/', function (req, res) {
 					        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_GREEN"
 					      }
 					    ]
-					  }
+				
 					 
 				continue
 			}
