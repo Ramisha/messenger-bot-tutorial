@@ -42,8 +42,14 @@ app.post('/webhook/', function (req, res) {
 			continue
 			}
 			
+				let varable = event.message.text
+				if (status === 'user_start') {
+			sendTextMessage(sender, "testing ")
+				sendTextMessage(sender, "varable ")
+				sendTextMessage(sender, "status ")
 		
-			
+			continue
+			}
 		
 	
 	
