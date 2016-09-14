@@ -52,11 +52,6 @@ app.post('/webhook/', function (req, res) {
 			}
 			
 			let text = event.message.text
-			if (text !== null && (text === 'Generic' || text === 'generic') ){
-			sendGenericMessage(sender)
-			continue
-			}
-			
 			 if (text !== null && status === 'user_destination'){
 			sendTextMessage(sender, "your destination is : " + text + "\n what is your departure location  ? ")
 			status = 'user_departure';
