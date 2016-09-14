@@ -52,9 +52,8 @@ app.post('/webhook/', function (req, res) {
 			}
 			
 			let destination = event.message.text
-
 			if (destination !== null && status === 'user_destination') {
-			sendTextMessage(sender, "your destination is : " + departure + "\n\nwhat is your origin ?")
+			sendTextMessage(sender, "your destination is : " + destination + "\n\nwhat is your origin ?")
         		status = 'user_departure';
 			continue
 			}
