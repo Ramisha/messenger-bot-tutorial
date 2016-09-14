@@ -55,37 +55,7 @@ app.post('/webhook/', function (req, res) {
 			continue
 			}
 			
-		  if 	(text !== null && status === 'user_destination'){
-				
-			sendTextMessage(sender, "your destination is : " + text + "\n what is your departure location  ? ")
-			 status = 'user_departure';
-			let departure = event.message.text
-
-			continue
-			}
-			
-
-			if (departure !== null && status === 'user_departure') {
-			sendTextMessage(sender, "your departure location is : " + departure + "\n\nwhen are you planning to leave ?")
-				let start_date = event.message.text
-			    status = 'user_s_date';
-			continue
-			}
-			
-			if (start_date !== null && status === 'user_s_date') {
-			sendTextMessage(sender, "your departure date is : " + start_date + "\n\n when are you planning to return")
-				let return_date = event.message.text
-			  status = 'user_e_date' ;
-			continue
-
-			}
-		
-
-      if (return_date !== null && status === 'user_e_date') {
-			sendTextMessage(sender, "your return date is : " + return_date )
-        status = 'new_user' ;
-			continue
-      }
+	
 		}
 
 		if (event.postback) {
