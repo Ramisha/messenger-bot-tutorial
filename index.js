@@ -30,15 +30,13 @@ app.get('/webhook/', function (req, res) {
 app.post('/webhook/', function (req, res) {
 	let messaging_events = req.body.entry[0].messaging
 	for (let i = 0; i < messaging_events.length; i++) {
-	let event = req.body.entry[0].messaging[i]
+		let event = req.body.entry[0].messaging[i]
 		let sender = event.sender.id
-		
 		if (event.message && event.message.text) {
 			let initiate = event.message.text
 			
 		if (initiate === 'hi' || initiate === 'hey' || initiate === 'Hi' && initiate === 'Hey') {
 			sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ")
-				sendTextMessage(sender,messaging_events.length)
 		
 			continue
 		}
@@ -50,26 +48,34 @@ app.post('/webhook/', function (req, res) {
 			
 			}
 			
-		let text = event.message.text
-			if (text !== 'Generic' || text !== 'generic') {
-			sendTextMessage(sender, "your destination is : " + text + "\n what is your departure location  ? " )
-			let departure = event.message.text
+				let text = event.message.text
+			if (text === 'Generic' || text === 'generic') {
+			sendGenericMessage(sender)
 			continue
-			
-			
 			}
 			
 			else {
 				
-			sendGenericMessage(sender)
+			sendTextMessage(sender, "your destination is : " + text + "\n what is your departure location  ? ")
+			let departure = event.message.text
+			continue
 			}
-		
 			
-			sendTextMessage(sender, "your departure location is : " + departure  + "\n \nwhen are you planning to leave ? " )
-		
+			
+			if (departure !== null) {
+			sendTextMessage(sender, "your departure location is : " + departure + "\n\nwhen are you planning to leave ?")
+				let start_date = event.message.text
+			continue
+			}
+			
+			if (start_date !== null) {
+			sendTextMessage(sender, "your departure date is : " + start_date + "\n\n when are you planning to return")
+				let return_date = event.message.text
+			continue
+			}
+			sendTextMessage(sender, "your return date is : " + return_date)
 			
 		}
-		
 		if (event.postback) {
 			let text = JSON.stringify(event.postback)
 			sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
