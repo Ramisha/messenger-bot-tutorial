@@ -1,4 +1,5 @@
 'use strict'
+var status = new_user ;
 
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -35,9 +36,9 @@ app.post('/webhook/', function (req, res) {
 		if (event.message && event.message.text) {
 			let initiate = event.message.text
 			
-		if (initiate === 'hi' || initiate === 'hey' || initiate === 'Hi' && initiate === 'Hey') {
+	if (status === new_user && (initiate === 'hi' || initiate === 'hey' || initiate === 'Hi' && initiate === 'Hey')) {
 			sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ")
-		
+      status = user_start;
 			continue
 		}
 				let start = event.message.text
