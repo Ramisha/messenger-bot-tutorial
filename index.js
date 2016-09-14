@@ -38,14 +38,9 @@ app.post('/webhook/', function (req, res) {
 		if (initiate === 'hi' || initiate === 'hey' || initiate === 'Hi' && initiate === 'Hey') {
 			sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ")
 			
-			{
-  "recipient":{
-    "id":"USER_ID"
-  },
   "message":{
     "text":"hello, world!"
-  }
-}' "https://graph.facebook.com/v2.6/me/messages?access_token=token"
+  }' "https://graph.facebook.com/v2.6/me/messages?access_token=token"
 		
 			continue
 		}
