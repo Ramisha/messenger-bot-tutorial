@@ -50,6 +50,12 @@ app.post('/webhook/', function (req, res) {
 			continue
 			
 			}
+			
+			let text = event.message.text
+			if (text !== null && (text === 'Generic' || text === 'generic') ){
+			sendGenericMessage(sender)
+			continue
+			}
 		
 	
 	
