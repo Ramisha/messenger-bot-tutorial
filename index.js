@@ -1,8 +1,6 @@
 'use strict'
 var status = 'new_user' ;
 
-
-
 const express = require('express')
 const bodyParser = require('body-parser')
 const request = require('request')
@@ -41,17 +39,10 @@ app.post('/webhook/', function (req, res) {
 			if (status === 'new_user' && (initiate === 'hi' || initiate === 'hey' || initiate === 'Hi' && initiate === 'Hey')) {
 			sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ")
 			 status = 'user_start';
-			  
 			continue
 			}
-			let start = event.message.text
-			if (status === 'user_start' && (start === 'yes' || start === 'Yes' || start === 'yeah' || status === 'sure')) {
-			sendTextMessage(sender, "Give your Destination or type Generic to view a random itinerary")
 			
-	  		status = 'user_destination';
-			continue
-			
-			}
+		
 			
 		
 	
