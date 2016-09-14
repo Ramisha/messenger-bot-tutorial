@@ -36,9 +36,10 @@ app.post('/webhook/', function (req, res) {
 		if (event.message && event.message.text) {
 			let initiate = event.message.text
 			
-		if (initiate === 'hi' || initiate === 'hey' || initiate === 'Hi' && initiate === 'Hey') {
+			if (status === 'new_user' && (initiate === 'hi' || initiate === 'hey' || initiate === 'Hi' && initiate === 'Hey')) {
 			sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ")
-	 	continue
+      status = 'user_start';
+			continue
 		}
 			
 	
@@ -50,6 +51,10 @@ app.post('/webhook/', function (req, res) {
 			continue
 		}
 	}
+
+
+	res.sendStatus(200)
+})
 
 
 // recommended to inject access tokens as environmental variables, e.g.
