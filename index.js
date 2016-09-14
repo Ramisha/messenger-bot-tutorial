@@ -36,43 +36,64 @@ app.post('/webhook/', function (req, res) {
 		if (event.message && event.message.text) {
 			let initiate = event.message.text
 			
-if (status === 'new_user' && (initiate === 'hi' || initiate === 'hey' || initiate === 'Hi' && initiate === 'Hey')) {
+		if (status === 'new_user' && (initiate === 'hi' || initiate === 'hey' || initiate === 'Hi' && initiate === 'Hey')) {
 			sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ")
-      status = user_start;
+      status = 'user_start';
 			continue
 		}
 				let start = event.message.text
-			if (start === 'yes' || start === 'Yes' || start === 'yeah') {
+			if (status === 'user_start' && (start === 'yes' || start === 'Yes' || start === 'yeah' || 'sure')) {
 			sendTextMessage(sender, "Give your Destination or type Generic to view a random itinerary")
-		
+	  	status = 'user_destination';
 			continue
 			
 			}
 			
-				let text = event.message.text
+			let text = event.message.text
 			if (text === 'Generic' || text === 'generic') {
 			sendGenericMessage(sender)
 			continue
 			}
 			
-			else{
+		  if 	(text !== null && status === 'user_destination'){
 				
 			sendTextMessage(sender, "your destination is : " + text + "\n what is your departure location  ? ")
+      status = 'user_departure';
 			let departure = event.message.text
-			
-			
+
+			continue
 			}
 			
+
+			if (departure !== null && status === 'user_departure') {
+			sendTextMessage(sender, "your departure location is : " + departure + "\n\nwhen are you planning to leave ?")
+				let start_date = event.message.text
+        status = 'user_s_date';
+			continue
+			}
+			
+			if (start_date !== null && status === 'user_s_date') {
+			sendTextMessage(sender, "your departure date is : " + start_date + "\n\n when are you planning to return")
+				let return_date = event.message.text
+        status = 'user_e_date' ;
+			continue
+
+			}
 		
+
+      if (return_date !== null && status === 'user_e_date') {
+			sendTextMessage(sender, "your return date is : " + return_date )
+        status = new_user ;
+			continue
+      }
 		}
+
 		if (event.postback) {
 			let text = JSON.stringify(event.postback)
 			sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
 			continue
 		}
 	}
-	res.sendStatus(200)
-})
 
 
 // recommended to inject access tokens as environmental variables, e.g.
