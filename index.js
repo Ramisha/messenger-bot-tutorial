@@ -1,6 +1,6 @@
 'use strict'
 var status = 'new_user' ;
-var text;
+
 
 
 const express = require('express')
@@ -45,8 +45,9 @@ app.post('/webhook/', function (req, res) {
 			continue
 			}
 			
-			if (status === 'user_start' && (start === 'yes' || start === 'Yes' || start === 'yeah' || 'sure')) {
+			if (status === 'user_start' && (start === 'yes' || start === 'Yes' || start === 'yeah' || status === 'sure')) {
 			sendTextMessage(sender, "Give your Destination or type Generic to view a random itinerary")
+			
 	  		status = 'user_destination';
 			continue
 			
