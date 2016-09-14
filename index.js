@@ -1,10 +1,7 @@
 'use strict'
 var status = 'new_user' ;
 var text;
-var start;
-var departure;
-var start_date;
-var end_date;
+
 
 const express = require('express')
 const bodyParser = require('body-parser')
