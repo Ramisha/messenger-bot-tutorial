@@ -4,8 +4,6 @@ var text;
 var departure;
 var start_date;
 var end_date;
-var num_adults;
-var num_infants;
 
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -49,7 +47,7 @@ app.post('/webhook/', function (req, res) {
 			continue
 		}
 				let start = event.message.text
-			if (status === user_start && (start === 'yes' || start === 'Yes' || start === 'yeah')) {
+			if (status === user_start && (start === 'yes' || start === 'Yes' || start === 'yeah' || 'sure')) {
 			sendTextMessage(sender, "Give your Destination or type Generic to view a random itinerary")
 	  	status = user_destination;
 			continue
@@ -86,26 +84,25 @@ app.post('/webhook/', function (req, res) {
 			continue
 
 			}
-			//sendTextMessage(sender, "your return date is : " + return_date)
+		
 
       if (return_date !== null && status === user_e_date) {
 			sendTextMessage(sender, "your return date is : " + return_date )
         status = new_user ;
 			continue
-			
+      }
 		}
+
 		if (event.postback) {
 			let text = JSON.stringify(event.postback)
 			sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
 			continue
 		}
 	}
-  
-  }
+
+
 	res.sendStatus(200)
 })
-
-
 
 
 // recommended to inject access tokens as environmental variables, e.g.
