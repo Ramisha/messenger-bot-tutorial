@@ -45,7 +45,7 @@ app.post('/webhook/', function (req, res) {
   "message":{
     "text":"hello, world!"
   }
-}' "https://graph.facebook.com/v2.6/me/messages?access_token=EAAN1nQ8Jz3MBABpQib4sZB1UnMCIobDAQ7ArZA8w9U67AD1gimvvDCkLptz7k3keOTjZBY3DKZCyPIFZApIg3zn6I5ByFbNpQkwRfD99ZAejGmElK075ygLKJvHw4XWcb1ZCyY9V5gOkxgywVVhjZCWRCPPvBXdM5G1WykZCgcxSoPQZDZD"
+}' "https://graph.facebook.com/v2.6/me/messages?access_token=token"
 		
 			continue
 		}
