@@ -56,11 +56,13 @@ app.post('/webhook/', function (req, res) {
 			
 			let destination = event.message.text
 	
-			sendTextMessage(sender, destination)
-			sendTextMessage(sender, status)
-			if (status === '2' ) {
-			sendTextMessage(sender, "your destination is : " + destination + "\n\nwhat is your origin ?")
+			
+			if (status === '2' && departure !== null ) {
+				sendTextMessage(sender, status)
+		//	sendTextMessage(sender, "your destination is : " + destination + "\n\nwhat is your origin ?")
+			sendTextMessage(sender, "your destination is : " + destination + "\n\nehat is your origin ?")
         		status = '3';
+        		sendTextMessage(sender, status)
 			continue
 			}
 		
