@@ -46,7 +46,7 @@ app.post('/webhook/', function (req, res) {
 			}
 			
 			
-		//	let start = event.message.text
+			let start = event.message.text
 			if (status === '1' && (start === 'yes' || start === 'Yes' || start === 'yeah' || start ==='sure')) {
 			sendTextMessage(sender, "Give your Destination or type Generic to view a random itinerary")
 			let destin = event.message.text
