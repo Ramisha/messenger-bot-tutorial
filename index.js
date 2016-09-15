@@ -86,8 +86,8 @@ app.post('/webhook/', function (req, res) {
 	
 			if (status == 'destination' && initiate === 'test') {
 			//status = 'departure';   this creates an issue :: skip this condition 
-		//	status = 'departure';
-			status = 'user_s_date';
+			status = 'departure';
+		//	status = 'user_s_date';
 			sendTextMessage(sender, "your destination is : " + initiate + "\n\nwhat is your origin ?")
 			sendTextMessage(sender, "test destination in destination event" + status)
 			continue 
@@ -96,13 +96,13 @@ app.post('/webhook/', function (req, res) {
 			// use staus =========================== 
 		
 			
-			// if (status === 'departure' && initiate !== 0) {
-		 //	status = 'user_s_date';
-		 //	sendTextMessage(sender, "your departure location is : " + initiate + "\n\nwhen are you planning to leave ?")
-		 //	//let start_date = event.message.text
+			 if (status === 'departure' initiate === 'test') {
+		 	status = 'user_s_date';
+		 	sendTextMessage(sender, "your departure location is : " + initiate + "\n\nwhen are you planning to leave ?")
+		 	//let start_date = event.message.text
         		
-		 //	continue
-		 //	}
+		 	continue
+		 	}
 		 	
 		 	if (status === 'user_s_date' && initiate === 'test') {
 			sendTextMessage(sender, "your departure date is : " + initiate + "\n\nwhen are you planning to return")
