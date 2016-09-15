@@ -68,23 +68,28 @@ app.post('/webhook/', function (req, res) {
 			status = 'start'
 	  		sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?")
 
-			continue
+			continue destination
 			}
 			
 			
 		// get user input to create the itinerary 
-		
+		destination:
 		if (status === 'destination' && initiate !== 0) {
 			//status = 'departure';   this is an issue
 			sendTextMessage(sender, "your destination is : " + initiate + "\n\nwhat is your origin ?")
-			status = 'departure';
 			sendTextMessage(sender, "test destination in destination event" + status)
-		//	let departure = event.message.text
-			continue
+			continue departure
 			}
-			
-			
-			
+			// use staus 
+			departure:
+			status = 'departure';
+		if (status === 'departure') {
+			sendTextMessage(sender, "your departure location is : " + initiate + "\n\nwhen are you planning to leave ?")
+			//let start_date = event.message.text
+        		status = 'user_s_date';
+			continue
+			}	
+		     	
 		}
 
 		if (event.postback) {
