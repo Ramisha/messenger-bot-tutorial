@@ -112,6 +112,33 @@ function sendTextMessage(sender, text) {
 	})
 }
 
+function getItinerary(callback, sender, origin, destination, arrival_date, departure_date ) {
+	/*@TODO replace**/
+	 return http.get({
+        host: 'personatestuser.org',
+        path: '/email'
+    }, function(response) {
+        // Continuously update stream with data
+        var body = '';
+        response.on('data', function(d) {
+            body += d;
+        });
+        response.on('end', function() {
+
+            // Data reception is done, do whatever with it!
+            var parsed = JSON.parse(body);
+            sendTextMessage(sender,parsed.email);
+            callback({              
+                email: parsed.email,                
+                password: parsed.pass                
+            });
+        }        
+        );
+        
+    });
+    
+}
+
 // get user confirmation to continue
 
 
