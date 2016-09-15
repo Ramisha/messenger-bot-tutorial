@@ -41,7 +41,7 @@ app.post('/webhook/', function (req, res) {
 			
 			if (status === 'new_user' && (initiate === 'hi' || initiate === 'hey' || initiate === 'Hi' && initiate === 'Hey')) {
 			sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ")
-			 status = '1';
+			 status = 'start';
 			continue
 			}
 			
