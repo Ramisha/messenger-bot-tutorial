@@ -84,7 +84,7 @@ app.post('/webhook/', function (req, res) {
 			
 		// get user input to create the itinerary 
 	
-		if (status === 'destination' && initiate !== 0) {
+			if (status == 'destination' && initiate !== 0) {
 			//status = 'departure';   this creates an issue :: skip this condition 
 			status = 'departure';
 			sendTextMessage(sender, "your destination is : " + initiate + "\n\nwhat is your origin ?")
@@ -95,7 +95,7 @@ app.post('/webhook/', function (req, res) {
 			// use staus =========================== 
 		
 			
-		 if (status === 'departure' && initiate !== 0) {
+			if (status === 'departure' && initiate !== 0) {
 		 	status = 'user_s_date';
 		 	sendTextMessage(sender, "your departure location is : " + initiate + "\n\nwhen are you planning to leave ?")
 		 	//let start_date = event.message.text
