@@ -89,14 +89,14 @@ app.post('/webhook/', function (req, res) {
 			status = 'departure';
 		//	status = 'user_s_date';
 			sendTextMessage(sender, "your destination is : " + initiate + "\n\nwhat is your origin ?")
-			sendTextMessage(sender, "test destination in destination event" + status)
+		//	sendTextMessage(sender, "test destination in destination event" + status)
 			continue 
 		
 			}
 			// use staus =========================== 
 		
 			
-			 if (status === 'departure' initiate === 'test') {
+			 if (status === 'departure' && initiate === 'test') {
 		 	status = 'user_s_date';
 		 	sendTextMessage(sender, "your departure location is : " + initiate + "\n\nwhen are you planning to leave ?")
 		 	//let start_date = event.message.text
