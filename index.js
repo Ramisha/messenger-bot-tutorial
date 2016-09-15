@@ -37,8 +37,15 @@ app.post('/webhook/', function (req, res) {
 		let event = req.body.entry[0].messaging[i]
 		let sender = event.sender.id
 		if (event.message && event.message.text) {
-			let initiate = event.message.text
 			
+			let test = event.message.text
+      if (test === 'test123') {
+			getItinerary(sender, "origin", "destination", "arrival_date", "departure_date" );
+			// status = '1';
+			continue
+			}
+
+      let initiate = event.message.text
 			if (status === 'new_user' && (initiate === 'hi' || initiate === 'hey' || initiate === 'Hi' && initiate === 'Hey')) {
 			sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ")
 			 status = '1';
@@ -121,7 +128,7 @@ function sendTextMessage(sender, text) {
 	})
 }
 
-function getItinerary(callback, sender, origin, destination, arrival_date, departure_date ) {
+function getItinerary( sender, origin, destination, arrival_date, departure_date ) {
 	/*@TODO replace**/
 	 return http.get({
         host: 'personatestuser.org',
@@ -136,11 +143,7 @@ function getItinerary(callback, sender, origin, destination, arrival_date, depar
 
             // Data reception is done, do whatever with it!
             var parsed = JSON.parse(body);
-            sendTextMessage(sender,parsed.email);
-            callback({              
-                email: parsed.email,                
-                password: parsed.pass                
-            });
+            sendTextMessage(sender,"Hi" + parsed.email);
         }        
         );
         
