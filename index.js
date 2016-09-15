@@ -4,6 +4,10 @@ var destination;
 var departure;
 var end_date;
 var start_date;
+var con_destination;
+var con_departure;
+var con_end_date;
+var con_start_date;
 
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -97,7 +101,7 @@ app.post('/webhook/', function (req, res) {
 			}
 
             let departure = event.message.text
-
+	con_departure = departure;	
 			// use staus =========================== 
 		
 			
@@ -124,7 +128,7 @@ app.post('/webhook/', function (req, res) {
 
         		  if (status === 'user_e_date' && end_date === 'test4') {
 			sendTextMessage(sender, "your return date is : " + initiate + "\n\n itinerary processing ..")
-			sendTextMessage(sender, "your itinerary requirement  : \n\nOrigin : " + departure+ "\nDestination : "+destination+"\nStart date : "+start_date+"\nEnd date : "+end_date)
+			sendTextMessage(sender, "your itinerary requirement  : \n\nOrigin : " + con_departure+ "\nDestination : "+destination+"\nStart date : "+start_date+"\nEnd date : "+end_date)
 			  //status = 'user_e_date' ;
 			//  sendTextMessage(sender, "constant departure date is : " + var_dep)
 		//	let return_date = event.message.text
