@@ -78,11 +78,12 @@ app.post('/webhook/', function (req, res) {
 			//status = 'departure';   this is an issue
 			sendTextMessage(sender, "your destination is : " + initiate + "\n\nwhat is your origin ?")
 			sendTextMessage(sender, "test destination in destination event" + status)
+			status = 'departure';
 			continue 
 			}
 			// use staus 
 		
-			status = 'departure';
+			
 		if (status === 'departure') {
 			sendTextMessage(sender, "your departure location is : " + initiate + "\n\nwhen are you planning to leave ?")
 			//let start_date = event.message.text
