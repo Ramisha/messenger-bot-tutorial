@@ -74,8 +74,8 @@ app.post('/webhook/', function (req, res) {
 			
 		// get user input to create the itinerary 
 		
-		if (status === 'destination') {
-			//status = 'departure';
+		if (status === 'destination' && initiate !== 0) {
+			//status = 'departure';   this is an issue
 			sendTextMessage(sender, "your destination is : " + initiate + "\n\nwhat is your origin ?")
 			sendTextMessage(sender, "test destination in destination event" + status)
 		//	let departure = event.message.text
