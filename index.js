@@ -66,6 +66,17 @@ app.post('/webhook/', function (req, res) {
 			continue
 			}
 			
+			let start_date = event.message.text
+      
+			if (status === 'user_s_date') {
+			sendTextMessage(sender, "your departure date is : " + start_date + "\n\nwhen are you planning to return")
+			
+			  status = 'user_e_date' ;
+			continue
+			
+			let return_date = event.message.text
+			}
+			
 			
 	
 		}
