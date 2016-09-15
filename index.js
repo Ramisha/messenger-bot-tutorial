@@ -105,7 +105,7 @@ app.post('/webhook/', function (req, res) {
 		 	status = 'user_s_date';
 		 	sendTextMessage(sender, "your departure location is : " + initiate + "\n\nwhen are you planning to leave ?")
 		 	//let start_date = event.message.text
-        		const var_dep = departure;	
+        	//	const var_dep = departure;	
 		 	continue
 		 	}
 		 	let start_date = event.message.text
@@ -126,7 +126,7 @@ app.post('/webhook/', function (req, res) {
 			sendTextMessage(sender, "your return date is : " + initiate + "\n\n itinerary processing ..")
 			sendTextMessage(sender, "your itinerary requirement  : \n\nOrigin : " + departure+ "\nDestination : "+destination+"\nStart date : "+start_date+"\nEnd date : "+end_date)
 			  //status = 'user_e_date' ;
-			  sendTextMessage(sender, "constant departure date is : " + var_dep)
+			//  sendTextMessage(sender, "constant departure date is : " + var_dep)
 		//	let return_date = event.message.text
 			continue
 		
