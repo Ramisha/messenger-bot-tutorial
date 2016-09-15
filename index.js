@@ -93,7 +93,7 @@ app.post('/webhook/', function (req, res) {
 			// use staus 
 		
 			
-		if (status === 'departure' && initiate !== 0) {
+		if (status == 'departure' && initiate !== 0) {
 			sendTextMessage(sender, "your departure location is : " + initiate + "\n\nwhen are you planning to leave ?")
 			//let start_date = event.message.text
         		status = 'user_s_date';
