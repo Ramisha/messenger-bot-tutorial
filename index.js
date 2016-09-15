@@ -45,15 +45,7 @@ app.post('/webhook/', function (req, res) {
 			continue
 			}
 			
-			let start = event.message.text
-			if (status === 'start' && (start === 'No' || start === 'no' || start === 'neh' || start ==='nop')) {
-			sendTextMessage(sender, "I am an itinerary recommender, simply say hi to get started")
-	  		status = 'destination';
-	  	//	sendTextMessage(sender, "test destination in strat event" + status)
-			continue
-			}
-			
-			let start = event.message.text
+				let start = event.message.text
 			if (status === 'start' && (start === 'yes' || start === 'Yes' || start === 'yeah' || start ==='sure')) {
 			sendTextMessage(sender, "Give your Destination to strat creating your itinerary")
 			//let destin = event.message.text
@@ -62,7 +54,17 @@ app.post('/webhook/', function (req, res) {
 			continue
 			}
 			
-			let start = event.message.text
+			
+		
+			if (status === 'start' && (start === 'No' || start === 'no' || start === 'neh' || start ==='nop')) {
+			sendTextMessage(sender, "I am an itinerary recommender, simply say hi to get started")
+	  		status = 'destination';
+	  	//	sendTextMessage(sender, "test destination in strat event" + status)
+			continue
+			}
+			
+		
+		
 			if (start === 'start over' || start === 'Strat over' || start === 'Start Over' || start ==='exit' || start ==='quit') {
 			status = 'new_user'
 	  		sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?")
