@@ -124,8 +124,9 @@ app.post('/webhook/', function (req, res) {
 
         		  if (status === 'user_e_date' && end_date === 'test4') {
 			sendTextMessage(sender, "your return date is : " + initiate + "\n\n itinerary processing ..")
-			sendTextMessage(sender, "your itinerary requirement  : \n\nOrigin : " +var_dep + "\nDestination : "+destination+"\nStart date : "+start_date+"\nEnd date : "+end_date)
+			sendTextMessage(sender, "your itinerary requirement  : \n\nOrigin : " + departure+ "\nDestination : "+destination+"\nStart date : "+start_date+"\nEnd date : "+end_date)
 			  //status = 'user_e_date' ;
+			  sendTextMessage(sender, "constant departure date is : " + var_dep)
 		//	let return_date = event.message.text
 			continue
 		
