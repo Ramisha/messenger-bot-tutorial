@@ -54,22 +54,22 @@ app.post('/webhook/', function (req, res) {
 			
 			}
 			
-			let destination = event.message.text
+		// 	let destination = event.message.text
 	
-			if (status === '2' ) {
-				sendTextMessage(sender, status)
-				sendTextMessage(sender, destination)
-		//	sendTextMessage(sender, "your destination is : " + destination + "\n\nwhat is your origin ?")
-			sendTextMessage(sender, "your destination is : " + destination + "\n\nehat is your origin ?")
-        		status = '3';
-        		sendTextMessage(sender, status)
-			continue
-			}
+		// 	if (status === '2' ) {
+		// 		sendTextMessage(sender, status)
+		// 		sendTextMessage(sender, destination)
+		// //	sendTextMessage(sender, "your destination is : " + destination + "\n\nwhat is your origin ?")
+		// 	sendTextMessage(sender, "your destination is : " + destination + "\n\nehat is your origin ?")
+  //      		status = '3';
+  //      		sendTextMessage(sender, status)
+		// 	continue
+		// 	}
 		
 	
-			let departure = event.message.text
-			if (status === '3') {
-			sendTextMessage(sender, "your departure location is : " + departure + "\n\nwhen are you planning to leave ?")
+			let destin = event.message.text
+			if (status === '2') {
+			sendTextMessage(sender, "your destination is : " + destin + "\n\nnehat is your origin ?")
         	//	status = 'user_s_date';
 			continue
 			}
