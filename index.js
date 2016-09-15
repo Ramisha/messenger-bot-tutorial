@@ -38,16 +38,16 @@ app.post('/webhook/', function (req, res) {
 			
 			if (status === 'new_user' && (initiate === 'hi' || initiate === 'hey' || initiate === 'Hi' && initiate === 'Hey')) {
 			sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ")
-			 status = 'user_start';
+			 status = '1';
 			continue
 			}
 			
 			
 			let start = event.message.text
 			
-			if (status === 'user_start' && (start === 'yes' || start === 'Yes' || start === 'yeah' || start ==='sure')) {
+			if (status === '1' && (start === 'yes' || start === 'Yes' || start === 'yeah' || start ==='sure')) {
 			sendTextMessage(sender, "Give your Destination or type Generic to view a random itinerary")
-	  		status = 'user_destination';
+	  		status = '2';
 	  		sendTextMessage(sender, start)
 	  		sendTextMessage(sender, status)
 			continue
@@ -58,15 +58,15 @@ app.post('/webhook/', function (req, res) {
 	
 			sendTextMessage(sender, destination)
 			sendTextMessage(sender, status)
-			if (status === 'user_destination' ) {
+			if (status === '2' ) {
 			sendTextMessage(sender, "your destination is : " + destination + "\n\nwhat is your origin ?")
-        		status = 'user_departure';
+        		status = '3';
 			continue
 			}
 		
 	
 			let departure = event.message.text
-			if (status === 'user_departure') {
+			if (status === '3') {
 			sendTextMessage(sender, "your departure location is : " + departure + "\n\nwhen are you planning to leave ?")
         	//	status = 'user_s_date';
 			continue
