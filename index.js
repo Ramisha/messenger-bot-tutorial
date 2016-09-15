@@ -44,6 +44,7 @@ app.post('/webhook/', function (req, res) {
 			
 			
 			let start = event.message.text
+			
 			if (status === 'user_start' && (start === 'yes' || start === 'Yes' || start === 'yeah' || start ==='sure')) {
 			sendTextMessage(sender, "Give your Destination or type Generic to view a random itinerary")
 	  		status = 'user_destination';
@@ -52,7 +53,10 @@ app.post('/webhook/', function (req, res) {
 			}
 			
 			let destination = event.message.text
-			if (destination !== null && status === 'user_destination') {
+		// try with if else check previous variable name text ''''''
+			sendTextMessage(sender, destination)
+				sendTextMessage(sender, status)
+			if (status === 'user_destination' && destination !== null ) {
 			sendTextMessage(sender, "your destination is : " + destination + "\n\nwhat is your origin ?")
         		status = 'user_departure';
 			continue
@@ -60,10 +64,9 @@ app.post('/webhook/', function (req, res) {
 		
 	
 			let departure = event.message.text
-
-			if (departure !== null && status === 'user_departure') {
+			if (status === 'user_departure' && departure !== null) {
 			sendTextMessage(sender, "your departure location is : " + departure + "\n\nwhen are you planning to leave ?")
-        		status = 'user_s_date';
+        	//	status = 'user_s_date';
 			continue
 			}
 	
