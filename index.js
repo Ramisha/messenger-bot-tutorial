@@ -37,15 +37,8 @@ app.post('/webhook/', function (req, res) {
 		let event = req.body.entry[0].messaging[i]
 		let sender = event.sender.id
 		if (event.message && event.message.text) {
+			let initiate = event.message.text
 			
-			let test = event.message.text
-      if (test === 'test123') {
-			getItinerary(sender, "origin", "destination", "arrival_date", "departure_date" );
-			// status = '1';
-			continue
-			}
-
-      let initiate = event.message.text
 			if (status === 'new_user' && (initiate === 'hi' || initiate === 'hey' || initiate === 'Hi' && initiate === 'Hey')) {
 			sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ")
 			 status = '1';
@@ -53,7 +46,7 @@ app.post('/webhook/', function (req, res) {
 			}
 			
 			
-			let start = event.message.text
+		//	let start = event.message.text
 			if (status === '1' && (start === 'yes' || start === 'Yes' || start === 'yeah' || start ==='sure')) {
 			sendTextMessage(sender, "Give your Destination or type Generic to view a random itinerary")
 			let destin = event.message.text
@@ -62,15 +55,15 @@ app.post('/webhook/', function (req, res) {
 			}
 
 			if (status === '2' ) {
-			sendTextMessage(sender, "your destination is : " + destin + "\n\nwhat is your origin ?")
-			let departure = event.message.text
+			sendTextMessage(sender, "your destination is : " + initiate + "\n\nwhat is your origin ?")
+		//	let departure = event.message.text
         		status = 'departure';
 			continue
 			}
 			
 		
 			if (status === 'departure') {
-			sendTextMessage(sender, "your departure location is : " + departure + "\n\nwhen are you planning to leave ?")
+			sendTextMessage(sender, "your departure location is : " + initiate + "\n\nwhen are you planning to leave ?")
 			let start_date = event.message.text
         		status = 'user_s_date';
 			continue
@@ -126,29 +119,6 @@ function sendTextMessage(sender, text) {
 			console.log('Error: ', response.body.error)
 		}
 	})
-}
-
-function getItinerary( sender, origin, destination, arrival_date, departure_date ) {
-	/*@TODO replace**/
-	 return http.get({
-        host: 'http://personatestuser.org',
-        path: '/email'
-    }, function(response) {
-        // Continuously update stream with data
-        var body = '';
-        response.on('data', function(d) {
-            body += d;
-        });
-        response.on('end', function() {
-
-            // Data reception is done, do whatever with it!
-            var parsed = JSON.parse(body);
-            sendTextMessage(sender,"Hi" + parsed.email);
-        }        
-        );
-        
-    });
-    
 }
 
 // get user confirmation to continue
