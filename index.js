@@ -1,5 +1,8 @@
 'use strict'
 var status = 'new_user' ;
+var destin;
+var destin;
+var start_date;
 
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -44,35 +47,41 @@ app.post('/webhook/', function (req, res) {
 			
 			
 			let start = event.message.text
-			
 			if (status === '1' && (start === 'yes' || start === 'Yes' || start === 'yeah' || start ==='sure')) {
 			sendTextMessage(sender, "Give your Destination or type Generic to view a random itinerary")
+			let destin = event.message.text
 	  		status = '2';
-	  		sendTextMessage(sender, start)
-	  		sendTextMessage(sender, status)
-			continue
-			
-			}
-			
-			let destination = event.message.text
-	
-			
-			if (status === '2' && departure !== null ) {
-				sendTextMessage(sender, status)
-		//	sendTextMessage(sender, "your destination is : " + destination + "\n\nwhat is your origin ?")
-			sendTextMessage(sender, "your destination is : " + destination + "\n\nehat is your origin ?")
-        		status = '3';
-        		sendTextMessage(sender, status)
 			continue
 			}
-		
-	
+
+			if (status === '2' && destin === destin) {
+			sendTextMessage(sender, "your destination is : " + destin + "\n\nwhat is your origin ?")
 			let departure = event.message.text
-			if (status === '3') {
-			sendTextMessage(sender, "your departure location is : " + departure + "\n\nwhen are you planning to leave ?")
-        	//	status = 'user_s_date';
+        		status = 'departure';
 			continue
 			}
+			
+		
+			if (status === 'departure' && departure === departure) {
+			sendTextMessage(sender, "your departure location is : " + departure + "\n\nwhen are you planning to leave ?")
+			let start_date = event.message.text
+        		status = 'user_s_date';
+			continue
+			}
+			
+		
+      
+			if (status === 'user_s_date') {
+			sendTextMessage(sender, "your departure date is : " + start_date + "\n\nwhen are you planning to return")
+			  status = 'user_e_date' ;
+			  
+			  	
+			let return_date = event.message.text
+			continue
+		
+			}
+			
+			
 	
 		}
 
