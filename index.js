@@ -46,15 +46,15 @@ app.post('/webhook/', function (req, res) {
 			}
 			
 			
-			let start = event.message.text
-			if (status === '1' && (start === 'yes' || start === 'Yes' || start === 'yeah' || start ==='sure')) {
+					let start = event.message.text
+			if (status === 'start' && (start === 'yes' || start === 'Yes' || start === 'yeah' || start ==='sure')) {
 			sendTextMessage(sender, "Give your Destination or type Generic to view a random itinerary")
-			let destin = event.message.text
-	  		status = '2';
+			//let destin = event.message.text
+	  		status = 'destination';
 			continue
 			}
 
-			if (status === '2' ) {
+			if (status === 'destination' ) {
 			sendTextMessage(sender, "your destination is : " + initiate + "\n\nwhat is your origin ?")
 		//	let departure = event.message.text
         		status = 'departure';
@@ -64,7 +64,7 @@ app.post('/webhook/', function (req, res) {
 		
 			if (status === 'departure') {
 			sendTextMessage(sender, "your departure location is : " + initiate + "\n\nwhen are you planning to leave ?")
-			let start_date = event.message.text
+			//let start_date = event.message.text
         		status = 'user_s_date';
 			continue
 			}
@@ -72,15 +72,12 @@ app.post('/webhook/', function (req, res) {
 		
       
 			if (status === 'user_s_date') {
-			sendTextMessage(sender, "your departure date is : " + start_date + "\n\nwhen are you planning to return")
+			sendTextMessage(sender, "your departure date is : " + initiate + "\n\nwhen are you planning to return")
 			  status = 'user_e_date' ;
-			  
-			  	
-			let return_date = event.message.text
+		//	let return_date = event.message.text
 			continue
 		
 			}
-			
 			
 	
 		}
