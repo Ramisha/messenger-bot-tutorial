@@ -1,5 +1,8 @@
 'use strict'
 var status = 'new_user' ;
+var destin;
+var destin;
+var start_date;
 
 const express = require('express')
 const bodyParser = require('body-parser')
