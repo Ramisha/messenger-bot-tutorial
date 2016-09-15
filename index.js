@@ -56,8 +56,15 @@ app.post('/webhook/', function (req, res) {
 
 	
 			let destin = event.message.text
-			if (status === '2' && (data !== undefined) ) {
+			if (status === '2' && (destin !== undefined) ) {
 			sendTextMessage(sender, "your destination is : " + destin + "\n\nnehat is your origin ?")
+        		status = 'departure';
+			continue
+			}
+			
+			let departure = event.message.text
+			if (status === 'departure' && (departure !== undefined) ) {
+			sendTextMessage(sender, "your departure location is : " + departure + "\n\nwhen are you planning to leave ?")
         		status = 'user_s_date';
 			continue
 			}
