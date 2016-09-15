@@ -37,13 +37,6 @@ app.post('/webhook/', function (req, res) {
 		let event = req.body.entry[0].messaging[i]
 		let sender = event.sender.id
 		if (event.message && event.message.text) {
-			
-			let test = event.message.text
-      if (test === 'test123') {
-			getItinerary(sender, "origin", "destination", "arrival_date", "departure_date" );
-			// status = '1';
-			continue
-			}
 
       let initiate = event.message.text
 			if (status === 'new_user' && (initiate === 'hi' || initiate === 'hey' || initiate === 'Hi' && initiate === 'Hey')) {
