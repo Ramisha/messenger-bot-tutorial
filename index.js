@@ -56,7 +56,7 @@ app.post('/webhook/', function (req, res) {
 
 	
 			let destin = event.message.text
-			if (status === '2' && destin !== "" ) {
+			if (status === '2' &&  destin === '' ) {
 			sendTextMessage(sender, "your destination is : " + destin + "\n\nnehat is your origin ?")
         		status = 'user_s_date';
 			continue
