@@ -78,11 +78,11 @@ app.post('/webhook/', function (req, res) {
 			sendTextMessage(sender, "Give your Destination to strat creating your itinerary")
 	  		status = 'destination';
 	  		sendTextMessage(sender, "test destination in strat event   " + status)
-	  			let destination = event.message.text
+	  			
 			continue
 			}
 			
-			
+			let destination = event.message.text
 		// get user input to create the itinerary 
 	
 			if (status == 'destination' && destination === 'test') {
@@ -91,10 +91,13 @@ app.post('/webhook/', function (req, res) {
 		//	status = 'user_s_date';
 			sendTextMessage(sender, "your destination is : " + initiate + "\n\nwhat is your origin ?")
 		//	sendTextMessage(sender, "test destination in destination event" + status)
-				let departure = event.message.text
+				
 			continue 
 		
 			}
+
+            let departure = event.message.text
+
 			// use staus =========================== 
 		
 			
@@ -102,18 +105,22 @@ app.post('/webhook/', function (req, res) {
 		 	status = 'user_s_date';
 		 	sendTextMessage(sender, "your departure location is : " + initiate + "\n\nwhen are you planning to leave ?")
 		 	//let start_date = event.message.text
-        			let start_date = event.message.text
+        			
 		 	continue
 		 	}
-		 	
+		 	let start_date = event.message.text
+
+
 		 	if (status === 'user_s_date' && start_date === 'test') {
 			sendTextMessage(sender, "your departure date is : " + initiate + "\n\nwhen are you planning to return")
 			  status = 'user_e_date' ;
 		//	let return_date = event.message.text
-				let end_date = event.message.text
+				
 			continue
 		
 			}
+
+            let end_date = event.message.text
 
         		  if (status === 'user_e_date' && end_date === 'test') {
 			sendTextMessage(sender, "your return date is : " + initiate + "\n\n itinerary processing ..")
