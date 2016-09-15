@@ -53,26 +53,16 @@ app.post('/webhook/', function (req, res) {
 			continue
 			
 			}
-			
-		// 	let destination = event.message.text
-	
-		// 	if (status === '2' ) {
-		// 		sendTextMessage(sender, status)
-		// 		sendTextMessage(sender, destination)
-		// //	sendTextMessage(sender, "your destination is : " + destination + "\n\nwhat is your origin ?")
-		// 	sendTextMessage(sender, "your destination is : " + destination + "\n\nehat is your origin ?")
-  //      		status = '3';
-  //      		sendTextMessage(sender, status)
-		// 	continue
-		// 	}
-		
+
 	
 			let destin = event.message.text
-			if (status === '2') {
+			if (status === '2' && destin !== null) {
 			sendTextMessage(sender, "your destination is : " + destin + "\n\nnehat is your origin ?")
-        	//	status = 'user_s_date';
+        		status = 'user_s_date';
 			continue
 			}
+			
+			
 	
 		}
 
