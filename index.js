@@ -51,7 +51,7 @@ app.post('/webhook/', function (req, res) {
                		{
 			sendTextMessage(sender, "Give your Destination to strat creating your itinerary")
 	  		status = 'destination';
-	  		sendTextMessage(sender, "test destination in strat event" + status)
+	  		sendTextMessage(sender, "test destination in strat event   " + status)
 			continue
 			}
 			
@@ -75,7 +75,7 @@ app.post('/webhook/', function (req, res) {
 		// get user input to create the itinerary 
 		
 		if (status === 'destination') {
-			status = 'departure';
+			//status = 'departure';
 			sendTextMessage(sender, "your destination is : " + initiate + "\n\nwhat is your origin ?")
 			sendTextMessage(sender, "test destination in destination event" + status)
 		//	let departure = event.message.text
