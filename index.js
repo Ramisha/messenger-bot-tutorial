@@ -55,14 +55,7 @@ app.post('/webhook/', function (req, res) {
 			}
 			
 			let start = event.message.text
-			if (status === 'start' && (start === 'yes' || start === 'Yes' || start === 'yeah' || start ==='sure')) 
-               		{
-			sendTextMessage(sender, "Give your Destination to strat creating your itinerary")
-	  		status = 'destination';
-	  		sendTextMessage(sender, "test destination in strat event   " + status)
-			continue
-			}
-			
+		
 			if (status === 'start' && (start === 'No' || start === 'no' || start === 'neh' || start ==='nop')) 
 			{
 			sendTextMessage(sender, "I am an itinerary recommender, simply say hi to get started")
@@ -80,13 +73,22 @@ app.post('/webhook/', function (req, res) {
 			}
 			
 			
+			if (status === 'start' && (start === 'yes' || start === 'Yes' || start === 'yeah' || start ==='sure')) 
+               		{
+			sendTextMessage(sender, "Give your Destination to strat creating your itinerary")
+	  		status = 'destination';
+	  		sendTextMessage(sender, "test destination in strat event   " + status)
+			continue
+			}
+			
+			
 		// get user input to create the itinerary 
 	
 		if (status === 'destination' && initiate !== 0) {
 			//status = 'departure';   this creates an issue :: skip this condition 
 			status = 'departure';
 			sendTextMessage(sender, "your destination is : " + initiate + "\n\nwhat is your origin ?")
-		//	sendTextMessage(sender, "test destination in destination event" + status)
+			sendTextMessage(sender, "test destination in destination event" + status)
 			continue 
 		
 			}
