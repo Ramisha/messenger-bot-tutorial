@@ -1,8 +1,8 @@
 'use strict'
 var status = 'new_user' ;
-var status_in;
-var destin;
-var destin;
+var destination;
+var departure;
+var end_date;
 var start_date;
 
 const express = require('express')
@@ -64,7 +64,7 @@ app.post('/webhook/', function (req, res) {
 			continue
 			}
 			
-		
+			
 			if (start === 'start over' || start === 'Strat over' || start === 'Start Over' || start ==='exit' || start ==='quit') {
 			status = 'start';
 	  		sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?")
@@ -78,41 +78,44 @@ app.post('/webhook/', function (req, res) {
 			sendTextMessage(sender, "Give your Destination to strat creating your itinerary")
 	  		status = 'destination';
 	  		sendTextMessage(sender, "test destination in strat event   " + status)
+	  			let destination = event.message.text
 			continue
 			}
 			
 			
 		// get user input to create the itinerary 
 	
-			if (status == 'destination' && initiate !== '') {
+			if (status == 'destination' && destination === 'test') {
 			//status = 'departure';   this creates an issue :: skip this condition 
 			status = 'departure';
 		//	status = 'user_s_date';
 			sendTextMessage(sender, "your destination is : " + initiate + "\n\nwhat is your origin ?")
 		//	sendTextMessage(sender, "test destination in destination event" + status)
+				let departure = event.message.text
 			continue 
 		
 			}
 			// use staus =========================== 
 		
 			
-			 if (status === 'departure' && initiate !== '') {
+			 if (status === 'departure' && departure === 'test') {
 		 	status = 'user_s_date';
 		 	sendTextMessage(sender, "your departure location is : " + initiate + "\n\nwhen are you planning to leave ?")
 		 	//let start_date = event.message.text
-        		
+        			let start_date = event.message.text
 		 	continue
 		 	}
 		 	
-		 	if (status === 'user_s_date' && initiate !== '') {
+		 	if (status === 'user_s_date' && start_date === 'test') {
 			sendTextMessage(sender, "your departure date is : " + initiate + "\n\nwhen are you planning to return")
 			  status = 'user_e_date' ;
 		//	let return_date = event.message.text
+				let end_date = event.message.text
 			continue
 		
 			}
 
-        		  if (status === 'user_e_date' && initiate !== '') {
+        		  if (status === 'user_e_date' && end_date === 'test') {
 			sendTextMessage(sender, "your return date is : " + initiate + "\n\n itinerary processing ..")
 			  //status = 'user_e_date' ;
 		//	let return_date = event.message.text
