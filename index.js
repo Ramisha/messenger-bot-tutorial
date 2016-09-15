@@ -84,7 +84,7 @@ app.post('/webhook/', function (req, res) {
 	
 		if (status === 'destination' && initiate !== 0) {
 			//status = 'departure';   this creates an issue :: skip this condition 
-			status_in 'departure';
+			status_in = 'departure';
 			sendTextMessage(sender, "your destination is : " + initiate + "\n\nwhat is your origin ?")
 			sendTextMessage(sender, "test destination in destination event" + status)
 			continue 
