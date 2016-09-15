@@ -39,14 +39,16 @@ app.post('/webhook/', function (req, res) {
 		if (event.message && event.message.text) {
 			let initiate = event.message.text
 			
-			if (status === 'new_user' && (initiate === 'hi' || initiate === 'hey' || initiate === 'Hi' && initiate === 'Hey')) {
+			if (status === 'new_user' && (initiate === 'hi' || initiate === 'hey' || initiate === 'Hi' && initiate === 'Hey')) 
+            {
 			sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?\n\n type start over to exit the process ")
 			 status = 'start';
 			continue
 			}
 			
 				let start = event.message.text
-			if (status === 'start' && (start === 'yes' || start === 'Yes' || start === 'yeah' || start ==='sure')) {
+			if (status === 'start' && (start === 'yes' || start === 'Yes' || start === 'yeah' || start ==='sure')) 
+            {
 			sendTextMessage(sender, "Give your Destination to strat creating your itinerary")
 			//let destin = event.message.text
 	  		status = 'destination';
@@ -58,48 +60,18 @@ app.post('/webhook/', function (req, res) {
 		
 			if (status === 'start' && (start === 'No' || start === 'no' || start === 'neh' || start ==='nop')) {
 			sendTextMessage(sender, "I am an itinerary recommender, simply say hi to get started")
-	  		status = 'destination';
+	  		status = 'new_user';
 	  	//	sendTextMessage(sender, "test destination in strat event" + status)
 			continue
 			}
 			
 		
-		
 			if (start === 'start over' || start === 'Strat over' || start === 'Start Over' || start ==='exit' || start ==='quit') {
-			status = 'new_user'
+			status = 'start'
 	  		sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?")
 
 			continue
 			}
-
-			if (status === 'destination') {
-			status = 'departure';
-        
-		//	sendTextMessage(sender, "your destination is : " + initiate + "\n\nwhat is your origin ?")
-			sendTextMessage(sender, "test destination in destination event" + status)
-		//	let departure = event.message.text
-			continue
-			}
-			
-			
-			if (status === 'departure') {
-			sendTextMessage(sender, "your departure location is : " + initiate + "\n\nwhen are you planning to leave ?")
-			//let start_date = event.message.text
-        		status = 'user_s_date';
-			continue
-			}
-			
-		
-      
-			if (status === 'user_s_date') {
-			sendTextMessage(sender, "your departure date is : " + initiate + "\n\nwhen are you planning to return")
-			  status = 'user_e_date' ;
-		//	let return_date = event.message.text
-			continue
-		
-			}
-			
-	
 		}
 
 		if (event.postback) {
