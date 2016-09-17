@@ -93,7 +93,7 @@ app.post('/webhook/', function (req, res) {
 			}
 	
 			let departure = event.message.text
-			if (status === 'departure' && departure != null) 
+			if (status === 'departure' && !(departure === null))
 			{
 			con_departure = departure;
 		 	status = 'user_s_date';
