@@ -92,6 +92,7 @@ app.post('/webhook/', function (req, res) {
 			if (status == 'destination' && destination === 'test1') {
 			//status = 'departure';   this creates an issue :: skip this condition 
 			status = 'departure';
+			con_destination = destination;
 		//	status = 'user_s_date';
 			sendTextMessage(sender, "your destination is : " + initiate + "\n\nwhat is your origin ?")
 		//	sendTextMessage(sender, "test destination in destination event" + status)
@@ -101,11 +102,12 @@ app.post('/webhook/', function (req, res) {
 			}
 
             let departure = event.message.text
-	con_departure = departure;	
+		
 			// use staus =========================== 
 		
 			
 			 if (status === 'departure' && departure === 'test2') {
+			 	con_departure = departure;
 		 	status = 'user_s_date';
 		 	sendTextMessage(sender, "your departure location is : " + initiate + "\n\nwhen are you planning to leave ?")
 		 	//let start_date = event.message.text
@@ -117,6 +119,7 @@ app.post('/webhook/', function (req, res) {
 
 		 	if (status === 'user_s_date' && start_date === 'test3') {
 			sendTextMessage(sender, "your departure date is : " + initiate + "\n\nwhen are you planning to return")
+			con_start_date = start_date;
 			  status = 'user_e_date' ;
 		//	let return_date = event.message.text
 				
@@ -128,7 +131,8 @@ app.post('/webhook/', function (req, res) {
 
         		  if (status === 'user_e_date' && end_date === 'test4') {
 			sendTextMessage(sender, "your return date is : " + initiate + "\n\n itinerary processing ..")
-			sendTextMessage(sender, "your itinerary requirement  : \n\nOrigin : " + con_departure+ "\nDestination : "+destination+"\nStart date : "+start_date+"\nEnd date : "+end_date)
+			con_end_date = end_date;
+			sendTextMessage(sender, "your itinerary requirement  : \n\nOrigin : " + con_departure+ "\nDestination : "+con_destination+"\nStart date : "+con_start_date+"\nEnd date : "+con_end_date)
 			  //status = 'user_e_date' ;
 			//  sendTextMessage(sender, "constant departure date is : " + var_dep)
 		//	let return_date = event.message.text
