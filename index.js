@@ -183,13 +183,13 @@ let messageData = {
         "elements":[
           {
             "title":"Welcome to Peter\'s Hats",
-            "item_url":"https://petersfancybrownhats.com",
-            "image_url":"https://petersfancybrownhats.com/company_image.png",
+            "item_url":"https://www.google.lk/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=0ahUKEwii34a9rpvPAhVBHpQKHbn8CCQQjRwIBw&url=http%3A%2F%2Fwww.airport-orly.com%2F&psig=AFQjCNHuj5TyD7euHu4I8gFkLEWtatZ4Gg&ust=1474372164497193",
+            "image_url":"https://www.google.lk/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=0ahUKEwii34a9rpvPAhVBHpQKHbn8CCQQjRwIBw&url=http%3A%2F%2Fwww.airport-orly.com%2F&psig=AFQjCNHuj5TyD7euHu4I8gFkLEWtatZ4Gg&ust=1474372164497193",
             "subtitle":"We\'ve got the right hat for everyone.",
             "buttons":[
               {
-                "type":"web_url",
-                "url":"https://petersfancybrownhats.com",
+                "type":"View More",
+                "url":"http://www.visitacity.com/en/paris/itinerary-by-day/5",
                 "title":"View Website"
               },
                            
