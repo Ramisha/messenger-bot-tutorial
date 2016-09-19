@@ -86,7 +86,17 @@ app.post('/webhook/', function (req, res) {
                		status = 'st_destination';
                		initiate = '';
 			sendTextMessage(sender, "Give your Destination to strat creating your itinerary")
-			datePicker(sender);
+			
+			 "buttons":[
+          {
+            "type":"web_url",
+            "url":"http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.js",
+            "title":"Select date",
+            "messenger_extensions": true,  
+            "webview_height_ratio": "compact"
+          }
+    ]
+		//	datePicker(sender);
 			continue
 			}
 
