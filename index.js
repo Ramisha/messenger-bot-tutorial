@@ -195,9 +195,21 @@ let messageData = {
 		                           
 		            ]
 		            
-		           
+		        "title":"itinerary 1",
+		            "item_url":"https://petersfancybrownhats.com",
+		            "image_url":"http://www.airport-orly.com/images/paris-tour-eiffel-at-night.jpg",
+		            "subtitle":"enjoy a memorable holiday in your life",
+		            "buttons":[
+		              {
+		                "type":"web_url",
+		                "url":"http://www.visitacity.com",
+		                "title":"View Website"
+		              },
+		                           
+		            ]   
 		        
       }
+      ]
     }
   }
 
