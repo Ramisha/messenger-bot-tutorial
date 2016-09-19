@@ -44,7 +44,7 @@ app.post('/webhook/', function (req, res) {
 		if (event.message && event.message.text) {
 			let initiate_temp = event.message.text
 			var initiate = initiate_temp.toUpperCase();
-		//	initiate.toLowerCase()
+	
 			if (status === 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) 
         		{		
 			sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?\n\n type start over to exit the process ")
@@ -54,8 +54,7 @@ app.post('/webhook/', function (req, res) {
 			
 			if (initiate === 'HI' || initiate === 'HEY') 
         		{		
-		//	sendTextMessage(sender, "type start over to continue creating your itinerary ")
-		button_check(sender)
+			sendTextMessage(sender, "type start over to continue creating your itinerary ")
 			status = 'st_start';
 			continue
 			}
@@ -87,8 +86,7 @@ app.post('/webhook/', function (req, res) {
                		status = 'st_destination';
                		initiate = '';
 		//	sendTextMessage(sender, "Give your Destination to strat creating your itinerary")
-		button_check(sender)
-		//	datePicker(sender);
+			sendGenericMessage(sender)
 			continue
 			}
 
@@ -175,41 +173,6 @@ function sendTextMessage(sender, text) {
 
 // get user confirmation to continue
 
-
-
-function button_check(sender) {
-	
-let messageData = {
-    "attachment": {
-      "type": "template",
-      "payload": {
-    "template_type": "button",
-        "text": "Some text goes here",
-        "buttons": [
-          {
-            "type": "web_url",
-            "url": "https://www.example.com",
-            "title": "Button Title"
-          }
-        ]
-    }
-  }
-	request({
-		url: 'https://graph.facebook.com/v2.6/me/messages',
-		qs: {access_token:token},
-		method: 'POST',
-		json: {
-			recipient: {id:sender},
-			message: messageData,
-		}
-	}, function(error, response, body) {
-		if (error) {
-			console.log('Error sending messages: ', error)
-		} else if (response.body.error) {
-			console.log('Error: ', response.body.error)
-		}
-	})
-}
 
 function sendGenericMessage(sender) {
 	
