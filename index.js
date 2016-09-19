@@ -75,25 +75,26 @@ app.post('/webhook/', function (req, res) {
 			
 			if (status === 'st_start' && (start === 'yes' || start === 'Yes' || start === 'yeah' || start ==='sure')) 
                		{
+               		status = 'st_destination';
+               		initiate = '';
 			sendTextMessage(sender, "Give your Destination to strat creating your itinerary")
-	  		status = 'st_destination';
 			continue
 			}
 
 		// get user input to create the itinerary 
 
-			let destination = event.message.text
-			if (status === 'st_destination' && destination === 'test1')
+		//	let destination = event.message.text
+			if (status === 'st_destination' && initiate !== '')
 			{
 			status = 'st_departure';
-			con_destination = destination;
+			con_destination = initiate;
 			sendTextMessage(sender, "your destination is : " + destination + "\n\nwhat is your origin ?")
 			continue 
 			}
 			
-			if(status === 'st_departure' && destination !== 'test1') {
-				let departure = event.message.text
-				con_departure = departure;
+			if(status === 'st_departure' && initiate !== '') {
+				//let departure = event.message.text
+				con_departure = initiate
 			 	status = 'st_user_s_date';
 			 	sendTextMessage(sender, "your departure location is : " + departure + "\n\nwhen are you planning to leave ?")
 			 	continue
