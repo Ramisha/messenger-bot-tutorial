@@ -88,6 +88,7 @@ app.post('/webhook/', function (req, res) {
 			{
 			status = 'st_departure';
 			con_destination = initiate;
+			initiate = '';
 			sendTextMessage(sender, "your destination is : " + destination + "\n\nwhat is your origin ?")
 			continue 
 			}
