@@ -182,26 +182,38 @@ let messageData = {
         "template_type":"generic",
         "elements":[
           {
-            "title":"Itinerary 1",
-           "item_url":"http://www.asiana.lk/tour-itinerary-3-nights-4-days-galle.php",
-            "image_url":"https://www.google.lk/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwjk9a7ErZvPAhWFH5QKHQvxDSgQjRwIBw&url=http%3A%2F%2Fangelstravels.com%2FAttraction_Galle.php&psig=AFQjCNHxo0UdLPiBBC0-VFJ2YqOnBVK6AA&ust=1474371907690187",
-            "subtitle":"enjoy a memorable holiday in your life",
+            "title":"Welcome to Peter\'s Hats",
+            "item_url":"https://petersfancybrownhats.com",
+            "image_url":"https://petersfancybrownhats.com/company_image.png",
+            "subtitle":"We\'ve got the right hat for everyone.",
             "buttons":[
               {
-               "type":"View Itinerary",
-                "url":"http://www.asiana.lk/tour-itinerary-3-nights-4-days-galle.php",
+                "type":"web_url",
+                "url":"https://petersfancybrownhats.com",
                 "title":"View Website"
               },
-                         
+                           
             ]
           }
-         
+          
+            {
+            "title":"Welcome to Peter\'s Hats",
+            "item_url":"https://petersfancybrownhats.com",
+            "image_url":"https://petersfancybrownhats.com/company_image.png",
+            "subtitle":"We\'ve got the right hat for everyone.",
+            "buttons":[
+              {
+                "type":"web_url",
+                "url":"https://petersfancybrownhats.com",
+                "title":"View Website"
+              },
+                           
+            ]
+          }
         ]
       }
     }
-    
-     
-	}
+  }
 	request({
 		url: 'https://graph.facebook.com/v2.6/me/messages',
 		qs: {access_token:token},
