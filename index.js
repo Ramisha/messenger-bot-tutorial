@@ -84,7 +84,7 @@ app.post('/webhook/', function (req, res) {
 		// get user input to create the itinerary 
 
 		//	let destination = event.message.text
-			if (status === 'st_destination' && initiate !== '')
+			if (status === 'st_destination')
 			{
 			status = 'st_departure';
 			con_destination = initiate;
