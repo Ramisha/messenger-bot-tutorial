@@ -85,7 +85,7 @@ app.post('/webhook/', function (req, res) {
                		{
                		status = 'st_destination';
                		initiate = '';
-			sendTextMessage(sender, "Give your Destination to strat creating your itinerary")
+			sendTextMessage(sender, "Give your Destination to strat creating your itinerary \n or ")
 			sendGenericMessage(sender)
 			continue
 			}
@@ -181,7 +181,7 @@ let messageData = {
       "type": "template",
       "payload": {
         "template_type": "airline_itinerary",
-        "intro_message": "Here\'s your flight itinerary.",
+        "intro_message": "Here are some ramdom itineraries for you.\n select a random itinerary",
         "locale": "en_US",
         "pnr_number": "ABCDEF",
         "passenger_info": [
