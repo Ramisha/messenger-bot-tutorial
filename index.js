@@ -83,11 +83,11 @@ app.post('/webhook/', function (req, res) {
 		// get user input to create the itinerary 
 
 			let destination = event.message.text
-			if (status == 'destination' && destination.length > 0)
+			if (status === 'destination' && destination.length > 0)
 			{
 			status = 'departure';
 			con_destination = destination;
-			sendTextMessage(sender, "your destination is : " + initiate + "\n\nwhat is your origin ?")
+			sendTextMessage(sender, "your destination is : " + destination + "\n\nwhat is your origin ?")
 			continue 
 			}
 	
@@ -96,25 +96,26 @@ app.post('/webhook/', function (req, res) {
 			{
 			con_departure = departure;
 		 	status = 'user_s_date';
-		 	sendTextMessage(sender, "your departure location is : " + initiate + "\n\nwhen are you planning to leave ?")
+		 	sendTextMessage(sender, "your departure location is : " + departure + "\n\nwhen are you planning to leave ?")
 		 	continue
 		 	}
 		 	
 		 	let start_date = event.message.text
 			if (status === 'user_s_date' && start_date.length > 0) 
 			{
-			sendTextMessage(sender, "your departure date is : " + initiate + "\n\nwhen are you planning to return")
+			sendTextMessage(sender, "your departure date is : " + start_date + "\n\nwhen are you planning to return")
 			con_start_date = start_date;
 			 status = 'user_e_date' ;
 			continue
 			}
 
-            		let end_date = event.message.text
-       			if (status === 'user_e_date' && end_date.length > 0) 
-       			{
-			sendTextMessage(sender, "your return date is : " + initiate + "\n\n itinerary processing ..")
+    	let end_date = event.message.text
+   		if (status === 'user_e_date' && end_date.length > 0) 
+      {
+			sendTextMessage(sender, "your return date is : " + end_date + "\n\n itinerary processing ..")
 			con_end_date = end_date;
-			sendTextMessage(sender, "your itinerary requirement  : \n\nOrigin : " + con_departure+ "\nDestination : "+con_destination+"\nStart date : "+con_start_date+"\nEnd date : "+con_end_date)
+			sendTextMessage(sender, "your itinerary requirement  : \n\nDestination : "+con_destination+ "\nDeparture : " + con_departure+"\nStart date : "+con_start_date+"\nEnd date : "+con_end_date)
+      //sendTextMessage(sender, "your itinerary requirement  : \n\nDeparture : " + con_departure+ "\nDestination : "+con_destination+"\nStart date : "+con_start_date+"\nEnd date : "+con_end_date)
 			continue
 		
 			}
