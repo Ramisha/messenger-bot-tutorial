@@ -1,13 +1,13 @@
 'use strict'
 var status = 'st_new_user' ;
-var destination = "";
-var departure = "";
-var end_date = "";
-var start_date = "";
-var con_destination = "";
-var con_departure = "";
-var con_end_date = "";
-var con_start_date = "";
+var destination = '';
+var departure = '';
+var end_date = '';
+var start_date = '';
+var con_destination = '';
+var con_departure = '';
+var con_end_date = '';
+var con_start_date ='';
 
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -54,7 +54,7 @@ app.post('/webhook/', function (req, res) {
 			if (initiate === 'hi' || initiate === 'hey' || initiate === 'Hi' && initiate === 'Hey') 
         		{		
 			sendTextMessage(sender, "type start over to continue creating your itinerary ")
-		//	status = 'st_start';
+			status = 'st_start';
 			continue
 			}
 			
@@ -69,9 +69,7 @@ app.post('/webhook/', function (req, res) {
 			if ( initiate === 'start over' || initiate === 'Strat over' || initiate === 'Start Over' || initiate ==='exit' || initiate ==='quit') 
 			{
 			status = 'st_start';
-		
-				
-	  		sendTextMessage(sender, "Do you want to start creating your itinerary ?")
+			sendTextMessage(sender, "Do you want to start creating your itinerary ?")
 			continue
 			}
 			
