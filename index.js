@@ -86,7 +86,8 @@ app.post('/webhook/', function (req, res) {
                		status = 'st_destination';
                		initiate = '';
 			sendTextMessage(sender, "Give your Destination to strat creating your itinerary \n or ")
-			sendGenericMessage(sender)
+		//	sendGenericMessage(sender)
+		button_check(sender)
 			continue
 			}
 
@@ -172,7 +173,53 @@ function sendTextMessage(sender, text) {
 }
 
 // get user confirmation to continue
-
+function button_check(sender) {
+	
+let messageData = {
+    "attachment":{
+      "type":"template",
+      "payload":{
+        "template_type":"generic",
+        "elements":[
+          {
+            "title":"Welcome to Peter\'s Hats",
+            "item_url":"https://petersfancybrownhats.com",
+            "image_url":"https://petersfancybrownhats.com/company_image.png",
+            "subtitle":"We\'ve got the right hat for everyone.",
+            "buttons":[
+              {
+                "type":"web_url",
+                "url":"https://petersfancybrownhats.com",
+                "title":"View Website"
+              },
+              {
+                "type":"postback",
+                "title":"Start Chatting",
+                "payload":"DEVELOPER_DEFINED_PAYLOAD"
+              }              
+            ]
+          }
+        ]
+      }
+    }
+	}
+	request({
+		url: 'https://graph.facebook.com/v2.6/me/messages',
+		qs: {access_token:token},
+		method: 'POST',
+		json: {
+			recipient: {id:sender},
+			message: messageData,
+		}
+	}, function(error, response, body) {
+		if (error) {
+			console.log('Error sending messages: ', error)
+		} else if (response.body.error) {
+			console.log('Error: ', response.body.error)
+		}
+	})
+	
+	}
 
 function sendGenericMessage(sender) {
 	
