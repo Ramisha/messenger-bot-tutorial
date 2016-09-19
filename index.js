@@ -70,14 +70,14 @@ app.post('/webhook/', function (req, res) {
 			{
 			status = 'st_start';
 			var status = 'st_new_user' ;
-				destination = "";
-				departure = "";
-				end_date = "";
-				start_date = "";
-				con_destination = "";
-				con_departure = "";
-				con_end_date = "";
-				con_start_date = "";
+				destination = '';
+				departure = '';
+				end_date = '';
+				start_date = '';
+				con_destination = '';
+				con_departure = '';
+				con_end_date = '';
+				con_start_date = '';
 	  		sendTextMessage(sender, "Do you want to start creating your itinerary ?")
 			continue
 			}
@@ -97,7 +97,7 @@ app.post('/webhook/', function (req, res) {
 			{
 			con_destination = initiate;
 			sendTextMessage(sender, "your destination is : " + con_destination + "\n\nwhat is your origin ?")
-			initiate = "";
+			initiate = '';
 		//	status = 'st_departure';
 			continue 
 			}
@@ -106,7 +106,7 @@ app.post('/webhook/', function (req, res) {
 				//let departure = event.message.text
 				con_departure = initiate
 			 	status = 'st_user_s_date';
-			 	initiate = "";
+			 	initiate = '';
 			 	sendTextMessage(sender, "your departure location is : " + con_departure + "\n\nwhen are you planning to leave ?")
 			 	continue
 			}
