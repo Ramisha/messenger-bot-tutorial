@@ -43,7 +43,7 @@ app.post('/webhook/', function (req, res) {
 		let sender = event.sender.id
 		if (event.message && event.message.text) {
 			let initiate_temp = event.message.text
-			initiate = initiate_temp.toUpperCase()
+			var initiate = initiate_temp.toUpperCase();
 		//	initiate.toLowerCase()
 			if (status === 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) 
         		{		
