@@ -89,16 +89,16 @@ app.post('/webhook/', function (req, res) {
 			con_destination = destination;
 			sendTextMessage(sender, "your destination is : " + destination + "\n\nwhat is your origin ?")
 			continue 
+			}else if(status === 'st_departure') {
+				let departure = event.message.text
+				if (departure !== '' && departure !== null) 
+				{
+				con_departure = departure;
+			 	status = 'st_user_s_date';
+			 	sendTextMessage(sender, "your departure location is : " + departure + "\n\nwhen are you planning to leave ?")
+			 	continue
+			 	}
 			}
-			
-			let departure = event.message.text
-			if (status === 'st_departure' && departure === 'test2') 
-			{
-			con_departure = departure;
-		 	status = 'st_user_s_date';
-		 	sendTextMessage(sender, "your departure location is : " + departure + "\n\nwhen are you planning to leave ?")
-		 	continue
-		 	}
 		 	
 		 	let start_date = event.message.text
 			if (status === 'st_user_s_date' && start_date === 'test3') 
