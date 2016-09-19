@@ -180,37 +180,42 @@ let messageData = {
       "type":"template",
       "payload":{
         "template_type":"generic",
-        "elements":[
-          {
-            "title":"Welcome to Peter\'s Hats",
-            "item_url":"https://petersfancybrownhats.com",
-            "image_url":"http://www.airport-orly.com/images/paris-tour-eiffel-at-night.jpg",
-            "subtitle":"We\'ve got the right hat for everyone.",
-            "buttons":[
-              {
-                "type":"web_url",
-                "url":"http://www.visitacity.com",
-                "title":"View Website"
-              },
-                           
-            ]
-          }
-          
-           {
-            "title":"Welcome to Peter\'s Hats",
-            "item_url":"https://petersfancybrownhats.com",
-            "image_url":"http://www.airport-orly.com/images/paris-tour-eiffel-at-night.jpg",
-            "subtitle":"We\'ve got the right hat for everyone.",
-            "buttons":[
-              {
-                "type":"web_url",
-                "url":"http://www.visitacity.com",
-                "title":"View Website"
-              },
-                           
-            ]
-          }
-        ]
+		        "elements":[
+		          {
+		            "title":"Welcome to Peter\'s Hats",
+		            "item_url":"https://petersfancybrownhats.com",
+		            "image_url":"http://www.airport-orly.com/images/paris-tour-eiffel-at-night.jpg",
+		            "subtitle":"We\'ve got the right hat for everyone.",
+		            "buttons":[
+		              {
+		                "type":"web_url",
+		                "url":"http://www.visitacity.com",
+		                "title":"View Website"
+		              },
+		                           
+		            ]
+		          }
+		          
+		           
+		        ]
+		         "elements":[
+		          {
+		            "title":"Welcome to Peter\'s Hats",
+		            "item_url":"https://petersfancybrownhats.com",
+		            "image_url":"http://www.airport-orly.com/images/paris-tour-eiffel-at-night.jpg",
+		            "subtitle":"We\'ve got the right hat for everyone.",
+		            "buttons":[
+		              {
+		                "type":"web_url",
+		                "url":"http://www.visitacity.com",
+		                "title":"View Website"
+		              },
+		                           
+		            ]
+		          }
+		          
+		           
+		        ]
       }
     }
   }
