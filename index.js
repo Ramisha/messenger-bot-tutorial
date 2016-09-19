@@ -87,15 +87,16 @@ app.post('/webhook/', function (req, res) {
                		initiate = '';
 			sendTextMessage(sender, "Give your Destination to strat creating your itinerary")
 			
-			 "buttons":[
+			"attachment": {
+      "buttons":[
           {
             "type":"web_url",
             "url":"http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.js",
             "title":"Select date",
-            "messenger_extensions": true,  
             "webview_height_ratio": "compact"
           }
     ]
+    }
 		//	datePicker(sender);
 			continue
 			}
@@ -192,12 +193,12 @@ let messageData = {
             "type":"web_url",
             "url":"http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.js",
             "title":"Select date",
-            "messenger_extensions": true,  
             "webview_height_ratio": "compact"
           }
     ]
     }
-  }
+  }        "messenger_extensions": true,  
+    
 	request({
 		url: 'https://graph.facebook.com/v2.6/me/messages',
 		qs: {access_token:token},
