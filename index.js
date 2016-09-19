@@ -1,13 +1,13 @@
 'use strict'
 var status = 'st_new_user' ;
-var destination = '';
-var departure = '';
-var end_date = '';
-var start_date = '';
-var con_destination = '';
-var con_departure = '';
-var con_end_date = '';
-var con_start_date = '';
+var destination = "";
+var departure = "";
+var end_date = "";
+var start_date = "";
+var con_destination = "";
+var con_departure = "";
+var con_end_date = "";
+var con_start_date = "";
 
 const express = require('express')
 const bodyParser = require('body-parser')
