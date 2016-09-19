@@ -85,7 +85,7 @@ app.post('/webhook/', function (req, res) {
                		{
                		status = 'st_destination';
                		initiate = '';
-			sendTextMessage(sender, "Give your Destination to strat creating your itinerary \n or ")
+			sendTextMessage(sender, "Give your Destination to strat creating your itinerary \n or select a random itinerary")
 		//	sendGenericMessage(sender)
 		button_check(sender)
 			continue
@@ -182,21 +182,32 @@ let messageData = {
         "template_type":"generic",
         "elements":[
           {
-            "title":"Welcome to Peter\'s Hats",
-            "item_url":"https://petersfancybrownhats.com",
-            "image_url":"https://petersfancybrownhats.com/company_image.png",
-            "subtitle":"We\'ve got the right hat for everyone.",
+            "title":"Itinerary 1",
+          //  "item_url":"http://www.asiana.lk/tour-itinerary-3-nights-4-days-galle.php",
+            "image_url":"https://www.google.lk/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwjk9a7ErZvPAhWFH5QKHQvxDSgQjRwIBw&url=http%3A%2F%2Fangelstravels.com%2FAttraction_Galle.php&psig=AFQjCNHxo0UdLPiBBC0-VFJ2YqOnBVK6AA&ust=1474371907690187",
+            "subtitle":"enjoy a memorable holiday in your life",
             "buttons":[
               {
-                "type":"web_url",
-                "url":"https://petersfancybrownhats.com",
+               "type":"View Itinerary",
+                "url":"http://www.asiana.lk/tour-itinerary-3-nights-4-days-galle.php",
                 "title":"View Website"
               },
+                         
+            ]
+          }
+          
+          {
+            "title":"Itinerary 2",
+          //  "item_url":"http://www.asiana.lk/tour-itinerary-3-nights-4-days-galle.php",
+            "image_url":"https://www.google.lk/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=0ahUKEwii34a9rpvPAhVBHpQKHbn8CCQQjRwIBw&url=http%3A%2F%2Fwww.airport-orly.com%2F&psig=AFQjCNHuj5TyD7euHu4I8gFkLEWtatZ4Gg&ust=1474372164497193",
+            "subtitle":"enjoy a memorable holiday in your life",
+            "buttons":[
               {
-                "type":"postback",
-                "title":"Start Chatting",
-                "payload":"DEVELOPER_DEFINED_PAYLOAD"
-              }              
+                "type":"View Itinerary",
+                "url":"http://www.visitacity.com/en/paris/itinerary-by-day/5",
+                "title":"View Website"
+              },
+                         
             ]
           }
         ]
