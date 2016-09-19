@@ -70,11 +70,6 @@ app.post('/webhook/', function (req, res) {
 			if (start === 'start over' || start === 'Strat over' || start === 'Start Over' || start ==='exit' || start ==='quit') 
 			{
 			status = 'st_start';
-			destination = '';
-			departure= '';
-			end_date= '';
-			start_date= '';
-		
 	  		sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?")
 			continue
 			}
