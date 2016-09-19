@@ -87,7 +87,7 @@ app.post('/webhook/', function (req, res) {
                		initiate = '';
 			sendTextMessage(sender, "Give your Destination to strat creating your itinerary \n or select a random itinerary")
 		//	sendGenericMessage(sender)
-		button_check(sender)
+			button_check(sender)
 			continue
 			}
 
@@ -183,7 +183,7 @@ let messageData = {
         "elements":[
           {
             "title":"Itinerary 1",
-          //  "item_url":"http://www.asiana.lk/tour-itinerary-3-nights-4-days-galle.php",
+           "item_url":"http://www.asiana.lk/tour-itinerary-3-nights-4-days-galle.php",
             "image_url":"https://www.google.lk/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwjk9a7ErZvPAhWFH5QKHQvxDSgQjRwIBw&url=http%3A%2F%2Fangelstravels.com%2FAttraction_Galle.php&psig=AFQjCNHxo0UdLPiBBC0-VFJ2YqOnBVK6AA&ust=1474371907690187",
             "subtitle":"enjoy a memorable holiday in your life",
             "buttons":[
