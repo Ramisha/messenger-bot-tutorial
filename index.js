@@ -45,14 +45,14 @@ app.post('/webhook/', function (req, res) {
 			let initiate_temp = event.message.text
 			initiate = initiate_temp.toUpperCase()
 		//	initiate.toLowerCase()
-			if (status === 'st_new_user' && (iinitiate === 'HI' || initiate === 'HEY')) 
+			if (status === 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) 
         		{		
 			sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?\n\n type start over to exit the process ")
 			status = 'st_start';
 			continue
 			}
 			
-			if (initiate === 'hi' || initiate === 'hey' || initiate === 'Hi' && initiate === 'Hey') 
+			if (initiate === 'HI' || initiate === 'HEY') 
         		{		
 			sendTextMessage(sender, "type start over to continue creating your itinerary ")
 			status = 'st_start';
@@ -60,14 +60,14 @@ app.post('/webhook/', function (req, res) {
 			}
 			
 
-			if (status === 'st_start' && (initiate === 'No' || initiate === 'no' || initiate === 'neh' || initiate ==='nop')) 
+			if (status === 'st_start' && (initiate === 'NO' || initiate === 'NOP' || initiate === 'NEH')) 
 			{
 			sendTextMessage(sender, "I am an itinerary recommender, simply say hi to get started")
 	  		status = 'st_new_user';
 			continue
 			}
 			
-			if ( initiate === 'start over' || initiate === 'Strat over' || initiate === 'Start Over' || initiate ==='exit' || initiate ==='quit') 
+			if ( initiate === 'START OVER' || initiate ==='EXIT' || initiate ==='QUIT') 
 			{
 			
 			status = 'st_start';
@@ -81,7 +81,7 @@ app.post('/webhook/', function (req, res) {
 			
 			}
 			
-			if (status === 'st_start' && (initiate === 'yes' || initiate === 'Yes' || initiate === 'yeah' || initiate ==='sure')) 
+			if (status === 'st_start' && (initiate === 'YES' || initiate === 'YEAH' || initiate === 'SURE' || initiate ==='OK')) 
                		{
                		status = 'st_destination';
                		initiate = '';
