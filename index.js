@@ -77,10 +77,7 @@ app.post('/webhook/', function (req, res) {
 				departure = '';
 				end_date = '';
 				start_date = '';
-				con_destination = '';
-				con_departure = '';
-				con_end_date = '';
-				con_start_date ='';
+			
 			}
 			
 			if (status === 'st_start' && (initiate === 'yes' || initiate === 'Yes' || initiate === 'yeah' || initiate ==='sure')) 
