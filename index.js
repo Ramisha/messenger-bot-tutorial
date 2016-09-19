@@ -97,7 +97,7 @@ app.post('/webhook/', function (req, res) {
 			if (status === 'st_destination' && initiate !== '')
 			{
 			con_destination = initiate;
-			await sendTextMessage(sender, "your destination is : " + con_destination + "\n\nwhat is your origin ?")
+			sendTextMessage(sender, "your destination is : " + con_destination + "\n\nwhat is your origin ?")
 			initiate = '';
 		//	status = 'st_departure';
 			continue 
