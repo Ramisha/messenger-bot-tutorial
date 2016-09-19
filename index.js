@@ -44,7 +44,7 @@ app.post('/webhook/', function (req, res) {
 		if (event.message && event.message.text) {
 			let initiate = event.message.text
 		//	initiate.toLowerCase()
-			if (status === 'st_new_user' && (initiate === 'hi' || initiate === initiate.toUpperCase() || initiate === 'hey' || initiate === 'Hi' && initiate === 'Hey')) 
+			if (status === 'st_new_user' && (initiate === initiate.toLowerCase() || initiate === initiate.toUpperCase() || initiate === 'hey' || initiate === 'Hi' && initiate === 'Hey')) 
         		{		
 			sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?\n\n type start over to exit the process ")
 			status = 'st_start';
