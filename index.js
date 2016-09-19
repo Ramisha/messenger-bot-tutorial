@@ -54,7 +54,8 @@ app.post('/webhook/', function (req, res) {
 			
 			if (initiate === 'HI' || initiate === 'HEY') 
         		{		
-			sendTextMessage(sender, "type start over to continue creating your itinerary ")
+		//	sendTextMessage(sender, "type start over to continue creating your itinerary ")
+		button_check(sender)
 			status = 'st_start';
 			continue
 			}
@@ -97,9 +98,9 @@ app.post('/webhook/', function (req, res) {
 			if (status === 'st_destination' && initiate !== '')
 			{
 			con_destination = initiate;
-			yield sendTextMessage(sender, "your destination is : " + con_destination + "\n\nwhat is your origin ?")
+			sendTextMessage(sender, "your destination is : " + con_destination + "\n\nwhat is your origin ?")
 			initiate = '';
-			status = 'st_departure';
+		//	status = 'st_departure';
 			continue 
 			}
 			
@@ -166,49 +167,14 @@ function sendTextMessage(sender, text) {
 	}, function(error, response, body) {
 		if (error) {
 			console.log('Error sending messages: ', error)
-			return false;
 		} else if (response.body.error) {
 			console.log('Error: ', response.body.error)
-			return false;
 		}
-		returnt true;
 	})
-	
 }
 
 // get user confirmation to continue
 
-function datePicker(sender) {
-	
-let messageData = {
-    "attachment": {
-      "buttons":[
-          {
-            "type":"web_url",
-            "url":"http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.js",
-            "title":"Select date",
-            "webview_height_ratio": "compact"
-          }
-    ]
-    }
-  }        "messenger_extensions": true,  
-    
-	request({
-		url: 'https://graph.facebook.com/v2.6/me/messages',
-		qs: {access_token:token},
-		method: 'POST',
-		json: {
-			recipient: {id:sender},
-			message: messageData,
-		}
-	}, function(error, response, body) {
-		if (error) {
-			console.log('Error sending messages: ', error)
-		} else if (response.body.error) {
-			console.log('Error: ', response.body.error)
-		}
-	})
-}
 
 function checkButton(sender) {
 	
@@ -231,6 +197,40 @@ let messageData = {
           }
         ]
       }
+    }
+  }
+	request({
+		url: 'https://graph.facebook.com/v2.6/me/messages',
+		qs: {access_token:token},
+		method: 'POST',
+		json: {
+			recipient: {id:sender},
+			message: messageData,
+		}
+	}, function(error, response, body) {
+		if (error) {
+			console.log('Error sending messages: ', error)
+		} else if (response.body.error) {
+			console.log('Error: ', response.body.error)
+		}
+	})
+}
+
+function button_check(sender) {
+	
+let messageData = {
+    "attachment": {
+      "type": "template",
+      "payload": {
+    "template_type": "button",
+        "text": "Some text goes here",
+        "buttons": [
+          {
+            "type": "web_url",
+            "url": "https://www.example.com",
+            "title": "Button Title"
+          }
+        ]
     }
   }
 	request({
