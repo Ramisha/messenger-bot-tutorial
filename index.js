@@ -87,7 +87,7 @@ app.post('/webhook/', function (req, res) {
                		status = 'st_destination';
                		initiate = '';
 		//	sendTextMessage(sender, "Give your Destination to strat creating your itinerary")
-			checkButton(sender)
+		button_check(sender)
 		//	datePicker(sender);
 			continue
 			}
@@ -176,45 +176,6 @@ function sendTextMessage(sender, text) {
 // get user confirmation to continue
 
 
-function checkButton(sender) {
-	
-let messageData = {
-     "attachment":{
-      "type":"template",
-      "payload":{
-        "template_type":"button",
-        "text":"What do you want to do next?",
-        "buttons":[
-          {
-            "type":"web_url",
-            "url":"https://petersapparel.parseapp.com",
-            "title":"Show Website"
-          },
-          {
-            "type":"postback",
-            "title":"Start Chatting",
-            "payload":"USER_DEFINED_PAYLOAD"
-          }
-        ]
-      }
-    }
-  }
-	request({
-		url: 'https://graph.facebook.com/v2.6/me/messages',
-		qs: {access_token:token},
-		method: 'POST',
-		json: {
-			recipient: {id:sender},
-			message: messageData,
-		}
-	}, function(error, response, body) {
-		if (error) {
-			console.log('Error sending messages: ', error)
-		} else if (response.body.error) {
-			console.log('Error: ', response.body.error)
-		}
-	})
-}
 
 function button_check(sender) {
 	
