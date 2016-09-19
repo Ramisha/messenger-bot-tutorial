@@ -80,21 +80,23 @@ app.post('/webhook/', function (req, res) {
 	  		status = 'st_destination';
 			continue
 			}
-			let destination = initiate;
+		
 			// get user input to create the itinerary 
 
 			if (status === 'st_destination' && destination.length > 0)
 			{
+					let destination = initiate;
 			status = 'st_departure';
 			con_destination = destination;
 			sendTextMessage(sender, "your destination is : " + destination + "\n\nwhat is your origin ?")
 			
 			continue 
 			}
-			let departure = initiate;
+		
 			
 			if (status === 'st_departure' && departure.length > 0) 
 			{
+					let departure = initiate;
 			con_departure = departure;
 		 	status = 'st_user_s_date';
 		 	sendTextMessage(sender, "your departure location is : " + departure + "\n\nwhen are you planning to leave ?")
@@ -102,19 +104,21 @@ app.post('/webhook/', function (req, res) {
 		 	continue
 		 	}
 		 
-		 	let start_date = initiate;
+		 
 			if (status === 'st_user_s_date' && start_date.length > 0) 
 			{
+					let start_date = initiate;
 			sendTextMessage(sender, "your departure date is : " + start_date + "\n\nwhen are you planning to return")
 			
 			con_start_date = start_date;
 			 status = 'st_user_e_date' ;
 			continue
 			}
-			let end_date = initiate;
+			
     	
    			if (status === 'st_user_e_date' && end_date.length > 0) 
 			 {
+			 	let end_date = initiate;
 			sendTextMessage(sender, "your return date is : " + end_date + "\n\n itinerary processing ..")
 			con_end_date = end_date;
 			sendTextMessage(sender, "your itinerary requirement  : \n\nDestination : "+con_destination+ "\nDeparture : " + con_departure+"\nStart date : "+con_start_date+"\nEnd date : "+con_end_date)
