@@ -182,24 +182,27 @@ let messageData = {
         "template_type":"generic",
         "elements":[
           {
-            "title":"Itinerary 01",
-           // "item_url":"https://www.google.lk",
+            "title":"Welcome to Peter\'s Hats",
+            "item_url":"https://petersfancybrownhats.com",
             "image_url":"http://www.airport-orly.com/images/paris-tour-eiffel-at-night.jpg",
             "subtitle":"We\'ve got the right hat for everyone.",
             "buttons":[
               {
-                "type":"View More",
-                "url":"http://www.visitacity.com/en/paris/itinerary-by-day/5",
+                "type":"web_url",
+                "url":"https://petersfancybrownhats.com",
                 "title":"View Website"
               },
-                           
+              {
+                "type":"postback",
+                "title":"Start Chatting",
+                "payload":"DEVELOPER_DEFINED_PAYLOAD"
+              }              
             ]
           }
-          
-            
         ]
       }
     }
+  }
   }
 	request({
 		url: 'https://graph.facebook.com/v2.6/me/messages',
