@@ -97,9 +97,9 @@ app.post('/webhook/', function (req, res) {
 			if (status === 'st_destination' && initiate !== '')
 			{
 			con_destination = initiate;
-			sendTextMessage(sender, "your destination is : " + con_destination + "\n\nwhat is your origin ?")
+			yield sendTextMessage(sender, "your destination is : " + con_destination + "\n\nwhat is your origin ?")
 			initiate = '';
-		//	status = 'st_departure';
+			status = 'st_departure';
 			continue 
 			}
 			
@@ -166,10 +166,14 @@ function sendTextMessage(sender, text) {
 	}, function(error, response, body) {
 		if (error) {
 			console.log('Error sending messages: ', error)
+			return false;
 		} else if (response.body.error) {
 			console.log('Error: ', response.body.error)
+			return false;
 		}
+		returnt true;
 	})
+	
 }
 
 // get user confirmation to continue
