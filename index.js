@@ -189,14 +189,25 @@ let messageData = {
             "buttons":[
               {
                 "type":"web_url",
-                "url":"https://petersfancybrownhats.com",
+                "url":"http://www.visitacity.com",
                 "title":"View Website"
               },
+                           
+            ]
+          }
+          
+           {
+            "title":"Welcome to Peter\'s Hats",
+            "item_url":"https://petersfancybrownhats.com",
+            "image_url":"http://www.airport-orly.com/images/paris-tour-eiffel-at-night.jpg",
+            "subtitle":"We\'ve got the right hat for everyone.",
+            "buttons":[
               {
-                "type":"postback",
-                "title":"Start Chatting",
-                "payload":"DEVELOPER_DEFINED_PAYLOAD"
-              }              
+                "type":"web_url",
+                "url":"http://www.visitacity.com",
+                "title":"View Website"
+              },
+                           
             ]
           }
         ]
