@@ -85,7 +85,7 @@ app.post('/webhook/', function (req, res) {
                		{
                		status = 'st_destination';
                		initiate = '';
-		//	sendTextMessage(sender, "Give your Destination to strat creating your itinerary")
+			sendTextMessage(sender, "Give your Destination to strat creating your itinerary")
 			sendGenericMessage(sender)
 			continue
 			}
