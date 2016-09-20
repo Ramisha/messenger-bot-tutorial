@@ -96,12 +96,12 @@ app.post('/webhook/', function (req, res) {
 					sendTextMessage(sender, text, deferred.resolve)
 					return deferred.promise;
 				}
-				promiseAction(sender, "your destination is : " + initiate + "\n\nwhat is your Origin ?", 'st_departure', 'st_destination').then(function () {
+				promiseAction(sender, "your destination is : " + initiate + "\n\nwhat is your Origin ?", 'st_departure', 'st_destination').then(function (result) {
 					//	sendTextMessageWithPromises(sender, "your destination is : " + initiate + "\n\nwhat is your origin ?", 'st_departure', 'st_destination')
 					initiate = '';
 					status = 'st_departure';
-					continue
 				})
+				
 				
 			}
 
@@ -110,7 +110,7 @@ app.post('/webhook/', function (req, res) {
 				con_departure = initiate
 				status = 'st_user_s_date';
 				initiate = '';
-				sendTextMessage(sender, "your departure location is : " + con_departure + "\n\nwhen are you planning to leave ?")
+				sendTextMessage(sender, "your origin location is : " + con_departure + "\n\nwhen are you planning to leave ?")
 				continue
 			}
 
