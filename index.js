@@ -8,6 +8,7 @@ var con_destination = '';
 var con_departure = '';
 var con_end_date = '';
 var con_start_date ='';
+var initiate = '';
 
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -72,13 +73,11 @@ app.post('/webhook/', function (req, res) {
 			
 			status = 'st_start';
 			sendTextMessage(sender, "Do you want to start creating your itinerary ?")
-			continue
-			
 				destination = '';
 				departure = '';
 				end_date = '';
 				start_date = '';
-			
+			continue
 			}
 			
 			if (status === 'st_start' && (initiate === 'YES' || initiate === 'YEAH' || initiate === 'SURE' || initiate ==='OK')) 
@@ -96,7 +95,7 @@ app.post('/webhook/', function (req, res) {
 		//	let destination = event.message.text
 			if (status === 'st_destination' && initiate !== '')
 			{
-			await getDestination(sender);
+			getDestination(sender);
 			continue 
 			}
 			
@@ -172,15 +171,11 @@ function sendTextMessage(sender, text) {
 
 function getDestination(sender) {
   
- 
-  return new Promise(function(resolve, reject) {
-  
 con_destination = initiate;
 resolve(con_destination);
 sendTextMessage(sender, "your destination is : " + con_destination + "\n\nwhat is your origin ?")
 initiate = '';
-  });
-  
+
   request({
 		url: 'https://graph.facebook.com/v2.6/me/messages',
 		qs: {access_token:token},
