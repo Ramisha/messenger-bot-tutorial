@@ -48,15 +48,14 @@ app.post('/webhook/', function (req, res) {
 		let initiate_temp = event.message.text
 		var initiate = initiate_temp.toUpperCase();
 		switch(status) {
-    case "st_new_user":
+    case 'st_new_user':
 			 if(initiate === "HI"){
 				sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?\n\n type start over to exit the process ","st_start", "st_new_user" )
-			 
-			 	status =  "st_start";
+			 	status =  'st_start';
 			 }
 			 	res.sendStatus(200)        
         break;
-    case "st_start":
+    case 'st_start':
  			if(initiate === "YES"){
 			  status = sendTextMessage(sender, "Give your Destination to start creating your itinerary \n or select a random itinerary", 'st_destination','st_start')
 			 }
