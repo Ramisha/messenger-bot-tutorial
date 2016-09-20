@@ -90,7 +90,7 @@ app.post('/webhook/', function (req, res) {
 		//	let destination = event.message.text
 		if (status === 'st_destination' && initiate !== '') {
 			con_destination = initiate;
-			var promiseAction = function (sender, text) {
+			var promiseAction = function (sender, text, callback) {
 				var deferred = Q.defer();
 				sendTextMessage(sender, text)
 				return deferred.promise.nodeify(callback);
