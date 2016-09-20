@@ -56,7 +56,8 @@ app.post('/webhook/', function (req, res) {
         break;
     case 'st_start':
  			if(initiate === "YES"){
-			  status = sendTextMessage(sender, "Give your Destination to start creating your itinerary \n or select a random itinerary", 'st_destination','st_start')
+			  sendTextMessage(sender, "Give your Destination to start creating your itinerary \n or select a random itinerary", 'st_destination','st_start')
+			  status =  'st_destination';
 			 }
         break;
      case 'st_destination':
