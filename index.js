@@ -87,6 +87,7 @@ app.post('/webhook/', function (req, res) {
 			sendTextMessage(sender, "Give your Destination to strat creating your itinerary \n or select a random itinerary")
 		//	sendGenericMessage(sender)
 			button_check(sender)
+			test_message(sender)
 			continue
 			}
 
@@ -196,6 +197,36 @@ initiate = '';
 
 
 // get user confirmation to continue
+
+
+function test_message(sender) {
+	
+let messageData = {
+     "message":{
+  	"text":"hello, world!"
+  }
+	request({
+		url: 'https://graph.facebook.com/v2.6/me/messages',
+		qs: {access_token:token},
+		method: 'POST',
+		json: {
+			recipient: {id:sender},
+			message: messageData,
+		}
+	}, function(error, response, body) {
+		if (error) {
+			console.log('Error sending messages: ', error)
+		} else if (response.body.error) {
+			console.log('Error: ', response.body.error)
+		}
+	})
+	
+	}
+
+
+
+
+
 function button_check(sender) {
 	
 let messageData = {
