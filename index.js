@@ -69,22 +69,23 @@ app.post('/webhook/', function (req, res) {
 			
 			if ( initiate === 'START OVER' || initiate ==='EXIT' || initiate ==='QUIT') 
 			{
-		  	destination = '';
+			
+			status = 'st_start';
+			sendTextMessage(sender, "Do you want to start creating your itinerary ?")
+			continue
+			
+				destination = '';
 				departure = '';
 				end_date = '';
 				start_date = '';
-
-			status = 'st_start';
-			sendTextMessage(sender, "Do you want to start creating your itinerary ?")
-				
-			continue
+			
 			}
 			
 			if (status === 'st_start' && (initiate === 'YES' || initiate === 'YEAH' || initiate === 'SURE' || initiate ==='OK')) 
                		{
                		status = 'st_destination';
                		initiate = '';
-			sendTextMessage(sender, "Give your Destination to strat creating your itinerary \n or select a random itinerary")
+			sendTextMessage(sender, "Give your Destination to start creating your itinerary \n or select a random itinerary")
 		//	sendGenericMessage(sender)
 			button_check(sender)
 			continue
@@ -171,35 +172,7 @@ function sendTextMessage(sender, text) {
 	})
 }
 
-
-// function getDestination(sender) {
-  
-// con_destination = initiate;
-// resolve(con_destination);
-// sendTextMessage(sender, "your destination is : " + con_destination + "\n\nwhat is your origin ?")
-// initiate = '';
-
-//   request({
-// 		url: 'https://graph.facebook.com/v2.6/me/messages',
-// 		qs: {access_token:token},
-// 		method: 'POST',
-// 		json: {
-// 			recipient: {id:sender},
-// 			message: messageData,
-// 		}
-// 	}, function(error, response, body) {
-// 		if (error) {
-// 			console.log('Error sending messages: ', error)
-// 		} else if (response.body.error) {
-// 			console.log('Error: ', response.body.error)
-// 		}
-// 	})
-// }
-
-
-
 // get user confirmation to continue
-
 function button_check(sender) {
 	
 let messageData = {
