@@ -48,7 +48,7 @@ app.post('/webhook/', function (req, res) {
 		switch(status) {
     case "st_new_user":
 			 if(initiate === "HI"){
-				 status = sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?\n\n type start over to exit the process ","st_start", "st_new_user", )
+				 status = sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?\n\n type start over to exit the process ","st_start", "st_new_user")
 			 }        
         break;
     case "st_start":
