@@ -8,7 +8,6 @@ var con_destination = '';
 var con_departure = '';
 var con_end_date = '';
 var con_start_date ='';
-var initiate = '';
 
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -70,24 +69,24 @@ app.post('/webhook/', function (req, res) {
 			
 			if ( initiate === 'START OVER' || initiate ==='EXIT' || initiate ==='QUIT') 
 			{
-			
-			status = 'st_start';
-			sendTextMessage(sender, "Do you want to start creating your itinerary ?")
-				destination = '';
+		  	destination = '';
 				departure = '';
 				end_date = '';
 				start_date = '';
+
+			status = 'st_start';
+			sendTextMessage(sender, "Do you want to start creating your itinerary ?")
+				
 			continue
 			}
 			
 			if (status === 'st_start' && (initiate === 'YES' || initiate === 'YEAH' || initiate === 'SURE' || initiate ==='OK')) 
                		{
-               	//	status = 'st_destination';
+               		status = 'st_destination';
                		initiate = '';
 			sendTextMessage(sender, "Give your Destination to strat creating your itinerary \n or select a random itinerary")
 		//	sendGenericMessage(sender)
 			button_check(sender)
-		//test_message()
 			continue
 			}
 
@@ -96,7 +95,10 @@ app.post('/webhook/', function (req, res) {
 		//	let destination = event.message.text
 			if (status === 'st_destination' && initiate !== '')
 			{
-			getDestination(sender);
+			con_destination = initiate;
+			sendTextMessage(sender, "your destination is : " + con_destination + "\n\nwhat is your origin ?")
+			initiate = '';
+		//	status = 'st_departure';
 			continue 
 			}
 			
