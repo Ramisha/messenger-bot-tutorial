@@ -90,10 +90,10 @@ app.post('/webhook/', function (req, res) {
 		//	let destination = event.message.text
 		if (status === 'st_destination' && initiate !== '') {
 			con_destination = initiate;
-			var promiseAction = function (sender, text, callback) {
+			var promiseAction = function (sender, text) {
 				var deferred = Q.defer();
 				sendTextMessage(sender, text)
-				return deferred.promise.nodeify(callback);
+				return deferred.promise;
 			}
 			promiseAction(sender, "your " + status + "is : " + initiate + "\n\nwhat is your Origin ?").then(function (initiate, status) {
 				console.log(result);
@@ -103,6 +103,7 @@ app.post('/webhook/', function (req, res) {
 				console.log(result);
 				initiate = '';
 				status = 'st_departure';
+				return;
 			})
 		}
 
