@@ -61,7 +61,7 @@ app.post('/webhook/', function (req, res) {
 			 }
         break;
      case 'st_destination':
-     		if(initiate !== "NNNN"){
+     		if(initiate === "LONDON"){
 			  sendTextMessage(sender, "Your Destination is"  + initiate + "\nwhat is your origin ?", 'st_origin','st_destination')
 			  status = 'st_origin';
      		}
