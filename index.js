@@ -95,16 +95,19 @@ app.post('/webhook/', function (req, res) {
 				sendTextMessage(sender, text)
 				return deferred.promise;
 			}
-			promiseAction(sender, "your " + status + "is : " + initiate + "\n\nwhat is your Origin ?").then(function (initiate, status) {
+		var promiseB =	promiseAction(sender, "your " + status + "is : " + initiate + "\n\nwhat is your Origin ?").then(function (initiate, status) {
 				console.log(result);
 				initiate = '';
 				status = 'st_departure';
+				return status;
 			}, function (initiate, status) {
 				console.log(result);
 				initiate = '';
 				status = 'st_departure';
-				return;
+				return status;
 			})
+			status = promiseB;
+			initiate = '';
 		}
 
 		if (status === 'st_departure' && initiate !== '') {
