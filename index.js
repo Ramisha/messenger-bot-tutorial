@@ -100,7 +100,7 @@ app.post('/webhook/', function (req, res) {
 				initiate = '';
 				status = 'st_departure';
 				return status;
-			}, function (initiate, status) {
+			}, function () {
 				console.log(result);
 				initiate = '';
 				status = 'st_departure';
