@@ -10,7 +10,7 @@ var con_end_date = '';
 var con_start_date = '';
 
 const express = require('express')
-//const bodyParser = require('body-parser')
+const bodyParser = require('body-parser')
 const request = require('request')
 const app = express()
 
@@ -18,11 +18,11 @@ var Q = require("q");
 
 app.set('port', (process.env.PORT || 5000))
 
-// parse application/x-www-form-urlencoded
-//app.use(bodyParser.urlencoded({ extended: false }))
+parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
 
-// parse application/json
-//app.use(bodyParser.json())
+parse application/json
+app.use(bodyParser.json())
 
 // index
 app.get('/', function (req, res) {
