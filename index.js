@@ -98,9 +98,8 @@ app.post('/webhook/', function (req, res) {
 			sendTextMessageWithPromises(sender, "your destination is : " + con_destination + "\n\nwhat is your origin ?", 'st_departure', 'st_destination').then(function(result){
 			initiate = '';
 			status = result;
-			continue 
 			})
-
+			continue;
 			}
 			
 			if(status === 'st_departure' && initiate !== '') {
