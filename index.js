@@ -72,12 +72,10 @@ app.post('/webhook/', function (req, res) {
 			
 			status = 'st_start';
 			sendTextMessage(sender, "Do you want to start creating your itinerary ?")
-			
-			
-				destination = '';
-				departure = '';
-				end_date = '';
-				start_date = '';
+				// destination = '';
+				// departure = '';
+				// end_date = '';
+				// start_date = '';
 			continue
 			}
 			
