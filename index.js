@@ -87,7 +87,7 @@ app.post('/webhook/', function (req, res) {
 			sendTextMessage(sender, "Give your Destination to strat creating your itinerary \n or select a random itinerary")
 		//	sendGenericMessage(sender)
 			button_check(sender)
-			test_message(sender)
+		test_message()
 			continue
 			}
 
@@ -199,7 +199,7 @@ initiate = '';
 // get user confirmation to continue
 
 
-function test_message(sender) {
+function test_message() {
 	
 let messageData = {
     	sendTextMessage(sender, "TEST 123456789")
