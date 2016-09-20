@@ -1,5 +1,5 @@
 'use strict'
-var status = 'st_new_user' ;
+var status = 'st_new_user';
 var destination = '';
 var departure = '';
 var end_date = '';
@@ -7,17 +7,19 @@ var start_date = '';
 var con_destination = '';
 var con_departure = '';
 var con_end_date = '';
-var con_start_date ='';
+var con_start_date = '';
 
 const express = require('express')
 const bodyParser = require('body-parser')
 const request = require('request')
 const app = express()
 
+var Q = require("q");
+
 app.set('port', (process.env.PORT || 5000))
 
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.urlencoded({ extended: false }))
 
 // parse application/json
 app.use(bodyParser.json())
@@ -44,102 +46,99 @@ app.post('/webhook/', function (req, res) {
 		if (event.message && event.message.text) {
 			let initiate_temp = event.message.text
 			var initiate = initiate_temp.toUpperCase();
-	
-			if (status === 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) 
-        		{		
-			sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?\n\n type start over to exit the process ")
-			status = 'st_start';
-			continue
-			}
-			
-			if (initiate === 'HI' || initiate === 'HEY') 
-        		{		
-			sendTextMessage(sender, "type start over to continue creating your itinerary ")
-			status = 'st_start';
-			continue
-			}
-			
 
-			if (status === 'st_start' && (initiate === 'NO' || initiate === 'NOP' || initiate === 'NEH')) 
-			{
-			sendTextMessage(sender, "I am an itinerary recommender, simply say hi to get started")
-	  		status = 'st_new_user';
-			continue
+			if (status === 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) {
+				sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?\n\n type start over to exit the process ")
+				status = 'st_start';
+				continue
 			}
-			
-			if ( initiate === 'START OVER' || initiate ==='EXIT' || initiate ==='QUIT') 
-			{
-			
-			status = 'st_start';
-			sendTextMessage(sender, "Do you want to start creating your itinerary ?")
+
+			if (initiate === 'HI' || initiate === 'HEY') {
+				sendTextMessage(sender, "type start over to continue creating your itinerary ")
+				status = 'st_start';
+				continue
+			}
+
+
+			if (status === 'st_start' && (initiate === 'NO' || initiate === 'NOP' || initiate === 'NEH')) {
+				sendTextMessage(sender, "I am an itinerary recommender, simply say hi to get started")
+				status = 'st_new_user';
+				continue
+			}
+
+			if (initiate === 'START OVER' || initiate === 'EXIT' || initiate === 'QUIT') {
+
+				status = 'st_start';
+				sendTextMessage(sender, "Do you want to start creating your itinerary ?")
 				// destination = '';
 				// departure = '';
 				// end_date = '';
 				// start_date = '';
-			continue
-			}
-			
-			if (status === 'st_start' && (initiate === 'YES' || initiate === 'YEAH' || initiate === 'SURE' || initiate ==='OK')) 
-               		{
-               		status = 'st_destination';
-               		initiate = '';
-			sendTextMessage(sender, "Give your Destination to start creating your itinerary \n or select a random itinerary")
-		//	sendGenericMessage(sender)
-			button_check(sender)
-			continue
+				continue
 			}
 
-		// get user input to create the itinerary 
-
-		//	let destination = event.message.text
-			if (status === 'st_destination' && initiate !== '')
-			{
-			con_destination = initiate;
-			sendTextMessageWithPromises(sender, "your destination is : " + con_destination + "\n\nwhat is your origin ?", 'st_departure', 'st_destination').then(function(result){
-			initiate = '';
-			status = result;
-			})
-			continue;
+			if (status === 'st_start' && (initiate === 'YES' || initiate === 'YEAH' || initiate === 'SURE' || initiate === 'OK')) {
+				status = 'st_destination';
+				initiate = '';
+				sendTextMessage(sender, "Give your Destination to start creating your itinerary \n or select a random itinerary")
+				//	sendGenericMessage(sender)
+				button_check(sender)
+				continue
 			}
-			
-			if(status === 'st_departure' && initiate !== '') {
+
+			// get user input to create the itinerary 
+
+			//	let destination = event.message.text
+			if (status === 'st_destination' && initiate !== '') {
+				con_destination = initiate;
+				var promiseAction = function (sender, text) {
+					var deferred = Q.defer();
+					sendTextMessage(sender, text, deferred.resolve)
+					return deferred.promise;
+				}
+				promiseAction(sender, "your destination is : " + initiate + "\n\nwhat is your origin ?", 'st_departure', 'st_destination').then(function (result) {
+					//	sendTextMessageWithPromises(sender, "your destination is : " + initiate + "\n\nwhat is your origin ?", 'st_departure', 'st_destination')
+					initiate = '';
+					status = result;
+				})
+				continue;
+			}
+
+			if (status === 'st_departure' && initiate !== '') {
 				//let departure = event.message.text
 				con_departure = initiate
-			 	status = 'st_user_s_date';
-			 	initiate = '';
-			 	sendTextMessage(sender, "your departure location is : " + con_departure + "\n\nwhen are you planning to leave ?")
-			 	continue
-			}
-		 	
-		 	let start_date = event.message.text
-			if (status === 'st_user_s_date' && start_date === 'test3') 
-			{
-			sendTextMessage(sender, "your departure date is : " + start_date + "\n\nwhen are you planning to return")
-			con_start_date = start_date;
-			 status = 'st_user_e_date' ;
-			continue
+				status = 'st_user_s_date';
+				initiate = '';
+				sendTextMessage(sender, "your departure location is : " + con_departure + "\n\nwhen are you planning to leave ?")
+				continue
 			}
 
-    			let end_date = event.message.text
-   			if (status === 'st_user_e_date' && end_date === 'test4') 
-      			{
-			sendTextMessage(sender, "your return date is : " + end_date + "\n\n itinerary processing ..")
-			con_end_date = end_date;
-			sendTextMessage(sender, "your itinerary requirement  : \n\nDestination : "+con_destination+ "\nDeparture : " + con_departure+"\nStart date : "+con_start_date+"\nEnd date : "+con_end_date)
-			continue
-		
+			let start_date = event.message.text
+			if (status === 'st_user_s_date' && start_date === 'test3') {
+				sendTextMessage(sender, "your departure date is : " + start_date + "\n\nwhen are you planning to return")
+				con_start_date = start_date;
+				status = 'st_user_e_date';
+				continue
 			}
-		     	
+
+			let end_date = event.message.text
+   			if (status === 'st_user_e_date' && end_date === 'test4') {
+				sendTextMessage(sender, "your return date is : " + end_date + "\n\n itinerary processing ..")
+				con_end_date = end_date;
+				sendTextMessage(sender, "your itinerary requirement  : \n\nDestination : " + con_destination + "\nDeparture : " + con_departure + "\nStart date : " + con_start_date + "\nEnd date : " + con_end_date)
+				continue
+
+			}
+
 		}
 
-			if (event.postback) 
-			{
+		if (event.postback) {
 			let text = JSON.stringify(event.postback)
-			sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
+			sendTextMessage(sender, "Postback received: " + text.substring(0, 200), token)
 			continue
 		}
-		
-		
+
+
 	}
 
 
@@ -152,17 +151,17 @@ app.post('/webhook/', function (req, res) {
 const token = "EAAN1nQ8Jz3MBABpQib4sZB1UnMCIobDAQ7ArZA8w9U67AD1gimvvDCkLptz7k3keOTjZBY3DKZCyPIFZApIg3zn6I5ByFbNpQkwRfD99ZAejGmElK075ygLKJvHw4XWcb1ZCyY9V5gOkxgywVVhjZCWRCPPvBXdM5G1WykZCgcxSoPQZDZD"
 
 function sendTextMessage(sender, text) {
-	let messageData = { text:text }
-	
+	let messageData = { text: text }
+
 	request({
 		url: 'https://graph.facebook.com/v2.6/me/messages',
-		qs: {access_token:token},
+		qs: { access_token: token },
 		method: 'POST',
 		json: {
-			recipient: {id:sender},
+			recipient: { id: sender },
 			message: messageData,
 		}
-	}, function(error, response, body) {
+	}, function (error, response, body) {
 		if (error) {
 			console.log('Error sending messages: ', error)
 		} else if (response.body.error) {
@@ -170,79 +169,92 @@ function sendTextMessage(sender, text) {
 		}
 	})
 }
-
 function sendTextMessageWithPromises(sender, text, onSuccess, onError) {
-	let messageData = { text:text }
+	return new Promise(function (resolve, reject) {
+		reject(new Error("Rejected error"))
+	}).then(function (result) {
+		console.log('Result 1 ' + result);
+		return result;
+	}).then(function (result) {
+		console.log('Result 2 ' + result)
+		return result;
+	});
+}
+function sendTextMessageWithPromises(sender, text, onSuccess, onError) {
+	return new Promise(function () {
+		let messageData = { text: text }
 
-	request({
-		url: 'https://graph.facebook.com/v2.6/me/messages',
-		qs: {access_token:token},
-		method: 'POST',
-		json: {
-			recipient: {id:sender},
-			message: messageData,
-		}
-	}, function(error, response, body, onSuccess, onError) {
-		if (error) {
-			console.log('Error sending messages: ', error)
-			return onError;
-		} else if (response.body.error) {
-			console.log('Error: ', response.body.error)
-			return onError;
-		}
-		return onSuccess;
-	})
+		request({
+			url: 'https://graph.facebook.com/v2.6/me/messages',
+			qs: { access_token: token },
+			method: 'POST',
+			json: {
+				recipient: { id: sender },
+				message: messageData,
+			}
+		}, function (error, response, body, onSuccess, onError) {
+			if (error) {
+				console.log('Error sending messages: ', error)
+				return onError;
+			} else if (response.body.error) {
+				console.log('Error: ', response.body.error)
+				return onError;
+			}
+			return onSuccess;
+		})
+	}
+	)
 }
 
 // get user confirmation to continue
 function button_check(sender) {
-	
-let messageData = {
-    "attachment":{
-      "type":"template",
-      "payload":{
-        "template_type":"generic",
-		        "elements":[
-		          {
-		            "title":"itinerary 1",
-		            "item_url":"https://petersfancybrownhats.com",
-		            "image_url":"http://www.airport-orly.com/images/paris-tour-eiffel-at-night.jpg",
-		            "subtitle":"enjoy a memorable holiday in your life",
-		            "buttons":[
-		              {
-		                "type":"web_url",
-		                "url":"http://www.visitacity.com",
-		                "title":"View Website"
-		              },
-		                           
-		            ]
-		      
-      }
-      ]
-    }
-  }
-}
+
+	let messageData = {
+    "attachment": {
+      "type": "template",
+      "payload": {
+        "template_type": "generic",
+				"elements": [
+					{
+						"title": "itinerary 1",
+						"item_url": "https://petersfancybrownhats.com",
+						"image_url": "http://www.airport-orly.com/images/paris-tour-eiffel-at-night.jpg",
+						"subtitle": "enjoy a memorable holiday in your life",
+						"buttons": [
+							{
+								"type": "web_url",
+								"url": "http://www.visitacity.com",
+								"title": "View Website"
+							},
+
+						]
+
+					}
+				]
+			}
+		}
+	}
 	request({
 		url: 'https://graph.facebook.com/v2.6/me/messages',
-		qs: {access_token:token},
+		qs: { access_token: token },
 		method: 'POST',
 		json: {
-			recipient: {id:sender},
+			recipient: { id: sender },
 			message: messageData,
 		}
-	}, function(error, response, body) {
+	}, function (error, response, body) {
 		if (error) {
 			console.log('Error sending messages: ', error)
 		} else if (response.body.error) {
 			console.log('Error: ', response.body.error)
 		}
 	})
-	
-	}
+
+}
 
 function sendGenericMessage(sender) {
-	
-let messageData = {
+
+	let messageData = {
     "attachment": {
       "type": "template",
       "payload": {
@@ -372,13 +384,13 @@ let messageData = {
   }
 	request({
 		url: 'https://graph.facebook.com/v2.6/me/messages',
-		qs: {access_token:token},
+		qs: { access_token: token },
 		method: 'POST',
 		json: {
-			recipient: {id:sender},
+			recipient: { id: sender },
 			message: messageData,
 		}
-	}, function(error, response, body) {
+	}, function (error, response, body) {
 		if (error) {
 			console.log('Error sending messages: ', error)
 		} else if (response.body.error) {
@@ -390,6 +402,6 @@ let messageData = {
 
 
 // spin spin sugar
-app.listen(app.get('port'), function() {
+app.listen(app.get('port'), function () {
 	console.log('running on port', app.get('port'))
 })
