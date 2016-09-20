@@ -92,8 +92,8 @@ app.post('/webhook/', function (req, res) {
 			con_destination = initiate;
 			var promiseAction = function (sender, text) {
 				var deferred = Q.defer();
-				sendTextMessage(sender, text, deferred.resolve)
-				return deferred.promise;
+				sendTextMessage(sender, text)
+				return deferred.promise.nodeify(callback);
 			}
 			promiseAction(sender, "your " + status + "is : " + initiate + "\n\nwhat is your Origin ?").then(function (initiate, status) {
 				console.log(result);
