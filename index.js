@@ -61,9 +61,9 @@ app.post('/webhook/', function (req, res) {
 			 }
         break;
      case 'st_destination':
- 			if(initiate.length>0){
-			  status = sendTextMessage(sender, "Your Destination is"  + initiate + "\nwhat is your origin ?", 'st_origin','st_destination')
-			 }
+			  sendTextMessage(sender, "Your Destination is"  + initiate + "\nwhat is your origin ?", 'st_origin','st_destination')
+			  status = 'st_origin';
+			 
         break;
     default:status ='st_new_user'
 			
