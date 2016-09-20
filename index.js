@@ -95,10 +95,12 @@ app.post('/webhook/', function (req, res) {
 			if (status === 'st_destination' && initiate !== '')
 			{
 			con_destination = initiate;
-			sendTextMessage(sender, "your destination is : " + con_destination + "\n\nwhat is your origin ?")
+			sendTextMessageWithPromises(sender, "your destination is : " + con_destination + "\n\nwhat is your origin ?", 'st_departure', 'st_destination').then(function(result){
 			initiate = '';
-		//	status = 'st_departure';
+			status = result;
 			continue 
+			})
+
 			}
 			
 			if(status === 'st_departure' && initiate !== '') {
@@ -167,6 +169,29 @@ function sendTextMessage(sender, text) {
 		} else if (response.body.error) {
 			console.log('Error: ', response.body.error)
 		}
+	})
+}
+
+function sendTextMessageWithPromises(sender, text, onSuccess, onError) {
+	let messageData = { text:text }
+
+	request({
+		url: 'https://graph.facebook.com/v2.6/me/messages',
+		qs: {access_token:token},
+		method: 'POST',
+		json: {
+			recipient: {id:sender},
+			message: messageData,
+		}
+	}, function(error, response, body, onSuccess, onError) {
+		if (error) {
+			console.log('Error sending messages: ', error)
+			return onError;
+		} else if (response.body.error) {
+			console.log('Error: ', response.body.error)
+			return onError;
+		}
+		return onSuccess;
 	})
 }
 
