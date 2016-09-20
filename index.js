@@ -96,7 +96,7 @@ app.post('/webhook/', function (req, res) {
 		//	let destination = event.message.text
 			if (status === 'st_destination' && initiate !== '')
 			{
-			await getDestination(sender);
+			getDestination(sender);
 			continue 
 			}
 			
