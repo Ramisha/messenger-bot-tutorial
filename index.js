@@ -202,9 +202,7 @@ initiate = '';
 function test_message(sender) {
 	
 let messageData = {
-     "message":{
-  	"text":"hello, world!"
-  }
+     { "text": "hello, world!" }
 	request({
 		url: 'https://graph.facebook.com/v2.6/me/messages',
 		qs: {access_token:token},
