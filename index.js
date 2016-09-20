@@ -95,7 +95,7 @@ app.post('/webhook/', function (req, res) {
 				sendTextMessage(sender, text)
 				return deferred.promise;
 			}
-		promiseAction(sender, "your " + status + "is : " + initiate + "\n\nwhat is your Origin ?").then(function (initiate, status) {
+		promiseAction(sender, "your " + status + "is : " + initiate + "\n\nwhat is your Origin ?").then(function () {
 				console.log(result);
 				initiate = '';
 				status = 'st_departure';
