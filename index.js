@@ -87,3 +87,7 @@ function sendTextMessage(sender, text, onSuccess, onError) {
 		return onSuccess;
 	})
 }
+// spin spin sugar
+app.listen(app.get('port'), function () {
+	console.log('running on port', app.get('port'))
+})
