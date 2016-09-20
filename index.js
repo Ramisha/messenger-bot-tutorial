@@ -99,6 +99,10 @@ app.post('/webhook/', function (req, res) {
 				console.log(result);
 				initiate = '';
 				status = 'st_departure';
+			}),then(function (initiate, status) {
+				console.log(result);
+				initiate = '';
+				status = 'st_departure';
 			})
 		}
 
