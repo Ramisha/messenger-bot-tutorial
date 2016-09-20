@@ -72,13 +72,13 @@ app.post('/webhook/', function (req, res) {
 			
 			status = 'st_start';
 			sendTextMessage(sender, "Do you want to start creating your itinerary ?")
-			continue
+			
 			
 				destination = '';
 				departure = '';
 				end_date = '';
 				start_date = '';
-			
+			continue
 			}
 			
 			if (status === 'st_start' && (initiate === 'YES' || initiate === 'YEAH' || initiate === 'SURE' || initiate ==='OK')) 
