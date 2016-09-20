@@ -39,8 +39,8 @@ app.get('/webhook/', function (req, res) {
 
 // to post data
 app.post('/webhook/', function (req, res) {
-	let messaging_events = req.body.entry[0].messaging[0];
-		let event = req.body.entry[0].messaging[i]
+	let messaging_events = req.body.entry[0].messaging;
+		let event = req.body.entry[0].messaging[0]
 		let sender = event.sender.id
 		if (event.message && event.message.text) {
 		let initiate_temp = event.message.text
