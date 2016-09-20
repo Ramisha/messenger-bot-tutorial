@@ -95,13 +95,11 @@ app.post('/webhook/', function (req, res) {
 				sendTextMessage(sender, text)
 				return deferred.promise;
 			}
-		promiseAction(sender, "your " + status + "is : " + initiate + "\n\nwhat is your Origin ?").then(function () {
-				console.log(result);
+		status = promiseAction(sender, "your " + status + "is : " + initiate + "\n\nwhat is your Origin ?").then(function () {
 				initiate = '';
 				status = 'st_departure';
 				return status;
 			}, function () {
-				console.log(result);
 				initiate = '';
 				status = 'st_departure';
 				return status;
