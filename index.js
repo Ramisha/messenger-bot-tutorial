@@ -54,7 +54,7 @@ app.post('/webhook/', function (req, res) {
 			}
 
 			if (initiate === 'HI' || initiate === 'HEY') {
-				sendTextMessage(sender, "type start over to continue creating your itinerary ")
+				sendTextMessage(sender, "type yes to continue creating your itinerary ")
 				status = 'st_start';
 				continue
 			}
@@ -96,10 +96,10 @@ app.post('/webhook/', function (req, res) {
 					sendTextMessage(sender, text, deferred.resolve)
 					return deferred.promise;
 				}
-				promiseAction(sender, "your destination is : " + initiate + "\n\nwhat is your origin ?", 'st_departure', 'st_destination').then(function (result) {
+				promiseAction(sender, "your destination is : " + initiate + "\n\nwhat is your origin ?", 'st_departure', 'st_destination').then(function () {
 					//	sendTextMessageWithPromises(sender, "your destination is : " + initiate + "\n\nwhat is your origin ?", 'st_departure', 'st_destination')
 					initiate = '';
-					status = result;
+					status = 'st_departure';
 				})
 				continue;
 			}
