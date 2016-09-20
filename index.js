@@ -102,8 +102,6 @@ app.post('/webhook/', function (req, res) {
 					initiate = '';
 					status = 'st_departure';
 				})
-				
-				
 			}
 
 			if (status === 'st_departure' && initiate !== '') {
@@ -169,6 +167,7 @@ function sendTextMessage(sender, text) {
 		} else if (response.body.error) {
 			console.log('Error: ', response.body.error)
 		}
+		return;
 	})
 }
 function sendTextMessageWithPromises(sender, text, onSuccess, onError) {
