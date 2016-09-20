@@ -39,107 +39,106 @@ app.get('/webhook/', function (req, res) {
 
 // to post data
 app.post('/webhook/', function (req, res) {
-	let messaging_events = req.body.entry[0].messaging
-	for (let i = 0; i < messaging_events.length; i++) {
+	let messaging_events = req.body.entry[0].messaging[0];
 		let event = req.body.entry[0].messaging[i]
 		let sender = event.sender.id
 		if (event.message && event.message.text) {
-			let initiate_temp = event.message.text
-			var initiate = initiate_temp.toUpperCase();
+		let initiate_temp = event.message.text
+		var initiate = initiate_temp.toUpperCase();
 
-			if (status === 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) {
-				sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?\n\n type start over to exit the process ")
-				status = 'st_start';
-				continue
-			}
-
-			if (initiate === 'HI' || initiate === 'HEY') {
-				sendTextMessage(sender, "type yes to continue creating your itinerary ")
-				status = 'st_start';
-				continue
-			}
-
-
-			if (status === 'st_start' && (initiate === 'NO' || initiate === 'NOP' || initiate === 'NEH')) {
-				sendTextMessage(sender, "I am an itinerary recommender, simply say hi to get started")
-				status = 'st_new_user';
-				continue
-			}
-
-			if (initiate === 'START OVER' || initiate === 'EXIT' || initiate === 'QUIT') {
-
-				status = 'st_start';
-				sendTextMessage(sender, "Do you want to start creating your itinerary ?")
-				// destination = '';
-				// departure = '';
-				// end_date = '';
-				// start_date = '';
-				continue
-			}
-
-			if (status === 'st_start' && (initiate === 'YES' || initiate === 'YEAH' || initiate === 'SURE' || initiate === 'OK')) {
-				status = 'st_destination';
-				initiate = '';
-				sendTextMessage(sender, "Give your Destination to start creating your itinerary \n or select a random itinerary")
-				//	sendGenericMessage(sender)
-				button_check(sender)
-				continue
-			}
-
-			// get user input to create the itinerary 
-
-			//	let destination = event.message.text
-			if (status === 'st_destination' && initiate !== '') {
-				con_destination = initiate;
-				var promiseAction = function (sender, text) {
-					var deferred = Q.defer();
-					sendTextMessage(sender, text, deferred.resolve)
-					return deferred.promise;
-				}
-				promiseAction(sender, "your "+ status  +"is : " + initiate + "\n\nwhat is your Origin ?").then( (result)=> {
-					//	sendTextMessageWithPromises(sender, "your destination is : " + initiate + "\n\nwhat is your origin ?", 'st_departure', 'st_destination')
-					console.log(result);
-					initiate = '';
-					status = 'st_departure';
-				})
-			}
-
-			if (status === 'st_departure' && initiate !== '') {
-				//let departure = event.message.text
-				con_departure = initiate
-				status = 'st_user_s_date';
-				initiate = '';
-				sendTextMessage(sender, "your origin location is : " + con_departure + "\n\nwhen are you planning to leave ?")
-				continue
-			}
-
-			let start_date = event.message.text
-			if (status === 'st_user_s_date' && start_date === 'test3') {
-				sendTextMessage(sender, "your departure date is : " + start_date + "\n\nwhen are you planning to return")
-				con_start_date = start_date;
-				status = 'st_user_e_date';
-				continue
-			}
-
-			let end_date = event.message.text
-   			if (status === 'st_user_e_date' && end_date === 'test4') {
-				sendTextMessage(sender, "your return date is : " + end_date + "\n\n itinerary processing ..")
-				con_end_date = end_date;
-				sendTextMessage(sender, "your itinerary requirement  : \n\nDestination : " + con_destination + "\nDeparture : " + con_departure + "\nStart date : " + con_start_date + "\nEnd date : " + con_end_date)
-				continue
-
-			}
-
+		if (status === 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) {
+			sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?\n\n type start over to exit the process ")
+			status = 'st_start';
+			continue
 		}
 
-		if (event.postback) {
-			let text = JSON.stringify(event.postback)
-			sendTextMessage(sender, "Postback received: " + text.substring(0, 200), token)
+		if (initiate === 'HI' || initiate === 'HEY') {
+			sendTextMessage(sender, "type yes to continue creating your itinerary ")
+			status = 'st_start';
 			continue
 		}
 
 
-	}
+		if (status === 'st_start' && (initiate === 'NO' || initiate === 'NOP' || initiate === 'NEH')) {
+			sendTextMessage(sender, "I am an itinerary recommender, simply say hi to get started")
+			status = 'st_new_user';
+			continue
+		}
+
+		if (initiate === 'START OVER' || initiate === 'EXIT' || initiate === 'QUIT') {
+
+			status = 'st_start';
+			sendTextMessage(sender, "Do you want to start creating your itinerary ?")
+			// destination = '';
+			// departure = '';
+			// end_date = '';
+			// start_date = '';
+			continue
+		}
+
+		if (status === 'st_start' && (initiate === 'YES' || initiate === 'YEAH' || initiate === 'SURE' || initiate === 'OK')) {
+			status = 'st_destination';
+			initiate = '';
+			sendTextMessage(sender, "Give your Destination to start creating your itinerary \n or select a random itinerary")
+			//	sendGenericMessage(sender)
+			button_check(sender)
+			continue
+		}
+
+		// get user input to create the itinerary 
+
+		//	let destination = event.message.text
+		if (status === 'st_destination' && initiate !== '') {
+			con_destination = initiate;
+			var promiseAction = function (sender, text) {
+				var deferred = Q.defer();
+				sendTextMessage(sender, text, deferred.resolve)
+				return deferred.promise;
+			}
+			promiseAction(sender, "your " + status + "is : " + initiate + "\n\nwhat is your Origin ?").then(function (result) {
+				//	sendTextMessageWithPromises(sender, "your destination is : " + initiate + "\n\nwhat is your origin ?", 'st_departure', 'st_destination')
+				console.log(result);
+				initiate = '';
+				status = 'st_departure';
+			})
+		}
+
+		if (status === 'st_departure' && initiate !== '') {
+			//let departure = event.message.text
+			con_departure = initiate
+			status = 'st_user_s_date';
+			initiate = '';
+			sendTextMessage(sender, "your origin location is : " + con_departure + "\n\nwhen are you planning to leave ?")
+			continue
+		}
+
+		let start_date = event.message.text
+		if (status === 'st_user_s_date' && start_date === 'test3') {
+			sendTextMessage(sender, "your departure date is : " + start_date + "\n\nwhen are you planning to return")
+			con_start_date = start_date;
+			status = 'st_user_e_date';
+			continue
+		}
+
+		let end_date = event.message.text
+		if (status === 'st_user_e_date' && end_date === 'test4') {
+			sendTextMessage(sender, "your return date is : " + end_date + "\n\n itinerary processing ..")
+			con_end_date = end_date;
+			sendTextMessage(sender, "your itinerary requirement  : \n\nDestination : " + con_destination + "\nDeparture : " + con_departure + "\nStart date : " + con_start_date + "\nEnd date : " + con_end_date)
+			continue
+
+		}
+
+		}
+
+		if (event.postback) {
+		let text = JSON.stringify(event.postback)
+		sendTextMessage(sender, "Postback received: " + text.substring(0, 200), token)
+		continue
+		}
+
+
+
 
 
 	res.sendStatus(200)
