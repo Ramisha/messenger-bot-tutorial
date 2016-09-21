@@ -87,8 +87,8 @@ app.post('/webhook/', function (req, res) {
                		initiate = '';
 			sendTextMessage(sender, "Give your Destination to start creating your itinerary \n or select a random itinerary")
 		//	sendGenericMessage(sender)
-		//	button_check(sender)
-			sendItinerary(sender)
+		button_check(sender)
+		//	sendItinerary(sender)
 			continue
 			}
 
@@ -113,8 +113,8 @@ app.post('/webhook/', function (req, res) {
 			 	continue
 			}
 		 	
-		 	let start_date = event.message.text
-			if (status === 'st_user_s_date' && start_date === 'TEST3') 
+		 //	let start_date = event.message.text
+			if (status === 'st_user_s_date' && initiate === 'TEST3') 
 			{
 			sendTextMessage(sender, "your departure date is : " + start_date + "\n\nwhen are you planning to return")
 			con_start_date = start_date;
@@ -122,8 +122,8 @@ app.post('/webhook/', function (req, res) {
 			continue
 			}
 
-    			let end_date = event.message.text
-   			if (status === 'st_user_e_date' && end_date === 'TEST4') 
+    			//let end_date = event.message.text
+   			if (status === 'st_user_e_date' && initiate === 'TEST4') 
       			{
 			sendTextMessage(sender, "your return date is : " + end_date + "\n\n itinerary processing ..")
 			con_end_date = end_date;
@@ -236,23 +236,7 @@ let messageData = {
           }
         ],
 
-          "Hikkaduwa":[
-          {
-            "title":"Welcome to Peter\'s Hats",
-            "item_url":"https://petersfancybrownhats.com",
-            "image_url":"http://www.srijourneys.com/wp-content/uploads/2014/08/hikkaduwa-feature.jpg",
-            "subtitle":"enjoy a memorable holiday in your life.",
-            "buttons":[
-              {
-		                "type":"web_url",
-		                "url":"http://www.visitacity.com",
-		                "title":"View Website"
-		              },             
-            ]
-
-            
-          }
-        ]
+         
 
       }
     }
@@ -287,6 +271,19 @@ let messageData = {
 		        "elements":[
 		          {
 		            "title":"itinerary 1",
+		            "item_url":"https://petersfancybrownhats.com",
+		            "image_url":"http://www.airport-orly.com/images/paris-tour-eiffel-at-night.jpg",
+		            "subtitle":"enjoy a memorable holiday in your life",
+		            "buttons":[
+		              {
+		                "type":"web_url",
+		                "url":"http://www.visitacity.com",
+		                "title":"View Website"
+		              },
+		                           
+		            ],
+		            
+		            "title":"itinerary 2",
 		            "item_url":"https://petersfancybrownhats.com",
 		            "image_url":"http://www.airport-orly.com/images/paris-tour-eiffel-at-night.jpg",
 		            "subtitle":"enjoy a memorable holiday in your life",
