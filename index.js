@@ -4,7 +4,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const request = require('request')
 const app = express()
-
+var USER_ID = '1097914633661589';
 app.use(bodyParser.json())
 
 app.get('/', function (req, res) {
@@ -24,19 +24,19 @@ app.post('/webhook', function (req, res) {
   messenger._handleCallback(res, data)
 })
 
-//messenger.sendApiMessage(USER_ID, {text: 'Howdy!'})
+messenger.sendApiMessage(USER_ID, {text: 'Howdy!'})
  
 var myImage = {
   attachment:
     { 
       type: 'image',
       payload: { 
-        url: 'https://petersapparel.com/img/shirt.png'
+        url: 'http://www.asianexotica.org/img/location/kandy.jpg'
       }
     }
   }
  
-//messenger.sendApiMessage(USER_ID, myImage)
+messenger.sendApiMessage(USER_ID, myImage)
 
 
 
