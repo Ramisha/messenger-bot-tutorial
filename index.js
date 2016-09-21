@@ -87,8 +87,8 @@ app.post('/webhook/', function (req, res) {
                		initiate = '';
 			sendTextMessage(sender, "Give your Destination to start creating your itinerary \n or select a random itinerary")
 		//	sendGenericMessage(sender)
-			//button_check(sender)
-			sendItinerary(sender)
+			button_check(sender)
+			//sendItinerary(sender)
 			continue
 			}
 
@@ -174,7 +174,7 @@ function sendTextMessage(sender, text) {
 }
 
 
-
+/*
 
 function sendItinerary(sender) {  // show the itinerary with images 
 
@@ -255,8 +255,8 @@ function sendItinerary(sender) {  // show the itinerary with images
   });
 }
 
+  */
 
-/*
 function button_check(sender) {
 	
 let messageData = {
@@ -267,6 +267,31 @@ let messageData = {
 		        "elements":[
 		          {
 		            "title":"itinerary 1",
+		            "item_url":"https://petersfancybrownhats.com",
+		            "image_url":"http://www.airport-orly.com/images/paris-tour-eiffel-at-night.jpg",
+		            "subtitle":"enjoy a memorable holiday in your life",
+		            "buttons":[
+		              {
+		                "type":"web_url",
+		                "url":"http://www.visitacity.com",
+		                "title":"View Website"
+		              },
+		                           
+		            ],
+		            
+		             "title":"itinerary 2",
+		            "item_url":"https://petersfancybrownhats.com",
+		            "image_url":"http://www.airport-orly.com/images/paris-tour-eiffel-at-night.jpg",
+		            "subtitle":"enjoy a memorable holiday in your life",
+		            "buttons":[
+		              {
+		                "type":"web_url",
+		                "url":"http://www.visitacity.com",
+		                "title":"View Website"
+		              },
+		                           
+		            ],
+		             "title":"itinerary 3",
 		            "item_url":"https://petersfancybrownhats.com",
 		            "image_url":"http://www.airport-orly.com/images/paris-tour-eiffel-at-night.jpg",
 		            "subtitle":"enjoy a memorable holiday in your life",
@@ -302,7 +327,7 @@ let messageData = {
 	
 	}
 
-  */
+
 
 function sendGenericMessage(sender) {
 	
