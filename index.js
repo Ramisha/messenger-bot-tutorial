@@ -129,7 +129,7 @@ app.post('/webhook/', function (req, res) {
 			con_end_date = initiate;
 			sendTextMessage(sender, "your itinerary requirement  : \n\nDestination : "+con_destination+ "\nDeparture : " + con_departure+"\nStart date : "+con_start_date+"\nEnd date : "+con_end_date)
 			sendItinerary(sender)
-			continue
+		
 		
 			}
 		     	
@@ -139,7 +139,7 @@ app.post('/webhook/', function (req, res) {
 			{
 			let text = JSON.stringify(event.postback)
 			sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
-			continue
+			
 		}
 		
 		
