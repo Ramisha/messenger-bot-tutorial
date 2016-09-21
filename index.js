@@ -8,7 +8,7 @@ const app = express()
 app.use(bodyParser.json())
 
 app.get('/', function (req, res) {
-	res.send('testing ......')
+	res.send('testing ......'+ myImage)
 })
 
 app.use(bodyParser.urlencoded({ extended: false }))
