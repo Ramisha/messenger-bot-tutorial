@@ -197,6 +197,20 @@ let messageData = {
 		            ]},
 		            
 		            {
+		            "title":"itinerary 1 : Yala",
+		            "item_url":"https://petersfancybrownhats.com",
+		            "image_url":"http://www.yalasafariholidays.com/images/images_main/yala_national_park/1.jpg",
+		            "subtitle":"enjoy a memorable holiday in your life 1",
+		            "buttons":[
+		              {
+		                "type":"web_url",
+		                "url":"http://www.visitacity.com",
+		                "title":"View Website"
+		              },
+		                           
+		            ]},
+		            
+		            {
 		            "title":"itinerary 2 : galle",
 		            "item_url":"https://petersfancybrownhats.com",
 		            "image_url":"http://angelstravels.com/images/attractions/Attraction_Galle/Sri-Lanka-Tours-Galle-Fort-lighthouse.jpg",
