@@ -8,7 +8,7 @@ const app = express()
 app.use(bodyParser.json())
 
 app.get('/', function (req, res) {
-	res.send('testing ......' + myImage)
+	res.send('testing ......')
 })
 
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -35,14 +35,9 @@ var myImage = {
       }
     }
   }
- 
- 	
- messenger.sendTextMessage(1097914633661589 , 'Hello')
- 
- 
 })// end of webhook
 
-
+messenger.sendTextMessage(1097914633661589 , 'Hello')
 //messenger.sendApiMessage(USER_ID, myImage)
 
 
