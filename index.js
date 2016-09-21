@@ -23,15 +23,17 @@ var messenger = new MessengerApp("EAAN1nQ8Jz3MBABpQib4sZB1UnMCIobDAQ7ArZA8w9U67A
 
 
 app.post('/webhook', function (req, res) {
+	
 
-	res.send('Error, wrong token')
-  var data = req.body
-  messenger._handleCallback(res, data)
+res.send('Error, wrong token')
+var data = req.body
+messenger._handleCallback(res, data)
   
 let messaging_events = req.body.entry[0].messaging;
 let event = req.body.entry[0].messaging[0]
-		let sender = event.sender.id
-messenger.sendApiMessage(sender, {text: 'Howdy!'})
+let sender = event.sender.id
+
+//messenger.sendApiMessage(sender, {text: 'Howdy!'})
  //messenger.sendTextMessage(sender , 'Hello')
 var myImage = {
   attachment:
