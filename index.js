@@ -180,8 +180,9 @@ let messageData = {
     "attachment":{
       "type":"template",
       "payload":{
-      	"intro_message": "Here\'s the itinerary created for you.",
         "template_type":"generic",
+        "intro_message": "Here\'s the itinerary created for you.",
+        
 		        "elements":[
 		          {
 		            "title":"Attraction 1 : Hikkaduwa",
