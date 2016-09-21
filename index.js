@@ -280,7 +280,7 @@ let messageData = {
 		                "type":"web_url",
 		                "url":"http://www.visitacity.com",
 		                "title":"View Website"
-		              },
+		              }
 		                           
 		            ]},
 		            
@@ -294,7 +294,7 @@ let messageData = {
 		                "type":"web_url",
 		                "url":"http://www.visitacity.com",
 		                "title":"View Website"
-		              },
+		              }
 		                           
 		            ]},
 		            
@@ -308,7 +308,7 @@ let messageData = {
 		                "type":"web_url",
 		                "url":"http://www.visitacity.com",
 		                "title":"View Website"
-		              },
+		              }
 		                           
 		            ]},
 		            
@@ -322,7 +322,7 @@ let messageData = {
 		                "type":"web_url",
 		                "url":"http://www.visitacity.com",
 		                "title":"View Website"
-		              },
+		              }
 		                           
 		            ]},
 		            
@@ -336,9 +336,9 @@ let messageData = {
 		                "type":"web_url",
 		                "url":"http://www.visitacity.com",
 		                "title":"View Website"
-		              },
+		              }
 		                           
-		            ]}
+		            ]},
       ]
     }
   }
