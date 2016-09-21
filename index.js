@@ -87,7 +87,7 @@ app.post('/webhook/', function (req, res) {
                		initiate = '';
 			sendTextMessage(sender, "Give your Destination to start creating your itinerary \n or select a random itinerary")
 		//	sendGenericMessage(sender)
-		
+
 			sendItinerary(sender)
 			continue
 			}
@@ -174,8 +174,6 @@ function sendTextMessage(sender, text) {
 }
 
 
-/*
-
 function sendItinerary(sender) {
 	
 let messageData = {
@@ -183,132 +181,32 @@ let messageData = {
       "type":"template",
       "payload":{
         "template_type":"generic",
-        "intro_message": "Here\'s the itinerary created for you.",
-        "Attraction1":[
-          {
-            "title":"Galle",
-            "item_url":"https://petersfancybrownhats.com",
-            "image_url":"https://www.lanka.com/wp-content/uploads/2014/03/galle-fort-sri-lanka.jpg",
-            "subtitle":"enjoy a memorable holiday in your life.",
-            "buttons":[
-              {
-		                "type":"web_url",
-		                "url":"http://www.visitacity.com",
-		                "title":"View Website"
-		              },             
-            ]
-          }
-        ],
-
-        "attraction2":[
-          {
-            "title":"Kandy",
-            "item_url":"https://petersfancybrownhats.com",
-            "image_url":"http://www.asianexotica.org/img/location/kandy.jpg",
-            "subtitle":"enjoy a memorable holiday in your life.",
-            "buttons":[
-              {
-		                "type":"web_url",
-		                "url":"http://www.visitacity.com",
-		                "title":"View Website"
-		              },             
-            ],
-
-            
-          }
-        ],
-
-          "attraction3":[
-          {
-            "title":"Sigiriya",
-            "item_url":"https://petersfancybrownhats.com",
-            "image_url":"http://www.pearlceylon.com/images/destination/sigiriya/sigiriya-by-air.jpg",
-            "subtitle":"enjoy a memorable holiday in your life.",
-            "buttons":[
-              {
-		                "type":"web_url",
-		                "url":"http://www.visitacity.com",
-		                "title":"View Website"
-		              },             
-            ],
-
-            
-          }
-        ],
-
-         
-
-      }
-    }
-}
-	request({
-		url: 'https://graph.facebook.com/v2.6/me/messages',
-		qs: {access_token:token},
-		method: 'POST',
-		json: {
-			recipient: {id:sender},
-			message: messageData,
-		}
-	}, function(error, response, body) {
-		if (error) {
-			console.log('Error sending messages: ', error)
-		} else if (response.body.error) {
-			console.log('Error: ', response.body.error)
-		}
-	})
-}
-
-
-*/
-
-function sendItinerary(sender) {
-	
-let messageData = {
-    "attachment":{
-      "type":"template",
-      "payload":{
-        "template_type":"generic",
-        "intro_message": "Here\'s the itinerary created for you.",
 		        "elements":[
 		          {
-		            "title":"Attraction 1 : Galle",
-		           // "item_url":"https://petersfancybrownhats.com",
-		            "image_url":"https://www.lanka.com/wp-content/uploads/2014/03/galle-fort-sri-lanka.jpg",
-		            "subtitle":"enjoy a memorable holiday in your life",
+		            "title":"itinerary 1 : Hikkaduwa",
+		            "item_url":"https://petersfancybrownhats.com",
+		            "image_url":"http://www.srijourneys.com/wp-content/uploads/2014/08/hikkaduwa-feature.jpg",
+		            "subtitle":"enjoy a memorable holiday in your life 1",
 		            "buttons":[
 		              {
 		                "type":"web_url",
 		                "url":"http://www.visitacity.com",
 		                "title":"View Website"
-		              }
+		              },
 		                           
 		            ]},
 		            
 		            {
-		            "title":"Attraction 2 : Kandy",
-		          //  "item_url":"https://petersfancybrownhats.com",
-		            "image_url":"http://www.asianexotica.org/img/location/kandy.jpg",
-		            "subtitle":"enjoy a memorable holiday in your life ",
+		            "title":"itinerary 2 : galle",
+		            "item_url":"https://petersfancybrownhats.com",
+		            "image_url":"http://angelstravels.com/images/attractions/Attraction_Galle/Sri-Lanka-Tours-Galle-Fort-lighthouse.jpg",
+		            "subtitle":"enjoy a memorable holiday in your life 2",
 		            "buttons":[
 		              {
 		                "type":"web_url",
 		                "url":"http://www.visitacity.com",
 		                "title":"View Website"
-		              }
-		                           
-		            ]},
-		            
-		            {
-		            "title":"Attraction 3 : Sigiriya",
-		          //  "item_url":"https://petersfancybrownhats.com",
-		            "image_url":"http://www.pearlceylon.com/images/destination/sigiriya/sigiriya-by-air.jpg",
-		            "subtitle":"enjoy a memorable holiday in your life ",
-		            "buttons":[
-		              {
-		                "type":"web_url",
-		                "url":"http://www.visitacity.com",
-		                "title":"View Website"
-		              }
+		              },
 		                           
 		            ]}
       ]
