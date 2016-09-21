@@ -26,8 +26,8 @@ app.post('/webhook', function (req, res) {
 
 let event = req.body.entry[0].messaging[0]
 		let sender = event.sender.id
-//messenger.sendApiMessage(USER_ID, {text: 'Howdy!'})
- messenger.sendTextMessage(sender , 'Hello')
+messenger.sendApiMessage(sender, {text: 'Howdy!'})
+ //messenger.sendTextMessage(sender , 'Hello')
 var myImage = {
   attachment:
     { 
