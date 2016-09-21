@@ -310,35 +310,7 @@ let messageData = {
 		                "title":"View Website"
 		              }
 		                           
-		            ]},
-		            
-		            {
-		            "title":"Attraction 4 : Hikkaduwa",
-		          //  "item_url":"https://petersfancybrownhats.com",
-		            "image_url":"http://www.srijourneys.com/wp-content/uploads/2014/08/hikkaduwa-feature.jpg",
-		            "subtitle":"enjoy a memorable holiday in your life ",
-		            "buttons":[
-		              {
-		                "type":"web_url",
-		                "url":"http://www.visitacity.com",
-		                "title":"View Website"
-		              }
-		                           
-		            ]},
-		            
-		            {
-		            "title":"Attraction 4 : Yala",
-		          //  "item_url":"https://petersfancybrownhats.com",
-		            "image_url":"http://www.yalasafariholidays.com/images/images_main/yala_national_park/1.jpg",
-		            "subtitle":"enjoy a memorable holiday in your life ",
-		            "buttons":[
-		              {
-		                "type":"web_url",
-		                "url":"http://www.visitacity.com",
-		                "title":"View Website"
-		              }
-		                           
-		            ]},
+		            ]}
       ]
     }
   }
