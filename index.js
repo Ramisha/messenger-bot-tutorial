@@ -39,10 +39,9 @@ app.get('/webhook/', function (req, res) {
 // to post data
 app.post('/webhook/', function (req, res) {
 	let messaging_events = req.body.entry[0].messaging
-
-		let event = req.body.entry[0].messaging[0]
+	for (let i = 0; i < messaging_events.length; i++) {
+		let event = req.body.entry[0].messaging[i]
 		let sender = event.sender.id
-		con_sender = sender
 		if (event.message && event.message.text) {
 			let initiate_temp = event.message.text
 			var initiate = initiate_temp.toUpperCase();
@@ -51,14 +50,14 @@ app.post('/webhook/', function (req, res) {
         		{		
 			sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?\n\n type start over to exit the process ")
 			status = 'st_start';
-		
+			continue
 			}
 			
 			if (initiate === 'HI' || initiate === 'HEY') 
         		{		
 			sendTextMessage(sender, "type start over to continue creating your itinerary ")
 			status = 'st_start';
-			
+			continue
 			}
 			
 
@@ -66,7 +65,7 @@ app.post('/webhook/', function (req, res) {
 			{
 			sendTextMessage(sender, "I am an itinerary recommender, simply say hi to get started")
 	  		status = 'st_new_user';
-			
+			continue
 			}
 			
 			if ( initiate === 'START OVER' || initiate ==='EXIT' || initiate ==='QUIT') 
@@ -74,7 +73,7 @@ app.post('/webhook/', function (req, res) {
 			
 			status = 'st_start';
 			sendTextMessage(sender, "Do you want to start creating your itinerary ?")
-		
+			continue
 			
 				//destination = '';
 			//	departure = '';
@@ -89,19 +88,19 @@ app.post('/webhook/', function (req, res) {
                		initiate = '';
 			sendTextMessage(sender, "Give your Destination to start creating your itinerary")
 		//	sendGenericMessage(sender)
-		
+			continue
 			}
 
 		// get user input to create the itinerary 
 
 		//	let destination = event.message.text
-			if (status === 'st_destination' && con_sender === sender)
+			if (status === 'st_destination' && initiate === 'TEST1')
 			{
 			con_destination = initiate;
 			sendTextMessage(sender, "your destination is : " + con_destination + "\n\nwhat is your origin ?")
 			initiate = '';
 			status = 'st_departure';
-			 
+			continue 
 			}
 			
 			if(status === 'st_departure' && initiate === 'TEST2') {
@@ -110,7 +109,7 @@ app.post('/webhook/', function (req, res) {
 			 	status = 'st_user_s_date';
 			 	initiate = '';
 			 	sendTextMessage(sender, "your departure location is : " + con_departure + "\n\nwhen are you planning to leave ?")
-			 	
+			 	continue
 			}
 		 	
 		 //	let start_date = event.message.text
@@ -119,7 +118,7 @@ app.post('/webhook/', function (req, res) {
 			sendTextMessage(sender, "your departure date is : " + start_date + "\n\nwhen are you planning to return")
 			con_start_date = initiate;
 			 status = 'st_user_e_date' ;
-		
+			continue
 			}
 
     			//let end_date = event.message.text
@@ -129,17 +128,17 @@ app.post('/webhook/', function (req, res) {
 			con_end_date = initiate;
 			sendTextMessage(sender, "your itinerary requirement  : \n\nDestination : "+con_destination+ "\nDeparture : " + con_departure+"\nStart date : "+con_start_date+"\nEnd date : "+con_end_date)
 			sendItinerary(sender)
-		
+			continue
 		
 			}
 		     	
-		
+		}
 
 			if (event.postback) 
 			{
 			let text = JSON.stringify(event.postback)
 			sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
-			
+			continue
 		}
 		
 		
