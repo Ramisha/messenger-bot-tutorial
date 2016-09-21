@@ -27,8 +27,6 @@ app.post('/webhook', function (req, res) {
 
 res.send('Error, wrong token')
 var data = req.body
-messenger._handleCallback(res, data)
-  
 var messaging_events = req.body.entry[0].messaging;
 var event = req.body.entry[0].messaging[0]
 var sender = event.sender.id
