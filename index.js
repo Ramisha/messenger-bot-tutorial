@@ -86,7 +86,7 @@ app.post('/webhook/', function (req, res) {
                		status = 'st_destination';
                		initiate = '';
 			sendTextMessage(sender, "Give your Destination to start creating your itinerary \n or select a random itinerary")
-		//	sendGenericMessage(sender)
+			//sendGenericMessage(sender)
 			button_check(sender)
 			//sendItinerary(sender)
 			continue
@@ -277,32 +277,8 @@ let messageData = {
 		                "title":"View Website"
 		              },
 		                           
-		            ],
-		            
-		             "title":"itinerary 2",
-		            "item_url":"https://petersfancybrownhats.com",
-		            "image_url":"http://www.airport-orly.com/images/paris-tour-eiffel-at-night.jpg",
-		            "subtitle":"enjoy a memorable holiday in your life",
-		            "buttons":[
-		              {
-		                "type":"web_url",
-		                "url":"http://www.visitacity.com",
-		                "title":"View Website"
-		              },
-		                           
-		            ],
-		             "title":"itinerary 3",
-		            "item_url":"https://petersfancybrownhats.com",
-		            "image_url":"http://www.airport-orly.com/images/paris-tour-eiffel-at-night.jpg",
-		            "subtitle":"enjoy a memorable holiday in your life",
-		            "buttons":[
-		              {
-		                "type":"web_url",
-		                "url":"http://www.visitacity.com",
-		                "title":"View Website"
-		              },
-		                           
 		            ]
+		           
 		      
       }
       ]
