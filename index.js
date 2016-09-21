@@ -36,7 +36,7 @@ var myImage = {
     }
   }
  
-messenger.sendApiMessage(USER_ID, myImage)
+//messenger.sendApiMessage(USER_ID, myImage)
 
 
 
