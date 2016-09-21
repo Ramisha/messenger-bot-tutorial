@@ -4,7 +4,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const request = require('request')
 const app = express()
-var USER_ID = '1097914633661589';
+//var USER_ID = '1097914633661589';
 app.use(bodyParser.json())
 
 app.get('/', function (req, res) {
@@ -24,7 +24,7 @@ app.post('/webhook', function (req, res) {
   messenger._handleCallback(res, data)
 })
 
-messenger.sendApiMessage(USER_ID, {text: 'Howdy!'})
+messenger.sendApiMessage(1097914633661589, {text: 'Howdy!'})
  
 var myImage = {
   attachment:
@@ -36,7 +36,7 @@ var myImage = {
     }
   }
  
-messenger.sendApiMessage(USER_ID, myImage)
+messenger.sendApiMessage(1097914633661589, myImage)
 
 
 
