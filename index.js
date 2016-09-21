@@ -8,7 +8,7 @@ const app = express()
 app.use(bodyParser.json())
 
 app.get('/', function (req, res) {
-	res.send('testing ......')
+	res.send('testing ......'+ sender)
 })
 
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -32,7 +32,7 @@ var event = req.body.entry[0].messaging[0]
 var sender = event.sender.id
 
 messenger.sendApiMessage(sender, {text: 'Howdy!'})
- //messenger.sendTextMessage(sender , 'Hello')
+ 
 var myImage = {
   attachment:
     { 
