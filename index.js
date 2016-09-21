@@ -4,7 +4,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const request = require('request')
 const app = express()
-//var USER_ID = '1097914633661589';
+
 app.use(bodyParser.json())
 
 app.get('/', function (req, res) {
@@ -31,7 +31,13 @@ var messaging_events = req.body.entry[0].messaging;
 var event = req.body.entry[0].messaging[0]
 var sender = event.sender.id
 
-messenger.sendTextMessage(sender, 'Hello')
+
+
+if (event)
+{
+	messenger.sendTextMessage(sender, 'Hello')
+	
+}
  
 var myImage = {
   attachment:
