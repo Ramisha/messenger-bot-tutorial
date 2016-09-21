@@ -85,10 +85,8 @@ app.post('/webhook/', function (req, res) {
                		{
                		status = 'st_destination';
                		initiate = '';
-			sendTextMessage(sender, "Give your Destination to start creating your itinerary \n or select a random itinerary")
+			sendTextMessage(sender, "Give your Destination to start creating your itinerary")
 		//	sendGenericMessage(sender)
-
-			sendItinerary(sender)
 			continue
 			}
 
@@ -125,9 +123,10 @@ app.post('/webhook/', function (req, res) {
     			//let end_date = event.message.text
    			if (status === 'st_user_e_date' && initiate === 'TEST4') 
       			{
-			sendTextMessage(sender, "your return date is : " + end_date + "\n\n itinerary processing ..")
+			sendTextMessage(sender, "your return date is : " + end_date + "\n\n Here\'s your itinerary ..")
 			con_end_date = end_date;
 			sendTextMessage(sender, "your itinerary requirement  : \n\nDestination : "+con_destination+ "\nDeparture : " + con_departure+"\nStart date : "+con_start_date+"\nEnd date : "+con_end_date)
+			sendItinerary(sender)
 			continue
 		
 			}
