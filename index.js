@@ -53,11 +53,11 @@ app.listen(app.get('port'), function () {
 })
 
 
-class FBMessenger {
-  constructor (token, notificationType) {
-    this.token = token
-    this.notificationType = notificationType || 'REGULAR'
-  }
+// class FBMessenger {
+//   constructor (token, notificationType) {
+//     this.token = token
+//     this.notificationType = notificationType || 'REGULAR'
+//   }
 
   sendTextMessage (id, text, notificationType, cb) {
     const messageData = {
