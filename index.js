@@ -111,18 +111,18 @@ app.post('/webhook/', function (req, res) {
             }
 
             let start_date = event.message.text
-            if (status === 'st_user_s_date' && start_date === 'test3') {
+            if (status === 'st_user_s_date' && initiate !== '') {
                 sendTextMessage(sender, "your departure date is : " + start_date + "\n\nwhen are you planning to return")
                 con_start_date = start_date;
                 status         = 'st_user_e_date';
             }
 
             let end_date = event.message.text
-            if (status === 'st_user_e_date' && end_date === 'test4') {
-                sendTextMessage(sender, "your return date is : " + end_date + "\n\n itinerary processing ..")
+            if (status === 'st_user_e_date' && initiate !== '') {
+                sendTextMessage(sender, "your return date is : " + end_date )
                 con_end_date = end_date;
                 sendTextMessage(sender, "your itinerary requirement  : \n\nDestination : " + con_destination + "\nDeparture : " + con_departure + "\nStart date : " + con_start_date + "\nEnd date : " + con_end_date)
-
+                sendItinerary(sender)
             }
 
         }
@@ -165,7 +165,105 @@ function sendTextMessage(sender, text) {
 }
 
 // get user confirmation to continue
-
+function sendItinerary(sender) {
+	
+let messageData = {
+    "attachment":{
+      "type":"template",
+      "payload":{
+        "template_type":"generic",
+       
+		        "elements":[
+		          {
+		            "title":"Attraction 1 : Hikkaduwa",
+		            "item_url":"https://petersfancybrownhats.com",
+		            "image_url":"http://www.srijourneys.com/wp-content/uploads/2014/08/hikkaduwa-feature.jpg",
+		            "subtitle":"enjoy a memorable holiday in your life 1",
+		            "buttons":[
+		              {
+		                "type":"web_url",
+		                "url":"http://www.visitacity.com",
+		                "title":"View Website"
+		              },
+		                           
+		            ]},
+		            
+		            {
+		            "title":"Attraction 2 : Yala",
+		            "item_url":"https://petersfancybrownhats.com",
+		            "image_url":"http://www.yalasafariholidays.com/images/images_main/yala_national_park/1.jpg",
+		            "subtitle":"enjoy a memorable holiday in your life 1",
+		            "buttons":[
+		              {
+		                "type":"web_url",
+		                "url":"http://www.visitacity.com",
+		                "title":"View Website"
+		              },
+		                           
+		            ]},
+		            
+		            {
+		            "title":"Attraction 3 : Kandy",
+		            "item_url":"https://petersfancybrownhats.com",
+		            "image_url":"http://www.asianexotica.org/img/location/kandy.jpg",
+		            "subtitle":"enjoy a memorable holiday in your life 1",
+		            "buttons":[
+		              {
+		                "type":"web_url",
+		                "url":"http://www.visitacity.com",
+		                "title":"View Website"
+		              },
+		                           
+		            ]},
+		            
+		            {
+		            "title":"Attraction 4 : Sigiriya",
+		            "item_url":"https://petersfancybrownhats.com",
+		            "image_url":"http://www.pearlceylon.com/images/destination/sigiriya/sigiriya-by-air.jpg",
+		            "subtitle":"enjoy a memorable holiday in your life 1",
+		            "buttons":[
+		              {
+		                "type":"web_url",
+		                "url":"http://www.visitacity.com",
+		                "title":"View Website"
+		              },
+		                           
+		            ]},
+		            
+		            {
+		            "title":"Attraction 5 : galle",
+		            "item_url":"https://petersfancybrownhats.com",
+		            "image_url":"http://angelstravels.com/images/attractions/Attraction_Galle/Sri-Lanka-Tours-Galle-Fort-lighthouse.jpg",
+		            "subtitle":"enjoy a memorable holiday in your life 2",
+		            "buttons":[
+		              {
+		                "type":"web_url",
+		                "url":"http://www.visitacity.com",
+		                "title":"View Website"
+		              },
+		                           
+		            ]}
+      ]
+    }
+  }
+}
+	request({
+		url: 'https://graph.facebook.com/v2.6/me/messages',
+		qs: {access_token:token},
+		method: 'POST',
+		json: {
+			recipient: {id:sender},
+			message: messageData,
+		}
+	}, function(error, response, body) {
+		if (error) {
+			console.log('Error sending messages: ', error)
+		} else if (response.body.error) {
+			console.log('Error: ', response.body.error)
+		}
+	})
+	
+	}
 
 function button_check(sender) {
 
@@ -349,6 +447,7 @@ function sendGenericMessage(sender) {
         }
     })
 }
+
 
 
 // spin spin sugar
