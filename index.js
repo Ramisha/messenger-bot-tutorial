@@ -273,7 +273,7 @@ let messageData = {
 		            "title":"itinerary 1",
 		            "item_url":"https://petersfancybrownhats.com",
 		            "image_url":"http://www.airport-orly.com/images/paris-tour-eiffel-at-night.jpg",
-		            "subtitle":"enjoy a memorable holiday in your life",
+		            "subtitle":"enjoy a memorable holiday in your life 1",
 		            "buttons":[
 		              {
 		                "type":"web_url",
@@ -281,12 +281,13 @@ let messageData = {
 		                "title":"View Website"
 		              },
 		                           
-		            ],
+		            ]},
 		            
+		            {
 		            "title":"itinerary 2",
 		            "item_url":"https://petersfancybrownhats.com",
-		            "image_url":"http://www.airport-orly.com/images/paris-tour-eiffel-at-night.jpg",
-		            "subtitle":"enjoy a memorable holiday in your life",
+		            "image_url":"http://angelstravels.com/images/attractions/Attraction_Galle/Sri-Lanka-Tours-Galle-Fort-lighthouse.jpg",
+		            "subtitle":"enjoy a memorable holiday in your life 2",
 		            "buttons":[
 		              {
 		                "type":"web_url",
@@ -294,9 +295,7 @@ let messageData = {
 		                "title":"View Website"
 		              },
 		                           
-		            ]
-		      
-      }
+		            ]}
       ]
     }
   }
