@@ -8,7 +8,7 @@ const app = express()
 app.use(bodyParser.json())
 
 app.get('/', function (req, res) {
-	res.send('testing ......'+ myImage)
+	res.send('testing ......' + myImage)
 })
 
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -22,7 +22,11 @@ app.post('/webhook', function (req, res) {
 	res.send('Error, wrong token')
   var data = req.body
   messenger._handleCallback(res, data)
-})
+
+
+		let messaging_events = req.body.entry[0].messaging;
+		let event = req.body.entry[0].messaging[0]
+		let sender = event.sender.id
 
 //messenger.sendApiMessage(USER_ID, {text: 'Howdy!'})
  
@@ -36,9 +40,47 @@ var myImage = {
     }
   }
  
+ 	
+ if (event.message && event.message.text) {
+		let initiate_temp = event.message.text
+		var initiate = initiate_temp.toUpperCase();
+		
+ if(initiate !=== 'ABC'){
+ 	sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?" )
+ }
+ 	
+ 	
+ 	
+ }
+ 
+ 
+})// end of webhook
+
+
 //messenger.sendApiMessage(USER_ID, myImage)
 
+function sendTextMessage(sender, text, onSuccess, onError) {
+	let messageData = { text: text }
 
+	request({
+		url: 'https://graph.facebook.com/v2.6/me/messages',
+		qs: { access_token: token },
+		method: 'POST',
+		json: {
+			recipient: { id: sender },
+			message: messageData,
+		}
+	}, function (error, response, body) {
+		if (error) {
+			console.log('Error sending messages: ', error)
+			return onError;
+		} else if (response.body.error) {
+			console.log('Error: ', response.body.error)
+			return onError;
+		}
+		return onSuccess;
+	})
+}
 
 
 
