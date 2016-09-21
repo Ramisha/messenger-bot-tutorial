@@ -24,8 +24,8 @@ app.post('/webhook', function (req, res) {
   messenger._handleCallback(res, data)
 
 
-		let messaging_events = req.body.entry[0].messaging;
-		let event = req.body.entry[0].messaging[0]
+		let messaging_events = req.body.entry.messaging;
+		let event = req.body.entry.messaging
 		let sender = event.sender.id
 
 //messenger.sendApiMessage(USER_ID, {text: 'Howdy!'})
