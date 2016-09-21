@@ -86,16 +86,16 @@ app.post('/webhook/', function (req, res) {
                		status = 'st_destination';
                		initiate = '';
 			sendTextMessage(sender, "Give your Destination to start creating your itinerary \n or select a random itinerary")
-			//sendGenericMessage(sender)
-			button_check(sender)
-			//sendItinerary(sender)
+		//	sendGenericMessage(sender)
+		//	button_check(sender)
+			sendItinerary(sender)
 			continue
 			}
 
 		// get user input to create the itinerary 
 
 		//	let destination = event.message.text
-			if (status === 'st_destination' && initiate === 'test1')
+			if (status === 'st_destination' && initiate === 'TEST1')
 			{
 			con_destination = initiate;
 			sendTextMessage(sender, "your destination is : " + con_destination + "\n\nwhat is your origin ?")
@@ -104,9 +104,9 @@ app.post('/webhook/', function (req, res) {
 			continue 
 			}
 			
-			if(status === 'st_departure' && initiate === 'test2') {
+			if(status === 'st_departure' && initiate === 'TEST2') {
 				//let departure = event.message.text
-				con_departure = initiate
+				con_departure = initiate;
 			 	status = 'st_user_s_date';
 			 	initiate = '';
 			 	sendTextMessage(sender, "your departure location is : " + con_departure + "\n\nwhen are you planning to leave ?")
@@ -114,7 +114,7 @@ app.post('/webhook/', function (req, res) {
 			}
 		 	
 		 	let start_date = event.message.text
-			if (status === 'st_user_s_date' && start_date === 'test3') 
+			if (status === 'st_user_s_date' && start_date === 'TEST3') 
 			{
 			sendTextMessage(sender, "your departure date is : " + start_date + "\n\nwhen are you planning to return")
 			con_start_date = start_date;
@@ -123,7 +123,7 @@ app.post('/webhook/', function (req, res) {
 			}
 
     			let end_date = event.message.text
-   			if (status === 'st_user_e_date' && end_date === 'test4') 
+   			if (status === 'st_user_e_date' && end_date === 'TEST4') 
       			{
 			sendTextMessage(sender, "your return date is : " + end_date + "\n\n itinerary processing ..")
 			con_end_date = end_date;
@@ -174,88 +174,108 @@ function sendTextMessage(sender, text) {
 }
 
 
-/*
 
-function sendItinerary(sender) {  // show the itinerary with images 
 
-  var messageData = {
-    "attachment": {
-      "type": "template",
-      "payload": {
-        "template_type": "generic",
+function sendItinerary(sender) {
+	
+let messageData = {
+    "attachment":{
+      "type":"template",
+      "payload":{
+        "template_type":"generic",
         "intro_message": "Here\'s the itinerary created for you.",
-        "Attraction1": [{
-          "title": "Galle",
-          "item_url": "https://petersfancybrownhats.com",
-          "image_url": "https://www.lanka.com/wp-content/uploads/2014/03/galle-fort-sri-lanka.jpg",
-          "subtitle": "enjoy a memorable holiday in your life.",
-          "buttons": [{
-            "type": "web_url",
-            "url": "http://www.visitacity.com",
-            "title": "View Website"
-          }]
-        }],
+        "Attraction1":[
+          {
+            "title":"Galle",
+            "item_url":"https://petersfancybrownhats.com",
+            "image_url":"https://www.lanka.com/wp-content/uploads/2014/03/galle-fort-sri-lanka.jpg",
+            "subtitle":"enjoy a memorable holiday in your life.",
+            "buttons":[
+              {
+		                "type":"web_url",
+		                "url":"http://www.visitacity.com",
+		                "title":"View Website"
+		              },             
+            ]
+          }
+        ],
 
-        "attraction2": [{
-          "title": "Kandy",
-          "item_url": "https://petersfancybrownhats.com",
-          "image_url": "http://www.asianexotica.org/img/location/kandy.jpg",
-          "subtitle": "enjoy a memorable holiday in your life.",
-          "buttons": [{
-            "type": "web_url",
-            "url": "http://www.visitacity.com",
-            "title": "View Website"
-          }]
+        "attraction2":[
+          {
+            "title":"Kandy",
+            "item_url":"https://petersfancybrownhats.com",
+            "image_url":"http://www.asianexotica.org/img/location/kandy.jpg",
+            "subtitle":"enjoy a memorable holiday in your life.",
+            "buttons":[
+              {
+		                "type":"web_url",
+		                "url":"http://www.visitacity.com",
+		                "title":"View Website"
+		              },             
+            ],
 
-        }],
+            
+          }
+        ],
 
-        "attraction3": [{
-          "title": "Sigiriya",
-          "item_url": "https://petersfancybrownhats.com",
-          "image_url": "http://www.pearlceylon.com/images/destination/sigiriya/sigiriya-by-air.jpg",
-          "subtitle": "enjoy a memorable holiday in your life.",
-          "buttons": [{
-            "type": "web_url",
-            "url": "http://www.visitacity.com",
-            "title": "View Website"
-          }]
+          "attraction3":[
+          {
+            "title":"Sigiriya",
+            "item_url":"https://petersfancybrownhats.com",
+            "image_url":"http://www.pearlceylon.com/images/destination/sigiriya/sigiriya-by-air.jpg",
+            "subtitle":"enjoy a memorable holiday in your life.",
+            "buttons":[
+              {
+		                "type":"web_url",
+		                "url":"http://www.visitacity.com",
+		                "title":"View Website"
+		              },             
+            ],
 
-        }],
+            
+          }
+        ],
 
-        "Hikkaduwa": [{
-          "title": "Welcome to Peter\'s Hats",
-          "item_url": "https://petersfancybrownhats.com",
-          "image_url": "http://www.srijourneys.com/wp-content/uploads/2014/08/hikkaduwa-feature.jpg",
-          "subtitle": "enjoy a memorable holiday in your life.",
-          "buttons": [{
-            "type": "web_url",
-            "url": "http://www.visitacity.com",
-            "title": "View Website"
-          }]
+          "Hikkaduwa":[
+          {
+            "title":"Welcome to Peter\'s Hats",
+            "item_url":"https://petersfancybrownhats.com",
+            "image_url":"http://www.srijourneys.com/wp-content/uploads/2014/08/hikkaduwa-feature.jpg",
+            "subtitle":"enjoy a memorable holiday in your life.",
+            "buttons":[
+              {
+		                "type":"web_url",
+		                "url":"http://www.visitacity.com",
+		                "title":"View Website"
+		              },             
+            ]
 
-        }]
+            
+          }
+        ]
 
       }
     }
-  };
-  request({
-    url: 'https://graph.facebook.com/v2.6/me/messages',
-    qs: { access_token: token },
-    method: 'POST',
-    json: {
-      recipient: { id: sender },
-      message: messageData
-    }
-  }, function (error, response, body) {
-    if (error) {
-      console.log('Error sending messages: ', error);
-    } else if (response.body.error) {
-      console.log('Error: ', response.body.error);
-    }
-  });
+}
+	request({
+		url: 'https://graph.facebook.com/v2.6/me/messages',
+		qs: {access_token:token},
+		method: 'POST',
+		json: {
+			recipient: {id:sender},
+			message: messageData,
+		}
+	}, function(error, response, body) {
+		if (error) {
+			console.log('Error sending messages: ', error)
+		} else if (response.body.error) {
+			console.log('Error: ', response.body.error)
+		}
+	})
 }
 
-  */
+
+
 
 function button_check(sender) {
 	
@@ -278,7 +298,6 @@ let messageData = {
 		              },
 		                           
 		            ]
-		           
 		      
       }
       ]
