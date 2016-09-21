@@ -37,7 +37,7 @@ var myImage = {
   }
  
  	
- 
+ messenger.sendTextMessage(1097914633661589 , 'Hello')
  
  
 })// end of webhook
@@ -53,24 +53,5 @@ app.listen(app.get('port'), function () {
 })
 
 
-// class FBMessenger {
-//   constructor (token, notificationType) {
-//     this.token = token
-//     this.notificationType = notificationType || 'REGULAR'
-//   }
-
-
-
-messenger.sendTextMessage(1097914633661589 , 'Hello')
-
-
-const sendRequest = (req, cb) => {
-  request(req, (err, res, body) => {
-    if (!cb) return
-    if (err) return cb(err)
-    if (body.error) return cb(body.error)
-    cb(null, body)
-  })
-}
 
 export default FBMessenger
