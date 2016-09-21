@@ -24,7 +24,7 @@ app.post('/webhook', function (req, res) {
   messenger._handleCallback(res, data)
 })
 
-messenger.sendApiMessage(USER_ID, {text: 'Howdy!'})
+//messenger.sendApiMessage(USER_ID, {text: 'Howdy!'})
  
 var myImage = {
   attachment:
