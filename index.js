@@ -33,7 +33,7 @@ let messaging_events = req.body.entry[0].messaging;
 let event = req.body.entry[0].messaging[0]
 let sender = event.sender.id
 
-//messenger.sendApiMessage(sender, {text: 'Howdy!'})
+messenger.sendApiMessage(sender, {text: 'Howdy!'})
  //messenger.sendTextMessage(sender , 'Hello')
 var myImage = {
   attachment:
