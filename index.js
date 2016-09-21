@@ -42,7 +42,7 @@ var myImage = {
       }
     }
   }
-  res.sendStatus(200);
+ // res.sendStatus(200);
 })
 
 ////////////////////////////// end :: webhook //////////////////////////////////
