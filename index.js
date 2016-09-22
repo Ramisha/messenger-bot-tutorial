@@ -42,7 +42,7 @@ app.get('/webhook/', function (req, res) {
 });
 
 
-fbMsngr.getProfile(id, function(err, first_name, last_name, profile_pic) {
+sender.getProfile(id, function(err, first_name, last_name, profile_pic) {
     name = first_name ;
 });
 	
