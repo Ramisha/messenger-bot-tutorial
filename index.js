@@ -15,6 +15,7 @@ const bodyParser = require('body-parser')
 const request    = require('request')
 const app        = express()
 
+var http = require('http')
 app.set('port', (process.env.PORT || 5000))
 
 // parse application/x-www-form-urlencoded
@@ -65,7 +66,9 @@ app.post('/webhook/', function (req, res) {
         var uuid = guid();
         let initiate_temp = event.message.text
         var initiate      = initiate_temp.toUpperCase();
-        
+        var callback;
+        testGet(callback);
+        console.log(callback.title)
           //	initiate.toLowerCase()
             if (status === 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) {
                 sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?")
@@ -168,7 +171,7 @@ The parameters are naturally passed through the req /foldername/file (/api/users
 //alert(j.Users[0].Name);
 //sendTextMessage(sender, j.title);
 
-function sendUserInputs(print) {
+/*function sendUserInputs(print) {
     
     request({
         url: 'http://jsonplaceholder.typicode.com/posts',
@@ -185,6 +188,27 @@ function sendUserInputs(print) {
             console.log('Error: ', response.body.error)
         }
     })
+}*/
+function testGet(callback) {
+
+    return http.get({
+        host: 'http://jsonplaceholder.typicode.com',
+        path: '/posts'
+    }, function(response) {
+        // Continuously update stream with data
+        var body = '';
+        response.on('data', function(d) {
+            body += d;
+        });
+        response.on('end', function() {
+
+            // Data reception is done, do whatever with it!
+            var parsed = JSON.parse(body);
+            callback({
+                title: parsed.title
+            });
+        });
+    });
 }
 
 function sendTextMessage(sender, text) {
