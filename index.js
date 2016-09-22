@@ -56,7 +56,7 @@ app.post('/webhook/', function (req, res) {
             var initiate      = initiate_temp.toUpperCase();
             //	initiate.toLowerCase()
             if (status === 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) {
-                sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?\n\n type start over to exit the process ")
+                sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?")
                 status = 'st_start';
             }
 
@@ -88,7 +88,7 @@ app.post('/webhook/', function (req, res) {
                 status   = 'st_destination';
                 initiate = '';
                 sendTextMessage(sender, "Give your Destination to strat creating your itinerary")
-                button_check(sender)
+                //button_check(sender)
                 //	datePicker(sender);
             }
 
