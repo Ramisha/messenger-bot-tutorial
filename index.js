@@ -122,29 +122,19 @@ app.post('/webhook/', function (req, res) {
             if (status === 'st_user_e_date' && initiate !== '') {
             	con_end_date = initiate;
                 sendTextMessage(sender, "your return date is : " + con_end_date )
-                sendTextMessage(sender, "your itinerary requirement  : \n\nDestination : " + con_destination + "\nDeparture : " + con_departure + "\nStart date : " + con_start_date + "\nEnd date : " + con_end_date + "\n\n Here is your itinerary ...)
+                sendTextMessage(sender, "your itinerary requirement  : \n\nDestination : " + con_destination + "\nDeparture : " + con_departure + "\nStart date : " + con_start_date + "\nEnd date : " + con_end_date + "\n\n\n Here is your itinerary ...")
                 sendItinerary(sender)
             }
-
         }
-
         if (event.postback) {
             let text = JSON.stringify(event.postback)
             sendTextMessage(sender, "Postback received: " + text.substring(0, 200), token)
         }
-
-
-
-
-
     res.sendStatus(200)
 })
-
-
 // recommended to inject access tokens as environmental variables, e.g.
 // const token = process.env.PAGE_ACCESS_TOKEN
 const token = "EAAN1nQ8Jz3MBABpQib4sZB1UnMCIobDAQ7ArZA8w9U67AD1gimvvDCkLptz7k3keOTjZBY3DKZCyPIFZApIg3zn6I5ByFbNpQkwRfD99ZAejGmElK075ygLKJvHw4XWcb1ZCyY9V5gOkxgywVVhjZCWRCPPvBXdM5G1WykZCgcxSoPQZDZD"
-
 function sendTextMessage(sender, text) {
     let messageData = {text: text}
     console.log('\n\n\nsending : ' + text+'\n\n');
@@ -164,7 +154,6 @@ function sendTextMessage(sender, text) {
         }
     })
 }
-
 // get user confirmation to continue
 function sendItinerary(sender) {
 	
