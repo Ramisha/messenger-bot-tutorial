@@ -8,6 +8,7 @@ var con_destination = '';
 var con_departure   = '';
 var con_end_date    = '';
 var con_start_date  = '';
+var name = '';
 
 const express    = require('express')
 const bodyParser = require('body-parser')
@@ -28,9 +29,21 @@ app.get('/', function (req, res) {
     console.log('initiated'); 
     
 })
+	FB.api(
+    "/{first_name}",
+    function (response) {
+      if (response && !response.error) {
+        /* handle the result */
+       
+        name = first_name
+      }
+    }
+);
 
 // for facebook verification
 app.get('/webhook/', function (req, res) {
+	
+
     if (req.query['hub.verify_token'] === 'my_voice_is_my_password_verify_me') {
         res.send(req.query['hub.challenge'])
     }
@@ -56,7 +69,7 @@ app.post('/webhook/', function (req, res) {
         var initiate      = initiate_temp.toUpperCase();
             //	initiate.toLowerCase()
             if (status === 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) {
-                sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?" + sender.first_name +" space  "+ uuid)
+                sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?" + name +" space  "+ uuid)
                 status = 'st_start';
             }
 
@@ -124,6 +137,10 @@ app.post('/webhook/', function (req, res) {
 // recommended to inject access tokens as environmental variables, e.g.
 // const token = process.env.PAGE_ACCESS_TOKEN
 const token = "EAAN1nQ8Jz3MBABpQib4sZB1UnMCIobDAQ7ArZA8w9U67AD1gimvvDCkLptz7k3keOTjZBY3DKZCyPIFZApIg3zn6I5ByFbNpQkwRfD99ZAejGmElK075ygLKJvHw4XWcb1ZCyY9V5gOkxgywVVhjZCWRCPPvBXdM5G1WykZCgcxSoPQZDZD"
+
+
+
+
 function sendTextMessage(sender, text) {
     let messageData = {text: text}
     console.log('\n\n\nsending : ' + text+'\n\n');
