@@ -6,14 +6,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "name": "fb-messenger",
-  "version": "1.1.0",
-  "description": "Facebook Messenger Platform API",
-  "main": "lib/index.js",
-  "scripts": {
-    "build": "babel src -d lib",
-    "test": "standard && node test.js",
-    "prepublish": "npm run build"
+ {
+  "name": "fb-msngr",
+  "version": "0.4.0",
+  "description": "A node module for building messenger bots",
+  "main": "fb-msngr.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rhysjc/fb-msngr.git"
   },
   "author": "",
   "license": "ISC",
