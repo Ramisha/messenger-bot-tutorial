@@ -8,7 +8,7 @@ var con_destination = '';
 var con_departure   = '';
 var con_end_date    = '';
 var con_start_date  = '';
-var name = 'test';
+var name = '';
 
 const express    = require('express')
 const bodyParser = require('body-parser')
@@ -53,8 +53,7 @@ app.post('/webhook/', function (req, res) {
     // for (let i = 0; i < messaging_events.length; i++) {
     let event  = req.body.entry[0].messaging[0]
     let sender = event.sender.id
-    // name = event.sender.fb_first_name
-  
+   
 
   //  console.log("********************************\n\n\n");
  //   console.log(JSON.stringify(event));
@@ -68,7 +67,7 @@ app.post('/webhook/', function (req, res) {
         
           //	initiate.toLowerCase()
             if (status === 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) {
-                sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?" + name +" space  "+ uuid)
+                sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?")
                 status = 'st_start';
             }
 
@@ -151,6 +150,24 @@ app.post('/webhook/', function (req, res) {
 
 The parameters are naturally passed through the req /foldername/file (/api/users)
 */
+
+
+function sendUserInputs() {
+    
+    request({
+        url: 'https://graph.facebook.com/v2.6/me/messages',
+        
+        qs: {access_token: token},
+        method: 'GET',
+        
+    }, function (error, response, body) {
+        if (error) {
+            console.log('Error sending messages: ', error)
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error)
+        }
+    })
+}
 
 function sendTextMessage(sender, text) {
     let messageData = {text: text}
