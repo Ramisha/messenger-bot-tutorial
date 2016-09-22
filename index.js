@@ -31,6 +31,8 @@ app.get('/', function (req, res) {
 })
 
 
+const token = "EAAN1nQ8Jz3MBABpQib4sZB1UnMCIobDAQ7ArZA8w9U67AD1gimvvDCkLptz7k3keOTjZBY3DKZCyPIFZApIg3zn6I5ByFbNpQkwRfD99ZAejGmElK075ygLKJvHw4XWcb1ZCyY9V5gOkxgywVVhjZCWRCPPvBXdM5G1WykZCgcxSoPQZDZD"
+
 // to post data
 app.post('/webhook/', function (req, res) {
 
@@ -38,7 +40,24 @@ app.post('/webhook/', function (req, res) {
     // for (let i = 0; i < messaging_events.length; i++) {
     let event  = req.body.entry[0].messaging[0]
     let sender = event.sender.id
-     name = event.sender.fb_first_name
+    // name = event.sender.fb_first_name
+    
+    
+     
+     let url = "https://graph.facebook.com/v2.6/sender?fields=first_name,last_name,profile_pic&access_token=token";
+	facebook.api(url, function(err, data){
+	 if(err){
+        console.error(err);
+        res.sendStatus(502);
+        res.end();
+    }
+    else{
+        name = first_name
+    }
+});
+
+     
+     
 
   //  console.log("********************************\n\n\n");
  //   console.log(JSON.stringify(event));
@@ -49,7 +68,8 @@ app.post('/webhook/', function (req, res) {
         var uuid = guid();
         let initiate_temp = event.message.text
         var initiate      = initiate_temp.toUpperCase();
-            //	initiate.toLowerCase()
+        
+          //	initiate.toLowerCase()
             if (status === 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) {
                 sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?" + name +" space  "+ uuid)
                 status = 'st_start';
@@ -120,41 +140,20 @@ app.post('/webhook/', function (req, res) {
 
 // recommended to inject access tokens as environmental variables, e.g.
 // const token = process.env.PAGE_ACCESS_TOKEN
-const token = "EAAN1nQ8Jz3MBABpQib4sZB1UnMCIobDAQ7ArZA8w9U67AD1gimvvDCkLptz7k3keOTjZBY3DKZCyPIFZApIg3zn6I5ByFbNpQkwRfD99ZAejGmElK075ygLKJvHw4XWcb1ZCyY9V5gOkxgywVVhjZCWRCPPvBXdM5G1WykZCgcxSoPQZDZD"
-
-// separate and read the parameters from the backend url  // access data with --- QueryString.parameter_name
-var QueryString = function () {
-  var query_string = {};
-  var query = window.location.search.substring(1);
-  var vars = query.split("&");
-  for (var i=0;i<vars.length;i++) {
-    var pair = vars[i].split("=");
-        // If first entry with this name
-    if (typeof query_string[pair[0]] === "undefined") {
-      query_string[pair[0]] = decodeURIComponent(pair[1]);
-        // If second entry with this name
-    } else if (typeof query_string[pair[0]] === "string") {
-      var arr = [ query_string[pair[0]],decodeURIComponent(pair[1]) ];
-      query_string[pair[0]] = arr;
-        // If third or later entry with this name
-    } else {
-      query_string[pair[0]].push(decodeURIComponent(pair[1]));
-    }
-  } 
-  return query_string;
-}();
 
 
-//QueryString.c // access the parameter 
+// separate and read the parameters from the backend url  
 
+/*app.get('/api/users', function(req, res) {
+ var user_id = req.params('id'); // id should be the parameter name in 
+  var token = req.params('token');
+  var geo = req.params('geo');  
 
-// send parameters to back end
-function user_data() {  
-    
-   window.location.href = "somepage.java?param_token="+uuid+"&param_destin="+con_destination+"&param_depart="+con_departure+"&param_sdate="+con_start_date+"&param_edate="+con_end_date;
-//var myUrl = "http://example.com/index.html?param_destin=con_destination&param_depart=con_departure&param_sdate=con_start_date&param_edate=con_end_date";
+ //res.send(user_id + ' ' + token + ' ' + geo);
+});
 
-}
+The parameters are naturally passed through the req /foldername/file (/api/users)
+*/
 
 function sendTextMessage(sender, text) {
     let messageData = {text: text}
