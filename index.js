@@ -42,9 +42,7 @@ app.get('/webhook/', function (req, res) {
 });
 
 
-sender.getProfile(id, function(err, first_name, last_name, profile_pic) {
-    name = first_name ;
-});
+
 	
     if (req.query['hub.verify_token'] === 'my_voice_is_my_password_verify_me') {
         res.send(req.query['hub.challenge'])
@@ -66,6 +64,10 @@ app.post('/webhook/', function (req, res) {
 
 //     //Do stuff 
 // });
+
+fbMsngr.getProfile(sender, function(err, first_name, last_name, profile_pic) {
+    name = first_name ;
+});
 
     console.log("********************************\n\n\n");
     console.log(JSON.stringify(event));
