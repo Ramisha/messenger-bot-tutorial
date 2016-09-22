@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
- {
+ 
   "name": "fb-msngr",
   "version": "0.4.0",
   "description": "A node module for building messenger bots",
