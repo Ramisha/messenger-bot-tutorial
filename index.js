@@ -45,13 +45,37 @@ app.post('/webhook/', function (req, res) {
         let event  = req.body.entry[0].messaging[0]
         let sender = event.sender.id
 
+//         sender.getProfile(id, function(err, first_name, last_name, profile_pic) {
+//             res.send(first_name, last_name, profile_pic)
+
+
+//     //Do stuff 
+// });
+
     console.log("********************************\n\n\n");
     console.log(JSON.stringify(event));
  //  console.log("\n*******\n"+JSON.stringify(res));
     console.log('\n************************************\n\n\n')
 
+// JS object to save the user specific data **************************************
 
-        if (event.message && event.message.text && !event.message.is_echo) {
+    var check_sender = {   
+            sender_id: event.sender.id,
+
+            destination:con_destination, 
+            fin_departure:con_departure ,
+            fin_end_date: con_end_date,
+            fin_start_date: con_start_date,
+
+            fin_States : states
+        };
+
+
+
+        if (event.message && event.message.text && !event.message.is_echo && sender === sender_id) {
+
+            states = check_sender.fin_States
+
             let initiate_temp = event.message.text
             var initiate      = initiate_temp.toUpperCase();
             //	initiate.toLowerCase()
@@ -124,8 +148,6 @@ app.post('/webhook/', function (req, res) {
             let text = JSON.stringify(event.postback)
             sendTextMessage(sender, "Postback received: " + text.substring(0, 200), token)
         }
-        
-        
     res.sendStatus(200)
 })
 // recommended to inject access tokens as environmental variables, e.g.
