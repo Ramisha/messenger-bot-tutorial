@@ -124,6 +124,22 @@ app.post('/webhook/', function (req, res) {
             let text = JSON.stringify(event.postback)
             sendTextMessage(sender, "Postback received: " + text.substring(0, 200), token)
         }
+        
+        FB.api(
+    "/{user-id}/first_name",
+    function (response) {
+      if (response && !response.error) {
+        /* handle the result */
+        console.log('\n*********************************************************************\n\n\n')
+         console.log('\nGRAPH API IS WORKING :::::: \n\n\n')
+         console.log(JSON.stringify(first_name));
+         console.log('\n*********************************************************************\n\n\n')
+      }
+    }
+);
+
+        
+        
     res.sendStatus(200)
 })
 // recommended to inject access tokens as environmental variables, e.g.
