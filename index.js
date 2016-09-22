@@ -60,7 +60,7 @@ app.post('/webhook/', function (req, res) {
                 status = 'st_start';
             }
 
-            if (status !== 'st_start' && (initiate === 'HI' || initiate === 'HEY')) {
+            if (status !== 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) {
                 sendTextMessage(sender, "type start over to continue creating your itinerary ")
                // button_check(sender)
                 status = 'st_start';
@@ -77,19 +77,13 @@ app.post('/webhook/', function (req, res) {
                 status = 'st_start';
                 sendTextMessage(sender, "Do you want to start creating your itinerary ?")
 
-               /* destination = '';
-                departure   = '';
-                end_date    = '';
-                start_date  = '';*/
-
             }
 
             if (status === 'st_start' && (initiate === 'YES' || initiate === 'YEAH' || initiate === 'SURE' || initiate === 'OK')) {
                 status   = 'st_destination';
                 initiate = '';
                 sendTextMessage(sender, "Give your Destination to strat creating your itinerary")
-                button_check(sender)
-                //	datePicker(sender);
+               
             }
 
             // get user input to create the itinerary
