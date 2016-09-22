@@ -59,20 +59,21 @@ app.post('/webhook/', function (req, res) {
 
 // JS object to save the user specific data **************************************
 
-    var check_sender = {   
-            sender_id: event.sender.id,
+    var check_sender = { };
 
-            destination:con_destination, 
-            fin_departure:con_departure ,
-            fin_end_date: con_end_date,
-            fin_start_date: con_start_date,
+	if (check_sender.sender){
+		
+		states = check_sender.states
+		
+	 	con_destination =check_sender.con_destination;
+		con_departure   = check_sender.con_departure;
+		con_end_date    = check_sender.con_end_date;
+		con_start_date  = check_sender.con_start_date;
+		
+		
+	}
 
-            fin_States : states
-        };
-
-
-
-        if (event.message && event.message.text && !event.message.is_echo && sender === sender_id) {
+        if (event.message && event.message.text && !event.message.is_echo) {
 
             states = check_sender.fin_States
 
