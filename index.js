@@ -8,7 +8,6 @@ var con_destination = '';
 var con_departure   = '';
 var con_end_date    = '';
 var con_start_date  = '';
-//var name = ' test ';
 
 const express    = require('express')
 const bodyParser = require('body-parser')
@@ -31,19 +30,7 @@ app.get('/', function (req, res) {
 })
 
 // for facebook verification
-// app.get('/webhook/', function (req, res) {
-	
-// 	var fbMsngr = require('fb-msngr')({
-
-//     access_token: 'EAAN1nQ8Jz3MBABpQib4sZB1UnMCIobDAQ7ArZA8w9U67AD1gimvvDCkLptz7k3keOTjZBY3DKZCyPIFZApIg3zn6I5ByFbNpQkwRfD99ZAejGmElK075ygLKJvHw4XWcb1ZCyY9V5gOkxgywVVhjZCWRCPPvBXdM5G1WykZCgcxSoPQZDZD',
-//    notification_type: 'REGULAR',
-//     verify_token: 'my_voice_is_my_password_verify_me',
-//     page_id: '973742352748403'
-// });
-
-
-
-	
+app.get('/webhook/', function (req, res) {
     if (req.query['hub.verify_token'] === 'my_voice_is_my_password_verify_me') {
         res.send(req.query['hub.challenge'])
     }
@@ -58,50 +45,23 @@ app.post('/webhook/', function (req, res) {
         let event  = req.body.entry[0].messaging[0]
         let sender = event.sender.id
 
-//         sender.getProfile(id, function(err, first_name, last_name, profile_pic) {
-//             res.send(first_name, last_name, profile_pic)
-
-
-//     //Do stuff 
-// });
-
-// fbMsngr.getProfile(sender, function(err, first_name, last_name, profile_pic) {
-//     name = first_name ;
-// });
-
     console.log("********************************\n\n\n");
     console.log(JSON.stringify(event));
  //  console.log("\n*******\n"+JSON.stringify(res));
     console.log('\n************************************\n\n\n')
 
-// JS object to save the user specific data **************************************
-
-    var check_sender = { };
-
-	if (check_sender.sender){
-		
-		states = check_sender.states
-		
-	 	con_destination =check_sender.con_destination;
-		con_departure   = check_sender.con_departure;
-		con_end_date    = check_sender.con_end_date;
-		con_start_date  = check_sender.con_start_date;
-		
-		
-	}
 
         if (event.message && event.message.text && !event.message.is_echo) {
-
             let initiate_temp = event.message.text
             var initiate      = initiate_temp.toUpperCase();
             //	initiate.toLowerCase()
             if (status === 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) {
-                sendTextMessage(sender, "Hey, I am an Itinerary recommender, do you want to start creating your itinerary ?")
+                sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?\n\n type start over to exit the process ")
                 status = 'st_start';
             }
 
-            if (initiate === 'HI' || initiate === 'HEY') {
-                sendTextMessage(sender, "Type start over to recreate your itinerary at any point")
+            if (status !== 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) {
+                sendTextMessage(sender, "type start over to continue creating your itinerary ")
                // button_check(sender)
                 status = 'st_start';
             }
@@ -117,13 +77,19 @@ app.post('/webhook/', function (req, res) {
                 status = 'st_start';
                 sendTextMessage(sender, "Do you want to start creating your itinerary ?")
 
+               /* destination = '';
+                departure   = '';
+                end_date    = '';
+                start_date  = '';*/
+
             }
 
             if (status === 'st_start' && (initiate === 'YES' || initiate === 'YEAH' || initiate === 'SURE' || initiate === 'OK')) {
                 status   = 'st_destination';
                 initiate = '';
                 sendTextMessage(sender, "Give your Destination to strat creating your itinerary")
-               
+                button_check(sender)
+                //	datePicker(sender);
             }
 
             // get user input to create the itinerary
