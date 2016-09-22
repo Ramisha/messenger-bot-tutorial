@@ -53,6 +53,7 @@ app.post('/webhook/', function (req, res) {
     // for (let i = 0; i < messaging_events.length; i++) {
     let event  = req.body.entry[0].messaging[0]
     let sender = event.sender.id
+    var print
    
 
   //  console.log("********************************\n\n\n");
@@ -68,7 +69,7 @@ app.post('/webhook/', function (req, res) {
           //	initiate.toLowerCase()
             if (status === 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) {
                 sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?")
-                sendUserInputs(title)
+               // sendUserInputs(title)
                 status = 'st_start';
             }
 
@@ -153,7 +154,7 @@ The parameters are naturally passed through the req /foldername/file (/api/users
 */
 
 
-function sendUserInputs(title) {
+function sendUserInputs(print) {
     
     request({
         url: 'http://jsonplaceholder.typicode.com/posts',
@@ -162,7 +163,7 @@ function sendUserInputs(title) {
         method: 'GET',
 
         json: {
-            title: {title: title},
+            title: {title: print},
            
         }
         
