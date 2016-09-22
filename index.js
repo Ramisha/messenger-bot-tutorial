@@ -29,26 +29,6 @@ app.get('/', function (req, res) {
     console.log('initiated'); 
     
 })
-	FB.api(
-    "/{first_name}",
-    function (response) {
-      if (response && !response.error) {
-        /* handle the result */
-       
-        name = first_name
-      }
-    }
-);
-
-// for facebook verification
-app.get('/webhook/', function (req, res) {
-	
-
-    if (req.query['hub.verify_token'] === 'my_voice_is_my_password_verify_me') {
-        res.send(req.query['hub.challenge'])
-    }
-    res.send('Error, wrong token')
-})
 
 // to post data
 app.post('/webhook/', function (req, res) {
@@ -57,6 +37,7 @@ app.post('/webhook/', function (req, res) {
     // for (let i = 0; i < messaging_events.length; i++) {
     let event  = req.body.entry[0].messaging[0]
     let sender = event.sender.id
+     name = event.sender.first_name
 
   //  console.log("********************************\n\n\n");
  //   console.log(JSON.stringify(event));
