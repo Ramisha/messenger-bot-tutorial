@@ -24,7 +24,7 @@ app.use(bodyParser.json())
 
 // index
 app.get('/', function (req, res) {
-    res.send('hello world i am a secret bot!!');
+    res.send('hello world i am an itinerary recommender bot !!');
     console.log('initiated');
     //res.send('lol lol');
 })
@@ -60,7 +60,7 @@ app.post('/webhook/', function (req, res) {
                 status = 'st_start';
             }
 
-            if (initiate === 'HI' || initiate === 'HEY') {
+            if (status !== 'st_new_user' || initiate === 'HI' || initiate === 'HEY') {
                 sendTextMessage(sender, "type start over to continue creating your itinerary ")
                // button_check(sender)
                 status = 'st_start';
