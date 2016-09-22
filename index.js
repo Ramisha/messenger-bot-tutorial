@@ -60,8 +60,8 @@ app.post('/webhook/', function (req, res) {
                 status = 'st_start';
             }
 
-            if (status !== 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) {
-                sendTextMessage(sender, "type start over to continue creating your itinerary ")
+            if (initiate === 'HI' || initiate === 'HEY') {
+                sendTextMessage(sender, "type start over to recreate your itinerary at any point")
                // button_check(sender)
                 status = 'st_start';
             }
