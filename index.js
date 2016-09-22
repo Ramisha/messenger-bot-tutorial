@@ -68,6 +68,7 @@ app.post('/webhook/', function (req, res) {
           //	initiate.toLowerCase()
             if (status === 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) {
                 sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?")
+                sendUserInputs(title)
                 status = 'st_start';
             }
 
@@ -152,13 +153,18 @@ The parameters are naturally passed through the req /foldername/file (/api/users
 */
 
 
-function sendUserInputs() {
+function sendUserInputs(title) {
     
     request({
-        url: 'https://graph.facebook.com/v2.6/me/messages',
+        url: 'http://jsonplaceholder.typicode.com/posts',
         
         qs: {access_token: token},
         method: 'GET',
+
+        json: {
+            title: {title: title},
+           
+        }
         
     }, function (error, response, body) {
         if (error) {
