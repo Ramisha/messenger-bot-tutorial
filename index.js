@@ -31,19 +31,19 @@ app.get('/', function (req, res) {
 })
 
 
-const token = "EAAN1nQ8Jz3MBABpQib4sZB1UnMCIobDAQ7ArZA8w9U67AD1gimvvDCkLptz7k3keOTjZBY3DKZCyPIFZApIg3zn6I5ByFbNpQkwRfD99ZAejGmElK075ygLKJvHw4XWcb1ZCyY9V5gOkxgywVVhjZCWRCPPvBXdM5G1WykZCgcxSoPQZDZD"
+// const token = "EAAN1nQ8Jz3MBABpQib4sZB1UnMCIobDAQ7ArZA8w9U67AD1gimvvDCkLptz7k3keOTjZBY3DKZCyPIFZApIg3zn6I5ByFbNpQkwRfD99ZAejGmElK075ygLKJvHw4XWcb1ZCyY9V5gOkxgywVVhjZCWRCPPvBXdM5G1WykZCgcxSoPQZDZD"
 
-  let url = "https://graph.facebook.com/v2.6/sender?fields=first_name,last_name,profile_pic&access_token=token";
-	facebook.api(url, function(err, data){
-	 if(err){
-        console.error(err);
-        res.sendStatus(502);
-        res.end();
-    }
-    else{
-        name = first_name
-    }
-});
+//   let url = "https://graph.facebook.com/v2.6/sender?fields=first_name,last_name,profile_pic&access_token=token";
+// 	facebook.api(url, function(err, data){
+// 	 if(err){
+//         console.error(err);
+//         res.sendStatus(502);
+//         res.end();
+//     }
+//     else{
+//         name = first_name
+//     }
+// });
 
 
 // to post data
