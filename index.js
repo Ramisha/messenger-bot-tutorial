@@ -33,18 +33,7 @@ app.get('/', function (req, res) {
 
 const token = "EAAN1nQ8Jz3MBABpQib4sZB1UnMCIobDAQ7ArZA8w9U67AD1gimvvDCkLptz7k3keOTjZBY3DKZCyPIFZApIg3zn6I5ByFbNpQkwRfD99ZAejGmElK075ygLKJvHw4XWcb1ZCyY9V5gOkxgywVVhjZCWRCPPvBXdM5G1WykZCgcxSoPQZDZD"
 
-// to post data
-app.post('/webhook/', function (req, res) {
-
-    let messaging_events = req.body.entry[0].messaging
-    // for (let i = 0; i < messaging_events.length; i++) {
-    let event  = req.body.entry[0].messaging[0]
-    let sender = event.sender.id
-    // name = event.sender.fb_first_name
-    
-    
-     
-     let url = "https://graph.facebook.com/v2.6/sender?fields=first_name,last_name,profile_pic&access_token=token";
+  let url = "https://graph.facebook.com/v2.6/sender?fields=first_name,last_name,profile_pic&access_token=token";
 	facebook.api(url, function(err, data){
 	 if(err){
         console.error(err);
@@ -56,8 +45,16 @@ app.post('/webhook/', function (req, res) {
     }
 });
 
-     
-     
+
+// to post data
+app.post('/webhook/', function (req, res) {
+
+    let messaging_events = req.body.entry[0].messaging
+    // for (let i = 0; i < messaging_events.length; i++) {
+    let event  = req.body.entry[0].messaging[0]
+    let sender = event.sender.id
+    // name = event.sender.fb_first_name
+  
 
   //  console.log("********************************\n\n\n");
  //   console.log(JSON.stringify(event));
