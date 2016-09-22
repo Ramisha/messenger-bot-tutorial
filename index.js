@@ -69,7 +69,7 @@ app.post('/webhook/', function (req, res) {
           //	initiate.toLowerCase()
             if (status === 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) {
                 sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?")
-               // sendUserInputs(title)
+                sendUserInputs(print)
                 status = 'st_start';
             }
 
