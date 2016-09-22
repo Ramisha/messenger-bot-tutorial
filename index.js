@@ -233,7 +233,7 @@ let messageData = {
 		            {
 		            "title":"Attraction 2 : Yala",
 		            "item_url":"https://petersfancybrownhats.com",
-		            "image_url":"http://",
+		            "image_url":"http://www.yalasafariholidays.com/images/images_main/yala_national_park/1.jpg",
 		            "subtitle":"enjoy a memorable holiday in your life 1",
 		            "buttons":[
 		              {
