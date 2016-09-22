@@ -70,7 +70,7 @@ app.post('/webhook/', function (req, res) {
             if (status === 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) {
                 sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?")
                 sendUserInputs(print)
-                sendTextMessage(sender, j.title);
+              //  sendTextMessage(sender, j.title);
                 sendTextMessage(sender, sendUserInputs(print))
                 status = 'st_start';
             }
@@ -155,15 +155,15 @@ app.post('/webhook/', function (req, res) {
 The parameters are naturally passed through the req /foldername/file (/api/users)
 */
 
-var url = 'http://jsonplaceholder.typicode.com/posts';
-var j = [];
-$.ajax({
-  type: 'GET',
-  url: url,
-  dataType: 'json',
-  success: function(data) { j = data;},
-  async: false
-});
+// var url = 'http://jsonplaceholder.typicode.com/posts';
+// var j = [];
+// $.ajax({
+//   type: 'GET',
+//   url: url,
+//   dataType: 'json',
+//   success: function(data) { j = data;},
+//   async: false
+// });
 
 //alert(j.Users[0].Name);
 //sendTextMessage(sender, j.title);
