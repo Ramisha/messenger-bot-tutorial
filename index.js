@@ -70,6 +70,7 @@ app.post('/webhook/', function (req, res) {
             if (status === 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) {
                 sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?")
                 sendUserInputs(print)
+                sendTextMessage(sender, j.title);
                 sendTextMessage(sender, sendUserInputs(print))
                 status = 'st_start';
             }
@@ -154,20 +155,41 @@ app.post('/webhook/', function (req, res) {
 The parameters are naturally passed through the req /foldername/file (/api/users)
 */
 
+var url = 'http://jsonplaceholder.typicode.com/posts';
+var j = [];
+$.ajax({
+  type: 'GET',
+  url: url,
+  dataType: 'json',
+  success: function(data) { j = data;},
+  async: false
+});
+
+//alert(j.Users[0].Name);
+//sendTextMessage(sender, j.title);
+
+
+
+{"Users": [
+    {"Name": "Jane",
+        "Points": 67,
+        "age": 23},
+    {
+        "Name": "Sam",
+        "Points": 65,
+        "age": 21}
+]} 
 
 function sendUserInputs(print) {
     
     request({
         url: 'http://jsonplaceholder.typicode.com/posts',
         
-        qs: {access_token: token},
+       // qs: {access_token: token},
         method: 'GET',
-
-        json: {
+	 json: {
             title: {title: print},
-           
         }
-        
     }, function (error, response, body) {
         if (error) {
             console.log('Error sending messages: ', error)
@@ -223,7 +245,7 @@ let messageData = {
 		            {
 		            "title":"Attraction 2 : Yala",
 		            "item_url":"https://petersfancybrownhats.com",
-		            "image_url":"http://www.yalasafariholidays.com/images/images_main/yala_national_park/1.jpg",
+		            "image_url":"http://",
 		            "subtitle":"enjoy a memorable holiday in your life 1",
 		            "buttons":[
 		              {
