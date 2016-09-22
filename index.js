@@ -22,11 +22,11 @@ app.use(bodyParser.urlencoded({extended: false}))
 // parse application/json
 app.use(bodyParser.json())
 
-// index
+// browser output
 app.get('/', function (req, res) {
     res.send('hello world i am an itinerary recommender bot !!');
-    console.log('initiated');
-    //res.send('lol lol');
+    console.log('initiated'); 
+    
 })
 
 // for facebook verification
@@ -45,11 +45,10 @@ app.post('/webhook/', function (req, res) {
         let event  = req.body.entry[0].messaging[0]
         let sender = event.sender.id
 
-    console.log("********************************\n\n\n");
-    console.log(JSON.stringify(event));
+  //  console.log("********************************\n\n\n");
+ //   console.log(JSON.stringify(event));
  //  console.log("\n*******\n"+JSON.stringify(res));
-    console.log('\n************************************\n\n\n')
-
+ // console.log('\n************************************\n\n\n')
 
         if (event.message && event.message.text && !event.message.is_echo) {
             let initiate_temp = event.message.text
@@ -61,35 +60,25 @@ app.post('/webhook/', function (req, res) {
             }
 
             if (status !== 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) {
-                sendTextMessage(sender, "type start over to continue creating your itinerary ")
-               // button_check(sender)
+                sendTextMessage(sender, "type start over to continue creating your itinerary ") 
                 status = 'st_start';
             }
-
 
             if (status === 'st_start' && (initiate === 'NO' || initiate === 'NOP' || initiate === 'NEH')) {
                 sendTextMessage(sender, "I am an itinerary recommender, simply say hi to get started")
                 status = 'st_new_user';
             }
-
+            
             if (initiate === 'START OVER' || initiate === 'EXIT' || initiate === 'QUIT') {
 
                 status = 'st_start';
                 sendTextMessage(sender, "Do you want to start creating your itinerary ?")
-
-               /* destination = '';
-                departure   = '';
-                end_date    = '';
-                start_date  = '';*/
-
-            }
+		 }
 
             if (status === 'st_start' && (initiate === 'YES' || initiate === 'YEAH' || initiate === 'SURE' || initiate === 'OK')) {
                 status   = 'st_destination';
                 initiate = '';
                 sendTextMessage(sender, "Give your Destination to strat creating your itinerary")
-                //button_check(sender)
-                //	datePicker(sender);
             }
 
             // get user input to create the itinerary
@@ -107,21 +96,20 @@ app.post('/webhook/', function (req, res) {
                 con_departure = initiate
                 status        = 'st_user_s_date';
                 initiate      = '';
-                sendTextMessage(sender, "your departure location is : " + con_departure + "\n\nwhen are you planning to leave ?")
+                sendTextMessage(sender, "your departure location is : " + con_departure + "\n\nwhen are you planning to leave(dd/mm/yyyy) ?")
             }
 
            // let start_date = event.message.text
             if (status === 'st_user_s_date' && initiate !== '') {
-            	 con_start_date = initiate;
-                sendTextMessage(sender, "your departure date is : " + start_date + "\n\nwhen are you planning to return")
-                 initiate      = '';
+            	con_start_date = initiate;
+                sendTextMessage(sender, "your departure date is : " + start_date + "\n\nwhen are you planning to return(dd/mm/yyyy)")
+                initiate      = '';
                 status         = 'st_user_e_date';
             }
 
            // let end_date = event.message.text
             if (status === 'st_user_e_date' && initiate !== '') {
-            	con_end_date = initiate;
-                //sendTextMessage(sender, "your return date is : " + con_end_date )
+            	con_end_date = initiate; 
                 sendTextMessage(sender, "your itinerary requirement  : \n\nDestination : " + con_destination + "\nDeparture : " + con_departure + "\nStart date : " + con_start_date + "\nEnd date : " + con_end_date + "\n\n\n Here is your itinerary ...")
                 sendItinerary(sender)
             }
