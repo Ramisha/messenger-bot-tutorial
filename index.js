@@ -75,8 +75,6 @@ app.post('/webhook/', function (req, res) {
 
         if (event.message && event.message.text && !event.message.is_echo) {
 
-            states = check_sender.fin_States
-
             let initiate_temp = event.message.text
             var initiate      = initiate_temp.toUpperCase();
             //	initiate.toLowerCase()
