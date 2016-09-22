@@ -168,18 +168,6 @@ $.ajax({
 //alert(j.Users[0].Name);
 //sendTextMessage(sender, j.title);
 
-
-
-{"Users": [
-    {"Name": "Jane",
-        "Points": 67,
-        "age": 23},
-    {
-        "Name": "Sam",
-        "Points": 65,
-        "age": 21}
-]} 
-
 function sendUserInputs(print) {
     
     request({
