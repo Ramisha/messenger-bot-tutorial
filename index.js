@@ -42,20 +42,21 @@ app.post('/webhook/', function (req, res) {
 
     let messaging_events = req.body.entry[0].messaging
     // for (let i = 0; i < messaging_events.length; i++) {
-        let event  = req.body.entry[0].messaging[0]
-        let sender = event.sender.id
+    let event  = req.body.entry[0].messaging[0]
+    let sender = event.sender.id
 
   //  console.log("********************************\n\n\n");
  //   console.log(JSON.stringify(event));
  //  console.log("\n*******\n"+JSON.stringify(res));
  // console.log('\n************************************\n\n\n')
 
-        if (event.message && event.message.text && !event.message.is_echo) {
-            let initiate_temp = event.message.text
-            var initiate      = initiate_temp.toUpperCase();
+ if (event.message && event.message.text && !event.message.is_echo) {
+        var uuid = guid();
+        let initiate_temp = event.message.text
+        var initiate      = initiate_temp.toUpperCase();
             //	initiate.toLowerCase()
             if (status === 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) {
-                sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?")
+                sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?" + sender + uuid)
                 status = 'st_start';
             }
 
@@ -277,6 +278,17 @@ function button_check(sender) {  // sample button : not used
             }
         }
     )
+}
+
+
+function guid() {
+  function s4() {
+    return Math.floor((1 + Math.random()) * 0x10000)
+      .toString(16)
+      .substring(1);
+  }
+  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+    s4() + '-' + s4() + s4() + s4();
 }
 
 
