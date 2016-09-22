@@ -115,10 +115,46 @@ app.post('/webhook/', function (req, res) {
             sendTextMessage(sender, "Postback received: " + text.substring(0, 200), token)
         }
     res.sendStatus(200)
-})
+}) // end of webhook 
+
+
 // recommended to inject access tokens as environmental variables, e.g.
 // const token = process.env.PAGE_ACCESS_TOKEN
 const token = "EAAN1nQ8Jz3MBABpQib4sZB1UnMCIobDAQ7ArZA8w9U67AD1gimvvDCkLptz7k3keOTjZBY3DKZCyPIFZApIg3zn6I5ByFbNpQkwRfD99ZAejGmElK075ygLKJvHw4XWcb1ZCyY9V5gOkxgywVVhjZCWRCPPvBXdM5G1WykZCgcxSoPQZDZD"
+
+// separate and read the parameters from the backend url  // access data with --- QueryString.parameter_name
+var QueryString = function () {
+  var query_string = {};
+  var query = window.location.search.substring(1);
+  var vars = query.split("&");
+  for (var i=0;i<vars.length;i++) {
+    var pair = vars[i].split("=");
+        // If first entry with this name
+    if (typeof query_string[pair[0]] === "undefined") {
+      query_string[pair[0]] = decodeURIComponent(pair[1]);
+        // If second entry with this name
+    } else if (typeof query_string[pair[0]] === "string") {
+      var arr = [ query_string[pair[0]],decodeURIComponent(pair[1]) ];
+      query_string[pair[0]] = arr;
+        // If third or later entry with this name
+    } else {
+      query_string[pair[0]].push(decodeURIComponent(pair[1]));
+    }
+  } 
+  return query_string;
+}();
+
+
+//QueryString.c // access the parameter 
+
+
+// send parameters to back end
+function user_data() {  
+    
+   window.location.href = "somepage.java?param_token="+uuid+"&param_destin="+con_destination+"&param_depart="+con_departure+"&param_sdate="+con_start_date+"&param_edate="+con_end_date;
+//var myUrl = "http://example.com/index.html?param_destin=con_destination&param_depart=con_departure&param_sdate=con_start_date&param_edate=con_end_date";
+
+}
 
 function sendTextMessage(sender, text) {
     let messageData = {text: text}
