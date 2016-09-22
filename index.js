@@ -8,7 +8,7 @@ var con_destination = '';
 var con_departure   = '';
 var con_end_date    = '';
 var con_start_date  = '';
-var name = '';
+var name = ' test ';
 
 const express    = require('express')
 const bodyParser = require('body-parser')
@@ -36,14 +36,14 @@ app.get('/webhook/', function (req, res) {
 	var fbMsngr = require('fb-msngr')({
 
     access_token: 'EAAN1nQ8Jz3MBABpQib4sZB1UnMCIobDAQ7ArZA8w9U67AD1gimvvDCkLptz7k3keOTjZBY3DKZCyPIFZApIg3zn6I5ByFbNpQkwRfD99ZAejGmElK075ygLKJvHw4XWcb1ZCyY9V5gOkxgywVVhjZCWRCPPvBXdM5G1WykZCgcxSoPQZDZD',
-   // notification_type: <notification_type>,
+   notification_type: 'REGULAR',
     verify_token: 'my_voice_is_my_password_verify_me',
-    page_id: 973742352748403
+    page_id: '973742352748403'
 });
 
 
 fbMsngr.getProfile(id, function(err, first_name, last_name, profile_pic) {
-    name = first_name;
+    name = first_name ;
 });
 	
     if (req.query['hub.verify_token'] === 'my_voice_is_my_password_verify_me') {
@@ -94,7 +94,7 @@ app.post('/webhook/', function (req, res) {
             var initiate      = initiate_temp.toUpperCase();
             //	initiate.toLowerCase()
             if (status === 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) {
-                sendTextMessage(sender, "Hey " + name+ " I am an Itinerary recommender, do you want to start creating your itinerary ?")
+                sendTextMessage(sender, "Hey " + name + " I am an Itinerary recommender, do you want to start creating your itinerary ?")
                 status = 'st_start';
             }
 
