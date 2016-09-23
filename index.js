@@ -32,6 +32,27 @@ app.get('/', function (req, res) {
 })
 
 
+
+var fs = require("fs");
+
+app.get('/listUsers', function (req, res) {
+   fs.readFile( __dirname + "/" + "users.json", 'utf8', function (err, data) {
+      console.log( data );
+      res.send(data);
+      res.end( data );
+   });
+})
+
+var server = app.listen(8081, function () {
+   var host = server.address().address
+   var port = server.address().port
+
+   console.log("Example app listening at http://%s:%s", host, port)
+})
+
+
+
+
 const token = "EAAN1nQ8Jz3MBABpQib4sZB1UnMCIobDAQ7ArZA8w9U67AD1gimvvDCkLptz7k3keOTjZBY3DKZCyPIFZApIg3zn6I5ByFbNpQkwRfD99ZAejGmElK075ygLKJvHw4XWcb1ZCyY9V5gOkxgywVVhjZCWRCPPvBXdM5G1WykZCgcxSoPQZDZD"
 
 //   let url = "https://graph.facebook.com/v2.6/sender?fields=first_name,last_name,profile_pic&access_token=token";
@@ -211,22 +232,6 @@ function testGet(callback) {
     });
 }
 */
-
-var fs = require("fs");
-
-app.get('/listUsers', function (req, res) {
-   fs.readFile( __dirname + "/" + "users.json", 'utf8', function (err, data) {
-      console.log( data );
-      res.end( data );
-   });
-})
-
-var server = app.listen(8081, function () {
-   var host = server.address().address
-   var port = server.address().port
-
-   console.log("Example app listening at http://%s:%s", host, port)
-})
 
 
 function sendTextMessage(sender, text) {
