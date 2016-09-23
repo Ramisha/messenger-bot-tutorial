@@ -32,9 +32,9 @@ app.get('/', function (req, res) {
 })
 
 app.use(bodyParser.urlencoded({extended : true}));
-  app.post("http://jsonplaceholder.typicode.com/posts", function(request, response) {
+  app.post("users.json", function(request, response) {
   	console.log("********************************\n\n\n");
-      console.log(request.body); //This prints the JSON document received (if it is a JSON document)
+      console.log(request.body.user1); //This prints the JSON document received (if it is a JSON document)
       console.log("********************************\n\n\n");
 });
 
