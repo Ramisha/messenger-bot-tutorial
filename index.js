@@ -31,14 +31,6 @@ app.get('/', function (req, res) {
     
 })
 
-app.get('/webhook/', function (req, res) {
-	if (req.query['hub.verify_token'] === 'my_voice_is_my_password_verify_me') {
-		res.send(req.query['hub.challenge'])
-	}
-	res.send('Error, wrong token')
-})
-
-
 
 const token = "EAAN1nQ8Jz3MBABpQib4sZB1UnMCIobDAQ7ArZA8w9U67AD1gimvvDCkLptz7k3keOTjZBY3DKZCyPIFZApIg3zn6I5ByFbNpQkwRfD99ZAejGmElK075ygLKJvHw4XWcb1ZCyY9V5gOkxgywVVhjZCWRCPPvBXdM5G1WykZCgcxSoPQZDZD"
 
@@ -74,9 +66,9 @@ app.post('/webhook/', function (req, res) {
         var uuid = guid();
         let initiate_temp = event.message.text
         var initiate      = initiate_temp.toUpperCase();
-        var callback= '';
+        var callback;
         testGet(callback);
-        console.log(callback)
+        console.log(callback.title)
           //	initiate.toLowerCase()
             if (status === 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) {
                 sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?")
@@ -198,7 +190,7 @@ The parameters are naturally passed through the req /foldername/file (/api/users
 function testGet(callback) {
 
     return http.get({
-        host: 'jsonplaceholder.typicode.com',
+        host: 'http://jsonplaceholder.typicode.com',
         path: '/posts'
     }, function(response) {
         // Continuously update stream with data
@@ -207,7 +199,7 @@ function testGet(callback) {
             body += d;
         });
         response.on('end', function() {
-		console.log(body);		
+
             // Data reception is done, do whatever with it!
             var parsed = JSON.parse(body);
             callback({
