@@ -174,11 +174,13 @@ function testGet() {
         });
         response.on('end', function() {
 		console.log(body)
-		sendTextMessage(sender, body)
+	//	sendTextMessage(sender, body)
             // Data reception is done, do whatever with it!
             var parsed = JSON.parse(body);
            
         });
+        
+        res.end(body)
     });
 }
 
