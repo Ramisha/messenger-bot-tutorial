@@ -202,9 +202,7 @@ function testGet(callback) {
 
             // Data reception is done, do whatever with it!
             var parsed = JSON.parse(body);
-            callback({
-                title: parsed.title
-            });
+           
         });
     });
 }
