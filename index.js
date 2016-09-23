@@ -15,6 +15,7 @@ const bodyParser = require('body-parser')
 const request    = require('request')
 const app        = express()
 
+var http = require('http')
 app.set('port', (process.env.PORT || 5000))
 
 // parse application/x-www-form-urlencoded
@@ -30,18 +31,24 @@ app.get('/', function (req, res) {
     
 })
 
-app.get('/webhook2/', function (req, res) {
-    if (req.query['hub.verify_token'] === 'my_voice_is_my_password_verify_me') {
-        res.send(req.query['hub.challenge'])
-    }
-    res.send('Error, wrong token')
-})
 
 const token = "EAAN1nQ8Jz3MBABpQib4sZB1UnMCIobDAQ7ArZA8w9U67AD1gimvvDCkLptz7k3keOTjZBY3DKZCyPIFZApIg3zn6I5ByFbNpQkwRfD99ZAejGmElK075ygLKJvHw4XWcb1ZCyY9V5gOkxgywVVhjZCWRCPPvBXdM5G1WykZCgcxSoPQZDZD"
 
+//   let url = "https://graph.facebook.com/v2.6/sender?fields=first_name,last_name,profile_pic&access_token=token";
+// 	facebook.api(url, function(err, data){
+// 	 if(err){
+//         console.error(err);
+//         res.sendStatus(502);
+//         res.end();
+//     }
+//     else{
+//         name = first_name
+//     }
+// });
+
 
 // to post data
-app.post('/webhook2/', function (req, res) {
+app.post('/webhook/', function (req, res) {
 
     let messaging_events = req.body.entry[0].messaging
     // for (let i = 0; i < messaging_events.length; i++) {
@@ -59,15 +66,15 @@ app.post('/webhook2/', function (req, res) {
         var uuid = guid();
         let initiate_temp = event.message.text
         var initiate      = initiate_temp.toUpperCase();
-        
+        var callback= '';
+        testGet(callback);
+        console.log(callback)
           //	initiate.toLowerCase()
             if (status === 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) {
                 sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?")
-               // sendUserInputs(print)
+                sendUserInputs(print)
               //  sendTextMessage(sender, j.title);
-              //  sendTextMessage(sender, sendUserInputs(print))
-                testGet();
-                
+                sendTextMessage(sender, sendUserInputs(print))
                 status = 'st_start';
             }
 
@@ -134,10 +141,56 @@ app.post('/webhook2/', function (req, res) {
 }) // end of webhook 
 
 
-function testGet() {
+// recommended to inject access tokens as environmental variables, e.g.
+// const token = process.env.PAGE_ACCESS_TOKEN
+
+
+// separate and read the parameters from the backend url  
+
+/*app.get('/api/users', function(req, res) {
+ var user_id = req.params('id'); // id should be the parameter name in 
+  var token = req.params('token');
+  var geo = req.params('geo');  
+ //res.send(user_id + ' ' + token + ' ' + geo);
+});
+The parameters are naturally passed through the req /foldername/file (/api/users)
+*/
+
+// var url = 'http://jsonplaceholder.typicode.com/posts';
+// var j = [];
+// $.ajax({
+//   type: 'GET',
+//   url: url,
+//   dataType: 'json',
+//   success: function(data) { j = data;},
+//   async: false
+// });
+
+//alert(j.Users[0].Name);
+//sendTextMessage(sender, j.title);
+
+/*function sendUserInputs(print) {
+    
+    request({
+        url: 'http://jsonplaceholder.typicode.com/posts',
+        
+       // qs: {access_token: token},
+        method: 'GET',
+	 json: {
+            title: {title: print},
+        }
+    }, function (error, response, body) {
+        if (error) {
+            console.log('Error sending messages: ', error)
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error)
+        }
+    })
+}*/
+function testGet(callback) {
 
     return http.get({
-        host: 'http://jsonplaceholder.typicode.com',
+        host: 'jsonplaceholder.typicode.com',
         path: '/posts'
     }, function(response) {
         // Continuously update stream with data
@@ -146,11 +199,12 @@ function testGet() {
             body += d;
         });
         response.on('end', function() {
-		console.log(body)
-		sendTextMessage(sender, body[0])
+		console.log(body);		
             // Data reception is done, do whatever with it!
             var parsed = JSON.parse(body);
-           
+            callback({
+                title: parsed.title
+            });
         });
     });
 }
