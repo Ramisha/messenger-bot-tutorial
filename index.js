@@ -33,18 +33,14 @@ app.get('/', function (req, res) {
 
 
 
-var fs = require("fs");
+app.use(bodyParser.urlencoded({extended : true}));
+  app.post("/users.json", function(request, response) {
+      console.log(request.body); //This prints the JSON document received (if it is a JSON document)
+});
 
-app.get('/listUsers', function (req, res) {
-   fs.readFile( __dirname + "users.json", 'utf8', function (err, data) {
-   	
-   	console.log( "==================================================================" );
-      console.log( data, "test data from the file " );
-      console.log( "==================================================================" );
-      res.send(data);
-     // res.end( data );
-   });
-})
+//Start the server and make it listen for connections on port 8080
+
+app.listen(8080);
 
 var server = app.listen(8081, function () {
    var host = server.address().address
