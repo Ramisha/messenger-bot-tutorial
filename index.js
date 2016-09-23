@@ -63,6 +63,7 @@ app.post('/webhook/', function (req, res) {
             if (status !== 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) {
                 sendTextMessage(sender, "type start over to continue creating your itinerary ")
                // button_check(sender)
+               testGet()
                 status = 'st_start';
             }
 
@@ -155,6 +156,30 @@ function sendTextMessage(sender, text) {
     })
 }
 
+// function to get itinerary data from back-end
+function testGet() {
+
+    return http.get({
+        host: 'http://jsonplaceholder.typicode.com',
+        path: '/posts'
+    }, function(response) {
+        // Continuously update stream with data
+        var body = '';
+        response.on('data', function(d) {
+            body += d;
+        });
+        response.on('end', function() {
+		console.log(body)
+		sendTextMessage(sender, body[0])
+            // Data reception is done, do whatever with it!
+            var parsed = JSON.parse(body);
+           
+        });
+    });
+}
+
+
+// shows a sample itinerary (with hard coded data )
 function sendItinerary(sender) {  // sample itinerary view 
 	
 let messageData = {
