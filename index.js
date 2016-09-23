@@ -192,7 +192,7 @@ The parameters are naturally passed through the req /foldername/file (/api/users
 function testGet(callback) {
 
     return http.get({
-        host: 'jsonplaceholder.typicode.com',
+        host: 'jsonplaceholder.typicode.com/posts',
         path: '/posts'
     }, function(response) {
         // Continuously update stream with data
