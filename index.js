@@ -31,25 +31,6 @@ app.get('/', function (req, res) {
     
 })
 
-app.use(bodyParser.urlencoded({extended : true}));
-  app.post("users.json", function(request, response) {
-  	console.log("********************************\n\n\n");
-      console.log(request.body.user1); //This prints the JSON document received (if it is a JSON document)
-      console.log("********************************\n\n\n");
-});
-
-//Start the server and make it listen for connections on port 8080
-
-app.listen(8080);
-
-var server = app.listen(8081, function () {
-   var host = server.address().address
-   var port = server.address().port
-
-   console.log("Example app listening at http://%s:%s", host, port)
-})
-
-
 
 
 const token = "EAAN1nQ8Jz3MBABpQib4sZB1UnMCIobDAQ7ArZA8w9U67AD1gimvvDCkLptz7k3keOTjZBY3DKZCyPIFZApIg3zn6I5ByFbNpQkwRfD99ZAejGmElK075ygLKJvHw4XWcb1ZCyY9V5gOkxgywVVhjZCWRCPPvBXdM5G1WykZCgcxSoPQZDZD"
@@ -209,6 +190,10 @@ The parameters are naturally passed through the req /foldername/file (/api/users
         }
     })
 }
+
+
+*/
+
 function testGet(callback) {
 
     return http.get({
@@ -230,7 +215,7 @@ function testGet(callback) {
         });
     });
 }
-*/
+
 
 
 function sendTextMessage(sender, text) {
