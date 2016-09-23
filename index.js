@@ -1,6 +1,3 @@
-
-
-
 'use strict'
 var status          = 'st_new_user';
 var destination     = '';
@@ -194,11 +191,11 @@ The parameters are naturally passed through the req /foldername/file (/api/users
 function testGet() {
 
     return http.get({
-        host: 'http://jsonplaceholder.typicode.com/posts',
+        host: 'http://jsonplaceholder.typicode.com',
         path: '/posts'
     }, function(response) {
         // Continuously update stream with data
-        var body = '';
+        var body = '222222222222222222';
         response.on('data', function(d) {
             body += d;
         });
@@ -369,7 +366,7 @@ function button_check(sender) {  // sample button : not used
 }
 
 
-function guid() {
+function guid() {  
   function s4() {
     return Math.floor((1 + Math.random()) * 0x10000)
       .toString(16)
