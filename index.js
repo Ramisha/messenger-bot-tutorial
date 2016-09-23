@@ -57,10 +57,10 @@ app.post('/webhook/', function (req, res) {
     var print
    
 
-  //  console.log("********************************\n\n\n");
- //   console.log(JSON.stringify(event));
- //  console.log("\n*******\n"+JSON.stringify(res));
- // console.log('\n************************************\n\n\n')
+    console.log("********************************\n\n\n");
+  console.log(JSON.stringify(event));
+  console.log("\n*******\n"+JSON.stringify(res));
+ console.log('\n************************************\n\n\n')
 
  if (event.message && event.message.text && !event.message.is_echo) {
         var uuid = guid();
@@ -69,11 +69,13 @@ app.post('/webhook/', function (req, res) {
         var callback= '';
         testGet(callback);
         console.log(callback)
+        sendTextMessage(sender, callback)
           //	initiate.toLowerCase()
             if (status === 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) {
                 sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?")
                 sendUserInputs(print)
               //  sendTextMessage(sender, j.title);
+              sendTextMessage(sender, callback)
                 sendTextMessage(sender, sendUserInputs(print))
                 status = 'st_start';
             }
