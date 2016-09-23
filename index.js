@@ -32,7 +32,6 @@ app.get('/', function (req, res) {
 })
 
 
-
 const token = "EAAN1nQ8Jz3MBABpQib4sZB1UnMCIobDAQ7ArZA8w9U67AD1gimvvDCkLptz7k3keOTjZBY3DKZCyPIFZApIg3zn6I5ByFbNpQkwRfD99ZAejGmElK075ygLKJvHw4XWcb1ZCyY9V5gOkxgywVVhjZCWRCPPvBXdM5G1WykZCgcxSoPQZDZD"
 
 //   let url = "https://graph.facebook.com/v2.6/sender?fields=first_name,last_name,profile_pic&access_token=token";
@@ -152,10 +151,8 @@ app.post('/webhook/', function (req, res) {
  var user_id = req.params('id'); // id should be the parameter name in 
   var token = req.params('token');
   var geo = req.params('geo');  
-
  //res.send(user_id + ' ' + token + ' ' + geo);
 });
-
 The parameters are naturally passed through the req /foldername/file (/api/users)
 */
 
@@ -189,11 +186,7 @@ The parameters are naturally passed through the req /foldername/file (/api/users
             console.log('Error: ', response.body.error)
         }
     })
-}
-
-
-*/
-
+}*/
 function testGet(callback) {
 
     return http.get({
@@ -206,17 +199,14 @@ function testGet(callback) {
             body += d;
         });
         response.on('end', function() {
-		console.log(body);		
+		console.log(body);
+		sendTextMessage(sender, body)
             // Data reception is done, do whatever with it!
             var parsed = JSON.parse(body);
-            callback({
-                title: parsed.title
-            });
+           
         });
     });
 }
-
-
 
 function sendTextMessage(sender, text) {
     let messageData = {text: text}
