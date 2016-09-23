@@ -66,15 +66,14 @@ app.post('/webhook/', function (req, res) {
         var uuid = guid();
         let initiate_temp = event.message.text
         var initiate      = initiate_temp.toUpperCase();
-        var callback;
-        testGet(callback);
-        console.log(callback.title)
+        //var callback;
+        testGet();
           //	initiate.toLowerCase()
             if (status === 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) {
                 sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?")
                 sendUserInputs(print)
               //  sendTextMessage(sender, j.title);
-                sendTextMessage(sender, sendUserInputs(print))
+             //   sendTextMessage(sender, sendUserInputs(print))
                 status = 'st_start';
             }
 
@@ -187,7 +186,7 @@ The parameters are naturally passed through the req /foldername/file (/api/users
         }
     })
 }*/
-function testGet(callback) {
+function testGet() {
 
     return http.get({
         host: 'http://jsonplaceholder.typicode.com',
@@ -199,7 +198,8 @@ function testGet(callback) {
             body += d;
         });
         response.on('end', function() {
-
+		console.log(body)
+		sendTextMessage(sender, body[0])
             // Data reception is done, do whatever with it!
             var parsed = JSON.parse(body);
            
