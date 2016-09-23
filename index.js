@@ -59,12 +59,13 @@ app.post('/webhook/', function (req, res) {
             if (status === 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) {
                 sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?")
                 status = 'st_start';
+                testGet()
             }
 
             if (status !== 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) {
                 sendTextMessage(sender, "type start over to continue creating your itinerary ")
                // button_check(sender)
-              // testGet()
+               testGet()
                 status = 'st_start';
             }
 
@@ -109,13 +110,13 @@ app.post('/webhook/', function (req, res) {
                 con_departure = initiate
                 status        = 'st_user_s_date';
                 initiate      = '';
-                sendTextMessage(sender, "your departure location is : " + con_departure + "\n\nwhen are you planning to leave ?")
+                sendTextMessage(sender, "your departure location is : " + con_departure + "\n\nwhen are you planning to leave ? \n date format : dd/mm/yyyy")
             }
 
            // let start_date = event.message.text
             if (status === 'st_user_s_date' && initiate !== '') {
             	 con_start_date = initiate;
-                sendTextMessage(sender, "your departure date is : " + start_date + "\n\nwhen are you planning to return")
+                sendTextMessage(sender, "your departure date is : " + start_date + "\n\nwhen are you planning to return ? \n date format : dd/mm/yyyy")
                  initiate      = '';
                 status         = 'st_user_e_date';
             }
@@ -161,7 +162,7 @@ function sendTextMessage(sender, text) {
 }
 
 // function to get itinerary data from back-end
-function testGet() {
+function testGet(sender) {
 
     return http.get({
         host: 'http://jsonplaceholder.typicode.com',
@@ -174,7 +175,7 @@ function testGet() {
         });
         response.on('end', function() {
 		console.log(body)
-	//	sendTextMessage(sender, body)
+		sendTextMessage(sender, body)
             // Data reception is done, do whatever with it!
             var parsed = JSON.parse(body);
            
