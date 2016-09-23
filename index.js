@@ -60,7 +60,7 @@ app.post('/webhook/', function (req, res) {
                // sendUserInputs(print)
               //  sendTextMessage(sender, j.title);
               //  sendTextMessage(sender, sendUserInputs(print))
-                testGet();
+              //  testGet();  commented at 11 48 am
                 
                 status = 'st_start';
             }
@@ -127,8 +127,11 @@ app.post('/webhook/', function (req, res) {
     res.sendStatus(200)
 }) // end of webhook 
 
+/*
 
 function testGet() {
+
+commented at 11.48 am
 
     return http.get({
         host: 'http://jsonplaceholder.typicode.com',
@@ -149,6 +152,8 @@ function testGet() {
     });
 }
 
+
+*/
 function sendTextMessage(sender, text) {
     let messageData = {text: text}
     console.log('\n\n\nsending : ' + text+'\n\n');
