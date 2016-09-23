@@ -180,8 +180,6 @@ function testGet(sender) {
             var parsed = JSON.parse(body);
            
         });
-        
-        res.end(body)
     });
 }
 
