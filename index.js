@@ -68,7 +68,7 @@ app.post('/webhook/', function (req, res) {
         var initiate      = initiate_temp.toUpperCase();
         var callback= '';
         testGet(callback);
-        console.log(callback)
+        console.log(testGet(callback))
         sendTextMessage(sender, callback)
           //	initiate.toLowerCase()
             if (status === 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) {
