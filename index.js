@@ -57,25 +57,23 @@ app.post('/webhook/', function (req, res) {
     var print
    
 
-    console.log("********************************\n\n\n");
-  console.log(JSON.stringify(event));
-  console.log("\n*******\n"+JSON.stringify(res));
- console.log('\n************************************\n\n\n')
+  //  console.log("********************************\n\n\n");
+ //   console.log(JSON.stringify(event));
+ //  console.log("\n*******\n"+JSON.stringify(res));
+ // console.log('\n************************************\n\n\n')
 
  if (event.message && event.message.text && !event.message.is_echo) {
         var uuid = guid();
         let initiate_temp = event.message.text
         var initiate      = initiate_temp.toUpperCase();
-        var callback= '';
+        var callback;
         testGet(callback);
-        console.log(testGet(callback))
-        sendTextMessage(sender, callback)
+        console.log(callback.title)
           //	initiate.toLowerCase()
             if (status === 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) {
                 sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?")
                 sendUserInputs(print)
               //  sendTextMessage(sender, j.title);
-              sendTextMessage(sender, callback)
                 sendTextMessage(sender, sendUserInputs(print))
                 status = 'st_start';
             }
@@ -192,7 +190,7 @@ The parameters are naturally passed through the req /foldername/file (/api/users
 function testGet(callback) {
 
     return http.get({
-        host: 'jsonplaceholder.typicode.com/posts',
+        host: 'http://jsonplaceholder.typicode.com',
         path: '/posts'
     }, function(response) {
         // Continuously update stream with data
@@ -201,11 +199,12 @@ function testGet(callback) {
             body += d;
         });
         response.on('end', function() {
-		console.log(body);
-		sendTextMessage(sender, body)
+
             // Data reception is done, do whatever with it!
             var parsed = JSON.parse(body);
-           
+            callback({
+                title: parsed.title
+            });
         });
     });
 }
