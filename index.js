@@ -165,7 +165,7 @@ function sendTextMessage(sender, text) {
 function testGet(sender) {
 
     return http.get({
-        host: 'http://jsonplaceholder.typicode.com',
+        host: 'jsonplaceholder.typicode.com',
         path: '/posts'
     }, function(response) {
         // Continuously update stream with data
