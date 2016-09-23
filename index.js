@@ -36,10 +36,13 @@ app.get('/', function (req, res) {
 var fs = require("fs");
 
 app.get('/listUsers', function (req, res) {
-   fs.readFile( __dirname + "/" + "users.json", 'utf8', function (err, data) {
-      console.log( data );
+   fs.readFile( __dirname + "users.json", 'utf8', function (err, data) {
+   	
+   	console.log( "==================================================================" );
+      console.log( data, "test data from the file " );
+      console.log( "==================================================================" );
       res.send(data);
-      res.end( data );
+     // res.end( data );
    });
 })
 
