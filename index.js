@@ -137,6 +137,8 @@ app.post('/webhook/', function (req, res) {
 // recommended to inject access tokens as environmental variables, e.g.
 // const token = process.env.PAGE_ACCESS_TOKEN
 const token = "EAAN1nQ8Jz3MBABpQib4sZB1UnMCIobDAQ7ArZA8w9U67AD1gimvvDCkLptz7k3keOTjZBY3DKZCyPIFZApIg3zn6I5ByFbNpQkwRfD99ZAejGmElK075ygLKJvHw4XWcb1ZCyY9V5gOkxgywVVhjZCWRCPPvBXdM5G1WykZCgcxSoPQZDZD"
+
+
 function sendTextMessage(sender, text) {
     let messageData = {text: text}
     console.log('\n\n\nsending : ' + text+'\n\n');
@@ -151,7 +153,8 @@ function sendTextMessage(sender, text) {
     }, function (error, response, body) {
         if (error) {
             console.log('Error sending messages: ', error)
-        } else if (response.body.error) {
+        } 
+        else if (response.body.error) {
             console.log('Error: ', response.body.error)
         }
     })
@@ -171,7 +174,7 @@ function testGet() {
         });
         response.on('end', function() {
 		console.log(body)
-		sendTextMessage(sender, body[0])
+	//	sendTextMessage(sender, body[0])
             // Data reception is done, do whatever with it!
             var parsed = JSON.parse(body);
            
