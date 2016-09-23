@@ -8,14 +8,12 @@ var con_destination = '';
 var con_departure   = '';
 var con_end_date    = '';
 var con_start_date  = '';
-var name = '';
 
 const express    = require('express')
 const bodyParser = require('body-parser')
 const request    = require('request')
 const app        = express()
 
-var http = require('http')
 app.set('port', (process.env.PORT || 5000))
 
 // parse application/x-www-form-urlencoded
@@ -24,87 +22,74 @@ app.use(bodyParser.urlencoded({extended: false}))
 // parse application/json
 app.use(bodyParser.json())
 
-// browser output
+// index
 app.get('/', function (req, res) {
     res.send('hello world i am an itinerary recommender bot !!');
-    console.log('initiated'); 
-    
+    console.log('initiated');
+    //res.send('lol lol');
 })
 
+// for facebook verification
 app.get('/webhook/', function (req, res) {
-	if (req.query['hub.verify_token'] === 'my_voice_is_my_password_verify_me') {
-		res.send(req.query['hub.challenge'])
-	}
-	res.send('Error, wrong token')
+    if (req.query['hub.verify_token'] === 'my_voice_is_my_password_verify_me') {
+        res.send(req.query['hub.challenge'])
+    }
+    res.send('Error, wrong token')
 })
-
-
-const token = "EAAN1nQ8Jz3MBABpQib4sZB1UnMCIobDAQ7ArZA8w9U67AD1gimvvDCkLptz7k3keOTjZBY3DKZCyPIFZApIg3zn6I5ByFbNpQkwRfD99ZAejGmElK075ygLKJvHw4XWcb1ZCyY9V5gOkxgywVVhjZCWRCPPvBXdM5G1WykZCgcxSoPQZDZD"
-
-//   let url = "https://graph.facebook.com/v2.6/sender?fields=first_name,last_name,profile_pic&access_token=token";
-// 	facebook.api(url, function(err, data){
-// 	 if(err){
-//         console.error(err);
-//         res.sendStatus(502);
-//         res.end();
-//     }
-//     else{
-//         name = first_name
-//     }
-// });
-
 
 // to post data
 app.post('/webhook/', function (req, res) {
 
     let messaging_events = req.body.entry[0].messaging
     // for (let i = 0; i < messaging_events.length; i++) {
-    let event  = req.body.entry[0].messaging[0]
-    let sender = event.sender.id
-    var print
-   
+        let event  = req.body.entry[0].messaging[0]
+        let sender = event.sender.id
 
-  //  console.log("********************************\n\n\n");
- //   console.log(JSON.stringify(event));
+    console.log("********************************\n\n\n");
+    console.log(JSON.stringify(event));
  //  console.log("\n*******\n"+JSON.stringify(res));
- // console.log('\n************************************\n\n\n')
+    console.log('\n************************************\n\n\n')
 
- if (event.message && event.message.text && !event.message.is_echo) {
-        var uuid = guid();
-        let initiate_temp = event.message.text
-        var initiate      = initiate_temp.toUpperCase();
-        var callback;
-        testGet(callback);
-        console.log(callback.title)
-          //	initiate.toLowerCase()
+
+        if (event.message && event.message.text && !event.message.is_echo) {
+            let initiate_temp = event.message.text
+            var initiate      = initiate_temp.toUpperCase();
+            //	initiate.toLowerCase()
             if (status === 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) {
                 sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?")
-                sendUserInputs(print)
-              //  sendTextMessage(sender, j.title);
-                sendTextMessage(sender, sendUserInputs(print))
                 status = 'st_start';
             }
 
             if (status !== 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) {
-                sendTextMessage(sender, "type start over to continue creating your itinerary ") 
+                sendTextMessage(sender, "type start over to continue creating your itinerary ")
+               // button_check(sender)
                 status = 'st_start';
             }
+
 
             if (status === 'st_start' && (initiate === 'NO' || initiate === 'NOP' || initiate === 'NEH')) {
                 sendTextMessage(sender, "I am an itinerary recommender, simply say hi to get started")
                 status = 'st_new_user';
             }
-            
+
             if (initiate === 'START OVER' || initiate === 'EXIT' || initiate === 'QUIT') {
 
                 status = 'st_start';
                 sendTextMessage(sender, "Do you want to start creating your itinerary ?")
-		 }
+
+               /* destination = '';
+                departure   = '';
+                end_date    = '';
+                start_date  = '';*/
+
+            }
 
             if (status === 'st_start' && (initiate === 'YES' || initiate === 'YEAH' || initiate === 'SURE' || initiate === 'OK')) {
                 status   = 'st_destination';
                 initiate = '';
                 sendTextMessage(sender, "Give your Destination to strat creating your itinerary")
+              //  button_check(sender)
+                //	datePicker(sender);
             }
 
             // get user input to create the itinerary
@@ -122,20 +107,21 @@ app.post('/webhook/', function (req, res) {
                 con_departure = initiate
                 status        = 'st_user_s_date';
                 initiate      = '';
-                sendTextMessage(sender, "your departure location is : " + con_departure + "\n\nwhen are you planning to leave(dd/mm/yyyy) ?")
+                sendTextMessage(sender, "your departure location is : " + con_departure + "\n\nwhen are you planning to leave ?")
             }
 
            // let start_date = event.message.text
             if (status === 'st_user_s_date' && initiate !== '') {
-            	con_start_date = initiate;
-                sendTextMessage(sender, "your departure date is : " + start_date + "\n\nwhen are you planning to return(dd/mm/yyyy)")
-                initiate      = '';
+            	 con_start_date = initiate;
+                sendTextMessage(sender, "your departure date is : " + start_date + "\n\nwhen are you planning to return")
+                 initiate      = '';
                 status         = 'st_user_e_date';
             }
 
            // let end_date = event.message.text
             if (status === 'st_user_e_date' && initiate !== '') {
-            	con_end_date = initiate; 
+            	con_end_date = initiate;
+                //sendTextMessage(sender, "your return date is : " + con_end_date )
                 sendTextMessage(sender, "your itinerary requirement  : \n\nDestination : " + con_destination + "\nDeparture : " + con_departure + "\nStart date : " + con_start_date + "\nEnd date : " + con_end_date + "\n\n\n Here is your itinerary ...")
                 sendItinerary(sender)
             }
@@ -145,77 +131,10 @@ app.post('/webhook/', function (req, res) {
             sendTextMessage(sender, "Postback received: " + text.substring(0, 200), token)
         }
     res.sendStatus(200)
-}) // end of webhook 
-
-
+})
 // recommended to inject access tokens as environmental variables, e.g.
 // const token = process.env.PAGE_ACCESS_TOKEN
-
-
-// separate and read the parameters from the backend url  
-
-/*app.get('/api/users', function(req, res) {
- var user_id = req.params('id'); // id should be the parameter name in 
-  var token = req.params('token');
-  var geo = req.params('geo');  
- //res.send(user_id + ' ' + token + ' ' + geo);
-});
-The parameters are naturally passed through the req /foldername/file (/api/users)
-*/
-
-// var url = 'http://jsonplaceholder.typicode.com/posts';
-// var j = [];
-// $.ajax({
-//   type: 'GET',
-//   url: url,
-//   dataType: 'json',
-//   success: function(data) { j = data;},
-//   async: false
-// });
-
-//alert(j.Users[0].Name);
-//sendTextMessage(sender, j.title);
-
-/*function sendUserInputs(print) {
-    
-    request({
-        url: 'http://jsonplaceholder.typicode.com/posts',
-        
-       // qs: {access_token: token},
-        method: 'GET',
-	 json: {
-            title: {title: print},
-        }
-    }, function (error, response, body) {
-        if (error) {
-            console.log('Error sending messages: ', error)
-        } else if (response.body.error) {
-            console.log('Error: ', response.body.error)
-        }
-    })
-}*/
-function testGet(callback) {
-
-    return http.get({
-        host: 'http://jsonplaceholder.typicode.com',
-        path: '/posts'
-    }, function(response) {
-        // Continuously update stream with data
-        var body = '';
-        response.on('data', function(d) {
-            body += d;
-        });
-        response.on('end', function() {
-
-            // Data reception is done, do whatever with it!
-            var parsed = JSON.parse(body);
-            callback({
-                title: parsed.title
-            });
-        });
-    });
-}
-
+const token = "EAAN1nQ8Jz3MBABpQib4sZB1UnMCIobDAQ7ArZA8w9U67AD1gimvvDCkLptz7k3keOTjZBY3DKZCyPIFZApIg3zn6I5ByFbNpQkwRfD99ZAejGmElK075ygLKJvHw4XWcb1ZCyY9V5gOkxgywVVhjZCWRCPPvBXdM5G1WykZCgcxSoPQZDZD"
 function sendTextMessage(sender, text) {
     let messageData = {text: text}
     console.log('\n\n\nsending : ' + text+'\n\n');
@@ -370,17 +289,6 @@ function button_check(sender) {  // sample button : not used
             }
         }
     )
-}
-
-
-function guid() {
-  function s4() {
-    return Math.floor((1 + Math.random()) * 0x10000)
-      .toString(16)
-      .substring(1);
-  }
-  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-    s4() + '-' + s4() + s4() + s4();
 }
 
 
