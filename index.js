@@ -157,7 +157,7 @@ const token = "EAAN1nQ8Jz3MBABpQib4sZB1UnMCIobDAQ7ArZA8w9U67AD1gimvvDCkLptz7k3ke
 
 
 function sendJSONMessage(sender) {
-    let messageData = testGet()
+    let messageData = {testGet()}
     
    request({
 		url: 'https://graph.facebook.com/v2.6/me/messages',
