@@ -165,8 +165,8 @@ function sendTextMessage(sender, text) {
 // function to get itinerary data from back-end
 function testGet(sender) {
     return http.get({
-        host: 'jsonplaceholder.typicode.com',
-        path: '/posts'
+        host: 'github.com',
+        path: '/Ramisha/messenger-bot-tutorial/blob/master/users.json'
     }, function(response, sender) {
         // Continuously update stream with data
         var body = '';
