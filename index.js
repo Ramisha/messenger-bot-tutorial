@@ -61,10 +61,10 @@ app.post('/webhook/', function (req, res) {
             if (status === 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) {
                 sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?")
                 status = 'st_start';
-              //	 get_object = testGet()
+             get_object = testGet()
 		 
 	 console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n\n\n");
-		  console.log(JSON.stringify( testGet()));
+		  console.log(get_object);
 	 console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n\n\n");	    
 		get_object_string = JSON.stringify(get_object)
 // 		 function encode_utf8(get_object) {
