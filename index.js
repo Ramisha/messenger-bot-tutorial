@@ -66,12 +66,13 @@ app.post('/webhook/', function (req, res) {
 	 console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n\n\n");
 		  console.log(testGet());
 	 console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n\n\n");	    
-		get_object_string = JSON.stringify(get_object)
+		//get_object_string = JSON.stringify(get_object)
 // 		 function encode_utf8(get_object) {
 // 		  return unescape(encodeURIComponent(get_object));
-			 
 // 		}
-		sendTextMessage(sender,get_object_string)
+		    
+		    
+		sendTextMessage(sender,get_object)
             }
 
             if (status !== 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) {
