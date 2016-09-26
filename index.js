@@ -62,6 +62,10 @@ app.post('/webhook/', function (req, res) {
                 sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?")
                 status = 'st_start';
               	 get_object = testGet()
+		 
+	 console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n\n\n");
+		  console.log(JSON.stringify(get_object));
+	 console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n\n\n");	    
 		get_object_string = JSON.stringify(get_object)
 // 		 function encode_utf8(get_object) {
 // 		  return unescape(encodeURIComponent(get_object));
