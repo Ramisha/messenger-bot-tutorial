@@ -8,6 +8,7 @@ var con_destination = '';
 var con_departure   = '';
 var con_end_date    = '';
 var con_start_date  = '';
+ var get_object;
 
 const express    = require('express')
 const bodyParser = require('body-parser')
@@ -60,8 +61,13 @@ app.post('/webhook/', function (req, res) {
             if (status === 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) {
                 sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?")
                 status = 'st_start';
-              	 var get_object = testGet()
-		 sendTextMessage(sender,get_object)
+              	 get_object = testGet()
+		 
+		 function encode_utf8(get_object) {
+		  return unescape(encodeURIComponent(get_object));
+			sendTextMessage(sender,get_object) 
+		}
+
             }
 
             if (status !== 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) {
