@@ -161,7 +161,7 @@ function sendTextMessage(sender, text) {
         }
     })
 }
-//https://api.myjson.com/bins/txt1
+//https://api.myjson.com/bins/1e9cv
 // function to get itinerary data from back-end
 function testGet(sender) {
     return http.get({
@@ -169,7 +169,7 @@ function testGet(sender) {
        // path: '/posts'
 	    
 	host: 'api.myjson.com',
-       path: '/bins/txt1'
+       path: '/bins/1e9cv'
     }, function(response, sender) {
         // Continuously update stream with data
         var body = '';
