@@ -174,7 +174,8 @@ function testGet(sender) {
             body += d;
         });
         response.on('end', function() {
-		console.log(body[0].title)
+		//console.log(body[0].title)
+		console.log(body)
 		//sendTextMessage(sender, body[0].title)
             // Data reception is done, do whatever with it!
             var parsed = JSON.parse(body);
