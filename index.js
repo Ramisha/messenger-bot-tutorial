@@ -166,10 +166,10 @@ function sendTextMessage(sender, text) {
 function testGet(sender) {
     return http.get({
        // host: 'jsonplaceholder.typicode.com',
-       // path: '/bins/txt1'
+       // path: '/posts'
 	    
 	host: 'api.myjson.com',
-       path: '/posts'
+       path: '/bins/txt1'
     }, function(response, sender) {
         // Continuously update stream with data
         var body = '';
@@ -181,7 +181,7 @@ function testGet(sender) {
 		console.log(body)
 		sendTextMessage(sender, body)
             // Data reception is done, do whatever with it!
-            var parsed = JSON.parse(body[0].userId);
+            var parsed = JSON.parse(body);
            
         });
         
