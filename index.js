@@ -51,43 +51,7 @@ app.post('/webhook/', function (req, res) {
  //  console.log("\n*******\n"+JSON.stringify(res));
     console.log('\n************************************\n\n\n')
 
-//===========================
-    
-    
-    var optionsget = {
-    host : 'graph.facebook.com', // here only the domain name
-    // (no http/https !)
-   // port : 443,
-    path : '/youscada', // the rest of the url with parameters if needed
-    method : 'GET' // do GET
-};
- 
-console.info('Options prepared:');
-console.info(optionsget);
-console.info('Do the GET call');
- 
-// do the GET request
-var reqGet = https.request(optionsget, function(res) {
-    console.log("statusCode: ", res.statusCode);
-    // uncomment it for header details
-//  console.log("headers: ", res.headers);
- 
- 
-    res.on('data', function(d) {
-        console.info('GET result:\n');
-        process.stdout.write(d);
-        console.info('\n\nCall completed');
-    });
- 
-});
- 
-reqGet.end();
-reqGet.on('error', function(e) {
-    console.error(e);
-});
-    
-    
-//===========================
+
 
         if (event.message && event.message.text && !event.message.is_echo) {
             let initiate_temp = event.message.text
@@ -96,7 +60,7 @@ reqGet.on('error', function(e) {
             if (status === 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) {
                 sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?")
                 status = 'st_start';
-                //testGet(sender)
+              	 testGet(sender)
             }
 
             if (status !== 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) {
@@ -211,7 +175,7 @@ function testGet(sender) {
         });
         response.on('end', function() {
 		console.log(body[0].title)
-		sendTextMessage(sender, body[0].title)
+		//sendTextMessage(sender, body[0].title)
             // Data reception is done, do whatever with it!
             var parsed = JSON.parse(body);
            
