@@ -64,7 +64,7 @@ app.post('/webhook/', function (req, res) {
            //  testGet()
 	   //  sendJSONMessage(sender)
 		    
-		    var test = require('./users.json');
+		    var test = require('api.myjson.com/bins/2gmu8');
 			console.log(test.fName + '' + test.lName);
 
 	     
