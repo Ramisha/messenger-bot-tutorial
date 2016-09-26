@@ -161,12 +161,15 @@ function sendTextMessage(sender, text) {
         }
     })
 }
-
+//https://api.myjson.com/bins/txt1
 // function to get itinerary data from back-end
 function testGet(sender) {
     return http.get({
-        host: 'jsonplaceholder.typicode.com',
-        path: '/posts'
+       // host: 'jsonplaceholder.typicode.com',
+       // path: '/bins/txt1'
+	    
+	host: 'api.myjson.com',
+       path: '/posts'
     }, function(response, sender) {
         // Continuously update stream with data
         var body = '';
