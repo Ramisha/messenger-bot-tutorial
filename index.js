@@ -64,7 +64,7 @@ app.post('/webhook/', function (req, res) {
              get_object = testGet()
 		 
 	 console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n\n\n");
-		  console.log(get_object);
+		  console.log(testGet());
 	 console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n\n\n");	    
 		get_object_string = JSON.stringify(get_object)
 // 		 function encode_utf8(get_object) {
