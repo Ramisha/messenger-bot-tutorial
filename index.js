@@ -61,7 +61,7 @@ app.post('/webhook/', function (req, res) {
             if (status === 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) {
                 sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?")
                 status = 'st_start';
-           //  testGet()
+            testGet()
 	   //  sendJSONMessage(sender)
 		    
 		   // var test = require('api.myjson.com/bins/2gmu8');
@@ -216,7 +216,7 @@ function testGet() {
        // path: '/posts'
 	    
 	host: 'api.myjson.com',
-       path: '/bins/2bpdc'
+       path: '/bins/2gmu8'
     }, function(response, sender) {
         // Continuously update stream with data
         var body = '';
@@ -226,7 +226,7 @@ function testGet() {
         response.on('end', function() {
 		//console.log(body[0].title)
 		console.log(body)
-		//sendTextMessage(sender, body)
+		sendTextMessage(sender, body.fName)
             // Data reception is done, do whatever with it!
             var parsed = JSON.parse(body);
            
