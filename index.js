@@ -210,7 +210,7 @@ function sendTextMessage(sender, text) {
 
 //https://api.myjson.com/bins/1e9cv
 // function to get itinerary data from back-end
-function testGet() {
+function testGet(sender) {
     return http.get({
        // host: 'jsonplaceholder.typicode.com',
        // path: '/posts'
