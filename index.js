@@ -211,7 +211,7 @@ function testGet() {
        // path: '/posts'
 	    
 	host: 'api.myjson.com',
-       path: '/bins/1e9cv'
+       path: '/bins/2bpdc'
     }, function(response, sender) {
         // Continuously update stream with data
         var body = '';
