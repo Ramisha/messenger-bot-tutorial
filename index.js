@@ -51,6 +51,13 @@ app.post('/webhook/', function (req, res) {
  //  console.log("\n*******\n"+JSON.stringify(res));
     console.log('\n************************************\n\n\n')
 
+	var request = require('request');
+request('http://www.google.com', function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+        console.log(body) // Print the google web page.
+     }
+})
+
 
         if (event.message && event.message.text && !event.message.is_echo) {
             let initiate_temp = event.message.text
@@ -59,7 +66,7 @@ app.post('/webhook/', function (req, res) {
             if (status === 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) {
                 sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?")
                 status = 'st_start';
-                testGet(sender)
+                //testGet(sender)
             }
 
             if (status !== 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) {
