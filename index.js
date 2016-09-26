@@ -188,7 +188,6 @@ function testGet(sender) {
 
 // shows a sample itinerary (with hard coded data )
 function sendItinerary(sender) {  // sample itinerary view 
-	
 let messageData = {
     "attachment":{
       "type":"template",
