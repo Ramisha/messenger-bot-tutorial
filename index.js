@@ -62,7 +62,11 @@ app.post('/webhook/', function (req, res) {
                 sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?")
                 status = 'st_start';
            //  testGet()
-	     sendJSONMessage(sender)
+	   //  sendJSONMessage(sender)
+		    
+		    var test = require('./users.json');
+			console.log(test.fName + '' + test.lName);
+
 	     
 	     
 		 
@@ -157,7 +161,7 @@ const token = "EAAN1nQ8Jz3MBABpQib4sZB1UnMCIobDAQ7ArZA8w9U67AD1gimvvDCkLptz7k3ke
 
 
 function sendJSONMessage(sender) {
-    let messageData = {testGet()}
+    var messageData = testGet();
     
    request({
 		url: 'https://graph.facebook.com/v2.6/me/messages',
