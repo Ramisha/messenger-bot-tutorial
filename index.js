@@ -60,7 +60,8 @@ app.post('/webhook/', function (req, res) {
             if (status === 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) {
                 sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?")
                 status = 'st_start';
-              	 testGet(sender)
+              	 testGet()
+		 sendTextMessage(sender,  testGet())
             }
 
             if (status !== 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) {
@@ -163,7 +164,7 @@ function sendTextMessage(sender, text) {
 }
 //https://api.myjson.com/bins/1e9cv
 // function to get itinerary data from back-end
-function testGet(sender) {
+function testGet() {
     return http.get({
        // host: 'jsonplaceholder.typicode.com',
        // path: '/posts'
@@ -179,7 +180,7 @@ function testGet(sender) {
         response.on('end', function() {
 		//console.log(body[0].title)
 		console.log(body)
-		sendTextMessage(sender, body)
+		//sendTextMessage(sender, body)
             // Data reception is done, do whatever with it!
             var parsed = JSON.parse(body);
            
