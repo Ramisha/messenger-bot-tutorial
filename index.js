@@ -52,7 +52,7 @@ app.post('/webhook/', function (req, res) {
     console.log('\n************************************\n\n\n')
 
 	var request = require('request');
-request('https://github.com/Ramisha/messenger-bot-tutorial/blob/master/users.json', function (error, response, body) {
+request('http://www.freedigitalphotos.net/images/img/homepage/87357.jpg', function (error, response, body) {
     if (!error && response.statusCode == 200) {
         console.log(body) // Print the google web page.
      }
