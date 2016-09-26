@@ -215,8 +215,8 @@ function testGet(sender) {
        // host: 'jsonplaceholder.typicode.com',
        // path: '/posts'
 	    
-	host: 'api.myjson.com',
-       path: '/bins/2gmu8'
+	//host: 'api.myjson.com',
+       path: './users.json'
     }, function(response, sender) {
         // Continuously update stream with data
         var body = '';
