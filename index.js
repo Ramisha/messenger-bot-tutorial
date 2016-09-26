@@ -157,9 +157,8 @@ const token = "EAAN1nQ8Jz3MBABpQib4sZB1UnMCIobDAQ7ArZA8w9U67AD1gimvvDCkLptz7k3ke
 
 
 function sendJSONMessage(sender) {
-    let messageData = {
-       testGet()
-    }
+    let messageData = testGet()
+    
    request({
 		url: 'https://graph.facebook.com/v2.6/me/messages',
 		qs: {access_token:token},
@@ -168,7 +167,9 @@ function sendJSONMessage(sender) {
 			recipient: {id:sender},
 			message: messageData,
 		}
-	}, function(error, response, body) {
+	}, 
+    
+    function(error, response, body) {
 		if (error) {
 			console.log('Error sending messages: ', error)
 		} else if (response.body.error) {
@@ -177,7 +178,6 @@ function sendJSONMessage(sender) {
 	})
 	
 	}
-
 
 
 function sendTextMessage(sender, text) {
