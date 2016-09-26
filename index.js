@@ -67,6 +67,9 @@ app.post('/webhook/', function (req, res) {
 		   // var test = require('api.myjson.com/bins/2gmu8');
 		     var test = require('./users.json');
 			console.log(test.fName + '' + test.lName);
+		    
+		     sendTextMessage(sender, "############################")
+		     sendTextMessage(sender, test.lName)
 
 	     
 	     
@@ -151,7 +154,7 @@ app.post('/webhook/', function (req, res) {
             }
         }
         if (event.postback) {
-            //let text = JSON.stringify(event.postback)
+            let text = JSON.stringify(event.postback)
             sendTextMessage(sender, "Postback received: " + text.substring(0, 200), token)
         }
     res.sendStatus(200)
@@ -226,7 +229,7 @@ function testGet(sender) {
         response.on('end', function() {
 		//console.log(body[0].title)
 		console.log(body)
-		sendTextMessage(sender, body.fName)
+		//sendTextMessage(sender, body.fName)
             // Data reception is done, do whatever with it!
             var parsed = JSON.parse(body);
            
