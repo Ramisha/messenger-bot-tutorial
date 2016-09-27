@@ -230,9 +230,10 @@ function testGet(sender) {
         });
         
         response.on('end', function() {
-		console.log(body[0].fName)
+		//console.log(body[0].fName)
+		console.log(body.fName)
 		//console.log(body.no)
-		get_object = JSON.stringify(body[0].fName)
+		get_object = JSON.stringify(body)
 		
 		sendTextMessage(sender, get_object)
             // Data reception is done, do whatever with it!
