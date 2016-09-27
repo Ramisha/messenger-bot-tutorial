@@ -169,7 +169,7 @@ const token = "EAAN1nQ8Jz3MBABpQib4sZB1UnMCIobDAQ7ArZA8w9U67AD1gimvvDCkLptz7k3ke
 // routes will go here --------------------------- POST PARAMETERS ---------------------------
 
 
-app.get('/users.json', function(req, res) {
+app.get('example.com/api/users', function(req, res) {
   var user_id = req.param('initiate');
   var token = req.param('con_departure');
   var geo = req.param('con_start_date');  
