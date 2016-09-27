@@ -234,9 +234,10 @@ function testGet(sender) {
 		//console.log(body.no)
 		get_object = JSON.stringify(body)
 		var print = body[0].fName
+		console.log(print)
 		sendTextMessage(sender, get_object)
 		sendTextMessage(sender, body)
-		sendTextMessage(sender, print)
+		//sendTextMessage(sender, print) ERROR : Invalid data
             // Data reception is done, do whatever with it!
             var parsed = JSON.parse(body);
            
