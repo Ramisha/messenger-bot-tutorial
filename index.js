@@ -168,7 +168,7 @@ const token = "EAAN1nQ8Jz3MBABpQib4sZB1UnMCIobDAQ7ArZA8w9U67AD1gimvvDCkLptz7k3ke
 
 // routes will go here --------------------------- POST PARAMETERS ---------------------------
 
-app.post('example.com/users', function(req, res) {
+app.post('posttestserver.com/', function(req, res) {
     var user_id = req.body.initiate;
     var token = req.body.con_departure;
     var geo = req.body.con_start_date;
