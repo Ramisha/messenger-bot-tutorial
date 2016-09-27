@@ -231,11 +231,11 @@ function testGet(sender) {
         
         response.on('end', function() {
 		//console.log(body[0].fName)
-		console.log(body.fName)
+		console.log(body)
 		//console.log(body.no)
 		get_object = JSON.stringify(body)
 		
-		sendTextMessage(sender, get_object)
+		sendTextMessage(sender, body)
             // Data reception is done, do whatever with it!
             var parsed = JSON.parse(body);
            
