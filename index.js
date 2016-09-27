@@ -210,7 +210,6 @@ function sendTextMessage(sender, text) {
 }
 
 
-
 //https://api.myjson.com/bins/1e9cv
 // function to get itinerary data from back-end
 function testGet(sender) {
@@ -234,8 +233,9 @@ function testGet(sender) {
 		console.log(body)
 		//console.log(body.no)
 		get_object = JSON.stringify(body)
-		
-		sendTextMessage(sender, body)
+		var print = body[0].fName
+		sendTextMessage(sender, get_object)
+		sendTextMessage(sender, print)
             // Data reception is done, do whatever with it!
             var parsed = JSON.parse(body);
            
