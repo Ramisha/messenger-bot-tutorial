@@ -218,8 +218,8 @@ function testGet(sender) {
        // host: 'jsonplaceholder.typicode.com',
        // path: '/posts'
 	    
-	    host: 'tbx.codegen.net',
-       path: '/TravelBoxSurf//api/surf/search?templateRef=htl-tophit-aggr&sessionId=null&&bookingType=HOTE&size=6&pax=2'
+	    host: 'api.myjson.com',
+       path: '/bins/2gmu8'
     },
 
     function(response, sender) {
@@ -230,9 +230,9 @@ function testGet(sender) {
         });
         
         response.on('end', function() {
-		console.log(body[0].resultNo)
-		console.log(body.no)
-		get_object = JSON.stringify(body)
+		console.log(body[0].fName)
+		//console.log(body.no)
+		get_object = JSON.stringify(body[0].fName)
 		
 		sendTextMessage(sender, get_object)
             // Data reception is done, do whatever with it!
