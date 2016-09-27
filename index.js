@@ -221,7 +221,7 @@ function testGet(sender) {
        path: '/bins/2gmu8'
     },
 
-    function(response, sender) {
+    function(response) {
         // Continuously update stream with data
         var body = '';
         response.on('data', function(d) {
@@ -235,7 +235,7 @@ function testGet(sender) {
 		get_object = JSON.stringify(body)
 		var print = body[0].fName
 		sendTextMessage(sender, get_object)
-		sendTextMessage(sender, print)
+		//sendTextMessage(sender, print)
             // Data reception is done, do whatever with it!
             var parsed = JSON.parse(body);
            
