@@ -166,7 +166,7 @@ const token = "EAAN1nQ8Jz3MBABpQib4sZB1UnMCIobDAQ7ArZA8w9U67AD1gimvvDCkLptz7k3ke
 
 function sendJSONMessage(sender) {
     var messageData = testGet();
-    
+    console.log('\n\n\nsending : ' + text+'\n\n');
    request({
 		url: 'https://graph.facebook.com/v2.6/me/messages',
 		qs: {access_token:token},
@@ -218,14 +218,17 @@ function testGet() {
        // host: 'jsonplaceholder.typicode.com',
        // path: '/posts'
 	    
-	//host: 'api.myjson.com',
-       path: './users.json'
-    }, function(response, sender) {
+	    host: 'tbx.codegen.net',
+       path: '/TravelBoxSurf//api/surf/search?templateRef=htl-tophit-aggr&sessionId=null&&bookingType=HOTE&size=6&pax=2'
+    },
+
+    function(response, sender) {
         // Continuously update stream with data
         var body = '';
         response.on('data', function(d) {
             body += d;
         });
+        
         response.on('end', function() {
 		//console.log(body[0].title)
 		console.log(body)
