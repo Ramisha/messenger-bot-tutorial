@@ -31,6 +31,8 @@ app.get('/', function (req, res) {
     //res.send('lol lol');
 })
 
+
+
 // for facebook verification
 app.get('/webhook/', function (req, res) {
     if (req.query['hub.verify_token'] === 'my_voice_is_my_password_verify_me') {
@@ -162,6 +164,18 @@ app.post('/webhook/', function (req, res) {
 // recommended to inject access tokens as environmental variables, e.g.
 // const token = process.env.PAGE_ACCESS_TOKEN
 const token = "EAAN1nQ8Jz3MBABpQib4sZB1UnMCIobDAQ7ArZA8w9U67AD1gimvvDCkLptz7k3keOTjZBY3DKZCyPIFZApIg3zn6I5ByFbNpQkwRfD99ZAejGmElK075ygLKJvHw4XWcb1ZCyY9V5gOkxgywVVhjZCWRCPPvBXdM5G1WykZCgcxSoPQZDZD"
+
+
+// routes will go here --------------------------- POST PARAMETERS ---------------------------
+
+
+app.get('/users.json', function(req, res) {
+  var user_id = req.param('initiate');
+  var token = req.param('con_departure');
+  var geo = req.param('con_start_date');  
+
+  res.send(user_id + ' ' + token + ' ' + geo);
+});
 
 
 function sendJSONMessage(sender) {
