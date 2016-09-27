@@ -233,7 +233,8 @@ function testGet(sender) {
 		console.log(body)
 		//console.log(body.no)
 		get_object = JSON.stringify(body)
-		var print = body[0].fName
+		//var print = body[0].fName   // ERROR : undifined 
+		var print = body.fName
 		console.log(print)
 		sendTextMessage(sender, get_object)
 		sendTextMessage(sender, body)
