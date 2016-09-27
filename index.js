@@ -168,14 +168,21 @@ const token = "EAAN1nQ8Jz3MBABpQib4sZB1UnMCIobDAQ7ArZA8w9U67AD1gimvvDCkLptz7k3ke
 
 // routes will go here --------------------------- POST PARAMETERS ---------------------------
 
+app.post('example.com/users', function(req, res) {
+    var user_id = req.body.initiate;
+    var token = req.body.con_departure;
+    var geo = req.body.con_start_date;
 
-app.get('example.com', function(req, res) {
-  var user_id = req.param('initiate');
-  var token = req.param('con_departure');
-  var geo = req.param('con_start_date');  
-
-  res.send(user_id + ' ' + token + ' ' + geo);
+    res.send(user_id + ' ' + token + ' ' + geo);
 });
+
+// app.get('example.com', function(req, res) {
+//   var user_id = req.param('initiate');
+//   var token = req.param('con_departure');
+//   var geo = req.param('con_start_date');  
+
+//   res.send(user_id + ' ' + token + ' ' + geo);
+// });
 
 
 function sendJSONMessage(sender) {
