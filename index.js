@@ -49,10 +49,10 @@ app.post('/webhook/', function (req, res) {
         let event  = req.body.entry[0].messaging[0]
         let sender = event.sender.id
 
-    console.log("********************************\n\n\n");
+  //  console.log("********************************\n\n\n");
     console.log(JSON.stringify(event));
  //  console.log("\n*******\n"+JSON.stringify(res));
-    console.log('\n************************************\n\n\n')
+  //  console.log('\n************************************\n\n\n')
 
 
 
@@ -169,7 +169,7 @@ const token = "EAAN1nQ8Jz3MBABpQib4sZB1UnMCIobDAQ7ArZA8w9U67AD1gimvvDCkLptz7k3ke
 // routes will go here --------------------------- POST PARAMETERS ---------------------------
 
 
-app.get('example.com/api/users', function(req, res) {
+app.get('example.com', function(req, res) {
   var user_id = req.param('initiate');
   var token = req.param('con_departure');
   var geo = req.param('con_start_date');  
