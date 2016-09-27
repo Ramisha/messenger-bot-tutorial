@@ -234,7 +234,7 @@ function testGet() {
 		console.log(body)
 		//sendTextMessage(sender, body.fName)
             // Data reception is done, do whatever with it!
-            var parsed = JSON.parse(body);
+            var parsed = JSON.parse(body.no);
            
         });
         
