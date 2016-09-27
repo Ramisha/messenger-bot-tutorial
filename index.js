@@ -230,11 +230,13 @@ function testGet() {
         });
         
         response.on('end', function() {
-		//console.log(body[0].title)
-		console.log(body)
+		console.log(body[0].no)
+		console.log(body.no)
+		console.log(JSON.stringify(body))
+		
 		//sendTextMessage(sender, body.fName)
             // Data reception is done, do whatever with it!
-            var parsed = JSON.parse(body.no);
+            var parsed = JSON.parse(body);
            
         });
         
