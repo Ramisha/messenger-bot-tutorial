@@ -25,7 +25,7 @@ app.post('/webhook/', function (req, res) {
 
    
 	 var results = req.body;
-	var bid = req.body.parameters;
+	var bid = req.body.parameters.unit-currency.amount;
     console.log(req);
     // console.log(req);
 	
@@ -33,7 +33,7 @@ app.post('/webhook/', function (req, res) {
 	//var bid = JSON.stringify(results.toString());
 	//res.end(req.params.set-bid);  console.log(req.body.title);
 
-    var speech = "this is a webhook response for the bid  : " + results;
+    var speech = "this is a webhook response for the bid  : " + bid;
     var ret = {
         "speech": speech,
         "displayText": speech,
