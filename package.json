@@ -7,15 +7,12 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   
-  "name": "facebook-node-sdk",
-  "version": "0.2.0",
-  "description": "Node.js SDK for the Facebook API",
-  "tags": [
-    "facebook"
-  ],
-  "author": {
-    "name": "Hitoshi Amano",
-    "email": "seijro@gmail.com"
+  "name": "fb",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/node-facebook/facebook-node-sdk.git"
   },
   
   "name": "fb-msngr",
