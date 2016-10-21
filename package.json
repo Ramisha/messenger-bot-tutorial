@@ -15,6 +15,32 @@
     "url": "git+https://github.com/node-facebook/facebook-node-sdk.git"
   },
   
+  "name": "facebook-node-sdk",
+  "version": "0.2.0",
+  "description": "Node.js SDK for the Facebook API",
+  "tags": [
+    "facebook"
+  ],
+  "author": {
+    "name": "Hitoshi Amano",
+    "email": "seijro@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/amachang/facebook-node-sdk.git"
+  },
+  "scripts": {
+    "test": "node_modules/.bin/expresso"
+  },
+  "bugs": {
+    "url": "https://github.com/amachang/facebook-node-sdk/issues"
+  },
+  "license": [
+    {
+      "type": "MIT",
+      "url": "https://raw.github.com/amachang/facebook-node-sdk/master/LICENSE"
+    }
+  
   "name": "fb-msngr",
   "version": "0.4.0",
   "description": "A node module for building messenger bots",
