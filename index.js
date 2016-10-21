@@ -62,7 +62,7 @@ app.post('/webhook/', function (req, res) {
             if (status === 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) {
                 sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?")
                 status = 'st_start';
-          testGet(sender)
+          	testGet(sender)
 	   //  sendJSONMessage(sender)
 		    
 		   // var test = require('api.myjson.com/bins/2gmu8');
@@ -257,7 +257,7 @@ function testGet(sender) {
 		var print = body.fName
 		console.log(print)
 		sendTextMessage(sender, get_object)
-		sendTextMessage(sender, body)
+		sendTextMessage(sender, body.name)
 		//sendTextMessage(sender, print) ERROR : Invalid data
             // Data reception is done, do whatever with it!
             var parsed = JSON.parse(body);
