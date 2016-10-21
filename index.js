@@ -14,6 +14,7 @@ const express    = require('express')
 const bodyParser = require('body-parser')
 const request    = require('request')
 const app        = express()
+var http = require('http')
 
 app.set('port', (process.env.PORT || 5000))
 
@@ -62,7 +63,7 @@ app.post('/webhook/', function (req, res) {
             if (status === 'st_new_user' && (initiate === 'HI' || initiate === 'HEY')) {
                 sendTextMessage(sender, "Hey I am an Itinerary recommender, do you want to start creating your itinerary ?")
                 status = 'st_start';
-          	testGet(sender)
+          testGet(sender)
 	   //  sendJSONMessage(sender)
 		    
 		   // var test = require('api.myjson.com/bins/2gmu8');
