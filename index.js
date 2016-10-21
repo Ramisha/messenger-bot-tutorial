@@ -14,9 +14,7 @@ const express    = require('express')
 const bodyParser = require('body-parser')
 const request    = require('request')
 const app        = express()
-var Facebook = require('fb');
-var facebook = new Facebook({ appID: '973742352748403', secret: 'my_voice_is_my_password_verify_me' });
-var http = require('http')
+
 
 facebook.api('/amachang', function(err, data) {
   console.log(data); // => { id: ... }
