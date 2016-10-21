@@ -7,29 +7,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   
-  "name": "fb",
-  "optionalDependencies": {},
-  "readme": "ERROR: No README data found!",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/node-facebook/facebook-node-sdk.git"
-  },
-  
-  "name": "facebook-node-sdk",
-  "version": "0.2.0",
-  "description": "Node.js SDK for the Facebook API",
-  "tags": [
-    "facebook"
-  ],
-  "author": {
-    "name": "Hitoshi Amano",
-    "email": "seijro@gmail.com"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/amachang/facebook-node-sdk.git"
-  },
- 
   "name": "fb-msngr",
   "version": "0.4.0",
   "description": "A node module for building messenger bots",
