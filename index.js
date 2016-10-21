@@ -15,11 +15,6 @@ const bodyParser = require('body-parser')
 const request    = require('request')
 const app        = express()
 
-
-facebook.api('/amachang', function(err, data) {
-  console.log(data); // => { id: ... }
-});
-
 app.set('port', (process.env.PORT || 5000))
 
 // parse application/x-www-form-urlencoded
